@@ -973,4 +973,17 @@ Good. There is a difference. Now we have to understand if this difference is sig
     mean of x mean of y 
      22.86538  23.88426
 
-Yes, with this *p* value the difference can be considered significative.
+    round(t.test(low,high)$p.value,digits=3)
+
+=0.046
+=Yes, with this *p* value the difference can be considered significative.
+
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" name="fn.1" class="footnum" href="#fnr.1">1</a></sup> <p>DEFINITION NOT FOUND.</p></div>
+
+
+</div>
+</div>

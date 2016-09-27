@@ -481,7 +481,6 @@ round(t.test(low,high)$p.value,digits=3)
 
 #+RESULTS:
 : [1] 0.046
-
 Yes, with this /p/ value the difference can be considered significative.
 * Practical 4							   :noexport:
 Inductive statistics
@@ -578,7 +577,6 @@ range(m)
 range(f)
 sd(m)
 sd(f)
-boxplot(m,f)
 #+END_SRC
 
 #+RESULTS:
@@ -599,7 +597,7 @@ boxplot(m,f)
 Let's take a look.
 
 #+BEGIN_SRC R :session :file boysgirls.png :results value graphics :exports both
-boxplot(f,m,names=c("girls","boys"))
+boxplot(f,m,names=c("Girls","Boys"))
 #+END_SRC
 
 #+RESULTS:
