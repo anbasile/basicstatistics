@@ -1,28 +1,12 @@
 #+TITLE: Basic statistics
 #+AUTHOR: Angelo Basile
 #+EMAIL: me@angelobasile.it
-#+OPTIONS: exports:both org-export-publishing-directory:"./output/"
-
-#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="http://www.pirilampo.org/styles/bigblow/css/htmlize.css"/>
-#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="http://www.pirilampo.org/styles/bigblow/css/bigblow.css"/>
-#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="http://www.pirilampo.org/styles/bigblow/css/hideshow.css"/>
-
-#+HTML_HEAD: <script type="text/javascript" src="http://www.pirilampo.org/styles/bigblow/js/jquery-1.11.0.min.js"></script>
-#+HTML_HEAD: <script type="text/javascript" src="http://www.pirilampo.org/styles/bigblow/js/jquery-ui-1.10.2.min.js"></script>
-
-#+HTML_HEAD: <script type="text/javascript" src="http://www.pirilampo.org/styles/bigblow/js/jquery.localscroll-min.js"></script>
-#+HTML_HEAD: <script type="text/javascript" src="http://www.pirilampo.org/styles/bigblow/js/jquery.scrollTo-1.4.3.1-min.js"></script>
-#+HTML_HEAD: <script type="text/javascript" src="http://www.pirilampo.org/styles/bigblow/js/jquery.zclip.min.js"></script>
-#+HTML_HEAD: <script type="text/javascript" src='http://www.pirilampo.org/styles/bigblow/js/bigblow.js'></script>
-#+HTML_HEAD: <script type="text/javascript" src="http://www.pirilampo.org/styles/bigblow/js/hideshow.js"></script>
-#+HTML_HEAD: <script type="text/javascript" src="http://www.pirilampo.org/styles/lib/js/jquery.stickytableheaders.min.js"></script>
 
 * Practical 1
 Firs we begin be importing our dataset. We have to use an additional library to read an *.xlsx file. After that we assign names to the columns. And we take a look at the first rows of the dataset to see what it looks like.
 
 #+BEGIN_SRC R :session :exports both
-require(readxl)
-data <- read_excel("./data/p1.xlsx")
+data <- read.csv("./data/p1.csv")
 names(data) <- c("id","age","sex","profs")
 head(data)
 #+END_SRC
@@ -83,8 +67,7 @@ aggregate(data$age, by=list(Category=data$sex), FUN=mean)
 * Practical 2
 
 #+BEGIN_SRC R :session :exports both
-require(readxl)
-data <- read_excel("./data/p1.xlsx")
+data <- read.csv("./data/p1.csv")
 names(data) <- c("id","age","sex","profs")
 str(data)
 #+END_SRC
@@ -212,10 +195,11 @@ aggregate(data$profs, by=list(Category=data$sex), FUN=sd)
 #+BEGIN_SRC R :session :file 3.png :results value graphics :exports both
 m <- data$profs[data$sex == 1]
 f <- data$profs[data$sex == 2]
-boxplot(m,f)
+boxplot(m,f,names=c("M","F"))
 #+END_SRC
 
 #+RESULTS:
+[[file:3.png]]
 
 ** Part B
 Provide the mean, the mode, the median, the range and the standard deviation.
@@ -258,8 +242,7 @@ MySummary(d)
 
 As always, we begin by importing the data and taking a quick look at the first rows to see what it looks like.
 #+BEGIN_SRC R :session :exports both
-require(readxl)
-data <- read_excel("./data/p3a.xlsx", col_names=TRUE,na="")[1:130,]
+data <- read.csv("./data/p3a.csv",na="",header=TRUE)
 head(data)
 #+END_SRC
 
@@ -440,18 +423,16 @@ It is safe to reject the null hypothesis.
 
 ** Part B
 #+BEGIN_SRC R :session :exports both :results output
-require(readxl)
-data <- read_excel("./data/p3b.xlsx",na="")[1:130,]
+data <- read.csv("./data/p3b.csv",na="")
 colnames(data) <- c("partecipant","motivation","score")
 str(data)
 #+END_SRC
 
 #+RESULTS:
-: Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	130 obs. of  3 variables:
-:  $ partecipant: num  1 2 3 4 5 6 7 8 9 10 ...
-:  $ motivation : chr  "Low" "Low" "High" "Low" ...
-:  $ score      : num  22 28 28 26 18 31 22 25 20 25 ...
-
+: 'data.frame':	424 obs. of  3 variables:
+:  $ partecipant: int  1 2 3 4 5 6 7 8 9 10 ...
+:  $ motivation : Factor w/ 2 levels "High","Low": 2 2 1 2 2 2 2 1 1 1 ...
+:  $ score      : int  22 28 28 26 18 31 22 25 20 25 ...
 
 Let's define Motivation as factor.
 #+BEGIN_SRC R :session :exports both :results output
@@ -469,18 +450,290 @@ bymotivation <- aggregate(data$score, by=list(data$motivation), FUN=mean)
 #+END_SRC
 
 #+RESULTS:
-| High | 24.1714285714286 |
-| Low  |             23.2 |
+| High | 23.8842592592593 |
+| Low  | 22.8653846153846 |
 
 Good. There is a difference. Now we have to understand if this difference is significative or not.
 
-#+BEGIN_SRC R :session :exports both
+#+BEGIN_SRC R :session :exports both :results output
 low <- data$score[data$motivation == "Low"]
 high <- data$score[data$motivation == "High"]
-round(t.test(low,high)$p.value,digits=2)
+t.test(low,high)
 #+END_SRC
 
 #+RESULTS:
-: 0.21
+#+begin_example
 
-No, with this /p/ value the difference can not be considered significative.
+	Welch Two Sample t-test
+
+data:  low and high
+t = -2.0046, df = 421.24, p-value = 0.04565
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -2.01795621 -0.01979307
+sample estimates:
+mean of x mean of y 
+ 22.86538  23.88426
+#+end_example
+
+Yes, with this /p/ value the difference can be considered significative.
+* Practical 4
+Inductive statistics
+
+** Applying the t-test
+
+A researcher wants to find out whether boys or girls are more intelligent. Eleven girls and eight boys (randomly selected) participated in an experiment in which scores were involved ranging 1-20 (interval).
+
+| Girls | Boys |
+|-------+------|
+|    17 |   16 |
+|    16 |   15 |
+|    14 |   13 |
+|    19 |   19 |
+|    18 |   15 |
+|    17 |   14 |
+|    16 |   13 |
+|    15 |   12 |
+|    16 |      |
+|    15 |      |
+|    19 |      |
+
+We begin by building the dataframe.
+
+#+BEGIN_SRC R :session :exports both
+partecipant <- seq(1,19)
+score <- c(17,16,16,15,14,13,19,19,18,15,17,14,16,13,15,12,16,15,19)
+gender <- c(1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,1,1)
+gender <- as.factor(gender)
+levels(gender) <- c("F", "M")
+df = data.frame(partecipant,gender,score)
+df
+str(df)
+#+END_SRC
+
+#+RESULTS:
+
+Here we load some libraries that we are going to use later on. The first one is a plotting library, while the second contains skewness and kurtosis functioncs
+#+BEGIN_SRC R :session
+library(ggplot2)
+library(moments)
+#+END_SRC
+
+#+RESULTS:
+| moments   |
+| ggplot2   |
+| readxl    |
+| stats     |
+| graphics  |
+| grDevices |
+| utils     |
+| datasets  |
+| methods   |
+| base      |
+
+*** What are the dependent and independent variables?
+Gender is the independent variable and the score is the dependent one
+*** What kind of measures (nominal, ordinal or interval / scale) are used for the variables?
+Gender is a nominal, while score is a scale variable.  
+*** How many levels does the independent variable have?
+Two, =boys= and =girls=. For readability in the output I have renamed these to =M= and =F= respectively.
+*** Formulate the statistical hypothesis
+- Null: there is no difference in the two groups
+- H1: there is a difference: boys do better than girls
+- H2: there is a difference: girls do better than boys
+*** Select an alpha level suitable for this study  
+0.5
+*** Which statistical test could be used ?
+The t-test. Bu we have first to check for the normality of the distribution and the homogenity.
+  
+*** Enter the data
+/Tip/: carefully consider this step – the two columns (Girls and Boys) in the data are not necessarily the variable columns. Remember that the columns in the dataset represent variables, not levels of variables!
+#+BEGIN_SRC R :session :exports both
+head(df)
+#+END_SRC
+
+#+RESULTS:
+| 1 | F | 17 |
+| 2 | M | 16 |
+| 3 | F | 16 |
+| 4 | M | 15 |
+| 5 | F | 14 |
+| 6 | M | 13 |
+
+*** Provide the following descriptive statistics for both groups: means, range, minimum, maximum, standard deviations.
+#+BEGIN_SRC R :session :exports both :results output
+f <- df$score[df$gender == "F"]
+m <- df$score[df$gender == "M"]
+summary(m)
+summary(f)
+mean(m)
+mean(f)
+range(m)
+range(f)
+sd(m)
+sd(f)
+boxplot(m,f)
+#+END_SRC
+
+#+RESULTS:
+#+begin_example
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  12.00   13.00   14.50   14.62   15.25   19.00
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  14.00   15.50   16.00   16.55   17.50   19.00
+[1] 14.625
+[1] 16.54545
+[1] 12 19
+[1] 14 19
+[1] 2.199838
+[1] 1.634848
+#+end_example
+
+*** What are your first impressions about the difference between the boys and the girls?
+Let's take a look.
+
+#+BEGIN_SRC R :session :file boysgirls.png :results value graphics :exports both
+boxplot(f,m,names=c("girls","boys"))
+#+END_SRC
+
+#+RESULTS:
+
+It seems that girls score better than the boys.
+*** Create a box plot to visualise the results. 
+Done before.
+*** Test the statistical significance of this experiment
+**** Tips
+Find out which group has a distribution that most resembles the normal distribution.  What do the values of skewness and kurtosis represent again ?  How can they help you in determining whether a dataset resembles a normal distribution?  Check the “How To Check Assumptions NEW” on Nestor as well.
+
+In our dataset we have 19 observations. So, we are going to run the Shapiro-Wilk test.
+
+#+BEGIN_SRC R :session :exports both :results output
+shapiro.test(m)
+shapiro.test(f)
+#+END_SRC
+
+#+RESULTS:
+#+begin_example
+
+	Shapiro-Wilk normality test
+
+data:  m
+W = 0.9228, p-value = 0.453
+
+	Shapiro-Wilk normality test
+
+data:  f
+W = 0.94182, p-value = 0.5422
+#+end_example
+
+#+BEGIN_SRC R :session :exports both :results output
+skewness(m)
+skewness(f)
+#+END_SRC
+
+#+RESULTS:
+: [1] 0.8540259
+: [1] 0.203529
+
+**** Do  the Independent samples t-test.
+Why do you have to use this test rather than the one sample t-test or the paired samples t-test ?
+
+#+BEGIN_SRC R :session :exports both :results output
+t.test(m,f)
+#+END_SRC
+
+#+RESULTS:
+#+begin_example
+
+	Welch Two Sample t-test
+
+data:  m and f
+t = -2.0856, df = 12.357, p-value = 0.05838
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -3.92030824  0.07939915
+sample estimates:
+mean of x mean of y 
+ 14.62500  16.54545
+#+end_example
+
+**** Carefully study the output
+**** Leven's test
+Taking Levene’s test into account, what is the value of “t”?  Which degrees of freedom are applied to this test?  What is the level of significance of these samples ?  Compare this to the alpha level you set in e) above.  Can you reject H 0 ?
+**** Reporting
+Reporting on results of statistical studies has to be done according to fixed conventions.  The rule is NEVER to copy and paste tables from SPSS but to report in writing. Here’s how you should do it, as suggested by Andy Field (2005: 303), applied to our test. Fill in the details ... , my comments are in []:
+
+#+BEGIN_QUOTE
+On average, the ... [fill in boys or girls] showed a higher level of intelligence (M=... , SE= ... )  than the ... (M=... , SE= ... ). This difference was ... [fill in “significant” or “not significant”] t(...[fill in df])= ... [fill in the value of t], p ... [fill in < 0.05 o r > 0.05 or whichever α you’ve selected].
+#+END_QUOTE
+
+** What can you say about the meaningfulness of this outcome?
+Is there any additional information you’d like to have about this study ?
+** Consider the following data
+8 students have participated in a reading test and a listening comprehension test.  Reading ability and listening comprehension are operationalised by the variables R and L respectively. Both variables are measured on an interval scale. The results have been summarised in the table below. Build a dataframe.
+
+| Student |   R |  L |
+|---------+-----+----|
+|       1 |  20 | 65 |
+|       2 |  40 | 69 |
+|       3 |  60 | 73 |
+|       4 |  80 | 77 |
+|       5 | 100 | 80 |
+|       6 | 120 | 84 |
+|       7 | 140 | 89 |
+|       8 | 160 | 95 |
+#+BEGIN_SRC R
+partecipant <- seq(1,8)
+r <- c(20,40,60,80,100,120,140,160)
+l <- c(65,69,73,77,80,84,89,95)
+df = data.frame(partecipant,r,l)
+#+END_SRC
+
+#+RESULTS:
+| 1 |  20 | 65 |
+| 2 |  40 | 69 |
+| 3 |  60 | 73 |
+| 4 |  80 | 77 |
+| 5 | 100 | 80 |
+| 6 | 120 | 84 |
+| 7 | 140 | 89 |
+| 8 | 160 | 95 |
+
+*** What would be H 0 if we want to test the relationship between reading and listening comprehension?  
+*** Make a plot of the results.
+Tip: Make a scatter plot and define the X-and Y-axis.
+*** At face value, do you think Reading and Listening , as plotted in the graph, are related?
+*** We want to know if we can conclude that reading skill s and listening comprehension are significantly related.  To determine this, you will have to calc ulate a Pearson r (or r xy ). To do this, go to Analyse > Correlate > Bivariate and enter the two variables you want to correlate. Make sure the computer calculates the Pearson correlation for a two-tailed test.  What is the value of r xy ? Is this a strong correlation? What is the chance of incorrectly rejecting your H 0 ? What do you decide?
+*** Write a sentence that you could include in the Results section of a study reporting on the outcome of your test. It will be something like this
+**** 
+
+“ A correlation analysis showed that Reading Skills and Listening Skills were .... [significantly or not significantly] related (r = ..., p ... [ fill in < 0.05 or > 0.05 or whichever α you’ve selected] ) ”
+** 
+In an Advanced section of Chapter 5, we shortly discussed reliability, and that Cronbach’s Alpha was a good measure to check for reliability of a test. The teachers from the data in Practical 3A are interested in the reliability of their exam. They have decided to use Cronbach’s Alpha to check this
+
+*** 
+ Open the data for Prac3A t o check the reliability of a 17-item phonetics test
+*** 
+ Decide whether the test is reliable by going to Analyze > Scale > Reliability Analysis.  Put all the Qu estions in the Items (and not the Total and the Grade), and choose Alpha next to Model . Click OK. The Output will give you a correlation coefficient.  Do you think this is a reliable test?
+*** 
+Now we will check the individual items. Go to Analyze > Scale > Reliability Analysis.  Click on Statistics. Check Inter-Item Correlations and Descriptives for Scale if item deleted. Click OK. The output will give you the correlations between items and will give you all the Cronbach’s Alpha values without a particular item. With the deletion of which item do you get the highest reliability
+** testing the normality of the distribution
+One of the assumptions of the t-test (apart from the equality of the variances in the groups) is that the data are distributed according to the normal distribution. You could of course simply run Explore and look at the Skewness and the Kurtosis. If Skewness and Kurtosis is very close to 0, or at least between- 1 and 1, you can assume that the distribution is approximately normal. However, some of you may want to know what the chance is that you go wrong in assuming the normal distribution. This can be established by applying the Kolmogorov-Smirnov test. We’ll apply this test in SPSS using the data from Practical 2.
+*** Please note:
+if you want to test for normality in an experiment with more than one group, you’ll have to run separate analyses for the each group. It’s important the distribution of each group is normal, rather than the distribution of the scores of the two groups tak en together.
+* Notes
+** Always check for normality before running t-test
+** Equality of variance 
+A rule of thumb with equality of variance is that the largest SD of your groups should not be more than twice the smallest SD of your groups.
+** Reporting guidelines
+http://my.ilstu.edu/~jhkahn/apastats.html
+
+* new hin
+
+#+BEGIN_SRC R :session
+2+2
+#+END_SRC
+
+#+RESULTS:
+: 4
+
