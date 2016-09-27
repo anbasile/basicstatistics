@@ -475,12 +475,13 @@ mean of x mean of y
  22.86538  23.88426
 #+end_example
 
-#+BEGIN_SRC R :session :exports both :results output
+#+BEGIN_SRC R :session :exports both
 round(t.test(low,high)$p.value,digits=3)
 #+END_SRC
 
 #+RESULTS:
-: [1] 0.046
+: 0.046
+
 Yes, with this /p/ value the difference can be considered significative.
 * Practical 4							   :noexport:
 Inductive statistics
