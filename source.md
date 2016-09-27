@@ -720,6 +720,27 @@ Now we define the type of variables for `teacher` and `group`. More precisely, w
     data$teacher <- as.factor(data$teacher)
     str(data)
 
+     null device 
+              1
+    [1] 6.000000 3.000000 6.000000 2.160247
+    [1] 6 6 6 0
+    [1] 6.000000 4.000000 6.000000 2.236068
+    [1] 6.000000 1.000000 4.000000 5.597619
+     
+     Student. teacher group Q1 Q2 Q3 Q4 Q5 Q6 Q7 Q8 Q9 Q10 Q11 Q12 Q13 Q14 Q15 Q16
+    1        1       A    1A 10  5  5  7  4  2  4 14  5   5   5   0   5   0   0   4
+    2        2       A    1A 12  5  4  8  4  4  5 18  5   0   5   0   0   5   0   4
+    3        3       A    1A 10  4  5  6  2  3  0  8  0   5   5   0   5   0   0   4
+    4        4       A    1A 18  5  6  8  5  3  4 15  5   5   5   0   5   0   5   4
+    5        5       A    1B 20  5  6  7  5  4  4 19  5   5   5   0   5   0   0   5
+    6        6       A    1A 16  5  6  8  6  3  1 19  0   0   5   0   5   0   0   4
+      Q17
+    1  12
+    2  17
+    3  11
+    4  12
+    5  13
+    6  11
     'data.frame':   130 obs. of  20 variables:
      $ Student.: int  1 2 3 4 5 6 7 8 9 10 ...
      $ teacher : Factor w/ 2 levels "A","B": 1 1 1 1 1 1 1 1 1 1 ...
@@ -804,7 +825,13 @@ Teacher A
     data$grade <- trunc(((data$TOTAL_score/143)*100)/10)
     str(data$grade)
 
-    num [1:130] 6 6 4 7 7 6 5 3 7 6 ...
+    [1] 1B
+    Levels: 1A 1B 1C 1D 1E
+    [1] 1C
+    Levels: 1A 1B 1C 1D 1E
+     null device 
+              1
+     num [1:130] 6 6 4 7 7 6 5 3 7 6 ...
 
 ### How many students passed?<a id="sec-3-1-6" name="sec-3-1-6"></a>
 
@@ -918,6 +945,15 @@ It is safe to reject the null hypothesis.
     colnames(data) <- c("partecipant","motivation","score")
     str(data)
 
+    FALSE  TRUE 
+       86    44
+     null device 
+              1
+    [1]  0.80 -1.58  1.99  0.80
+    [1] 481.8712
+    [1] 554.4673
+    [1] 0.02501417
+    [1] 0.02426194
     'data.frame':   424 obs. of  3 variables:
      $ partecipant: int  1 2 3 4 5 6 7 8 9 10 ...
      $ motivation : Factor w/ 2 levels "High","Low": 2 2 1 2 2 2 2 1 1 1 ...
@@ -972,5 +1008,9 @@ Good. There is a difference. Now we have to understand if this difference is sig
     sample estimates:
     mean of x mean of y 
      22.86538  23.88426
+
+    round(t.test(low,high)$p.value,digits=3)
+
+    [1] 0.046
 
 Yes, with this *p* value the difference can be considered significative.

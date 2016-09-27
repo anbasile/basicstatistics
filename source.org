@@ -443,7 +443,6 @@ str(data$motivation)
 #+RESULTS:
 :  Factor w/ 2 levels "High","Low": 2 2 1 2 2 2 2 1 1 1 ...
 
-
 Ok, now we group the scores by motivation level.
 #+BEGIN_SRC R :session :exports both
 bymotivation <- aggregate(data$score, by=list(data$motivation), FUN=mean)
@@ -476,8 +475,15 @@ mean of x mean of y
  22.86538  23.88426
 #+end_example
 
+#+BEGIN_SRC R :session :exports both :results output
+round(t.test(low,high)$p.value,digits=3)
+#+END_SRC
+
+#+RESULTS:
+: [1] 0.046
+
 Yes, with this /p/ value the difference can be considered significative.
-* Practical 4
+* Practical 4							   :noexport:
 Inductive statistics
 
 ** Applying the t-test
@@ -721,19 +727,9 @@ Now we will check the individual items. Go to Analyze > Scale > Reliability Anal
 One of the assumptions of the t-test (apart from the equality of the variances in the groups) is that the data are distributed according to the normal distribution. You could of course simply run Explore and look at the Skewness and the Kurtosis. If Skewness and Kurtosis is very close to 0, or at least between- 1 and 1, you can assume that the distribution is approximately normal. However, some of you may want to know what the chance is that you go wrong in assuming the normal distribution. This can be established by applying the Kolmogorov-Smirnov test. We’ll apply this test in SPSS using the data from Practical 2.
 *** Please note:
 if you want to test for normality in an experiment with more than one group, you’ll have to run separate analyses for the each group. It’s important the distribution of each group is normal, rather than the distribution of the scores of the two groups tak en together.
-* Notes
+* Notes								   :noexport:
 ** Always check for normality before running t-test
 ** Equality of variance 
 A rule of thumb with equality of variance is that the largest SD of your groups should not be more than twice the smallest SD of your groups.
 ** Reporting guidelines
 http://my.ilstu.edu/~jhkahn/apastats.html
-
-* new hin
-
-#+BEGIN_SRC R :session
-2+2
-#+END_SRC
-
-#+RESULTS:
-: 4
-
