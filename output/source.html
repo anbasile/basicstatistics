@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <title>Basic statistics</title>
-<!-- 2016-10-04 mar 10:37 -->
+<!-- 2016-10-04 mar 12:19 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="generator" content="Org-mode">
@@ -1046,6 +1046,72 @@ str(data)
 </div>
 
 <pre class="example">
+ id age sex profs
+1  1  16   1    91
+2  2  20   2    58
+3  3  24   1    52
+4  4  22   2    45
+5  5  18   1    78
+6  6  14   2    88
+ null device 
+          1
+ 
+ Category        x
+1        1 75.53333
+2        2 63.66667
+ null device 
+          1
+ 
+ Category        x
+1        1 20.13333
+2        2 20.53333
+ 'data.frame':	30 obs. of  4 variables:
+ $ id   : int  1 2 3 4 5 6 7 8 9 10 ...
+ $ age  : int  16 20 24 22 18 14 15 17 19 21 ...
+ $ sex  : int  1 2 1 2 1 2 1 2 1 2 ...
+ $ profs: int  91 58 52 45 78 88 90 86 83 62 ...
+[1] 16
+[1] 69.6
+[1] 69
+[1] 59
+[1] 33 97
+[1] 16.44342
+[1] 14
+[1] 27
+[1] 20.33333
+[1] 3.565479
+[1] 3.565479
+[1] 59
+[1] -0.4621908
+ 
+ Category        x
+1        1 75.53333
+2        2 63.66667
+ 
+ Category        x
+1        1 14.24212
+2        2 16.78718
+ null device 
+          1
+[1] 6.000000 3.000000 6.000000 2.160247
+[1] 6 6 6 0
+[1] 6.000000 4.000000 6.000000 2.236068
+[1] 6.000000 1.000000 4.000000 5.597619
+ 
+ Student. teacher group Q1 Q2 Q3 Q4 Q5 Q6 Q7 Q8 Q9 Q10 Q11 Q12 Q13 Q14 Q15 Q16
+1        1       A    1A 10  5  5  7  4  2  4 14  5   5   5   0   5   0   0   4
+2        2       A    1A 12  5  4  8  4  4  5 18  5   0   5   0   0   5   0   4
+3        3       A    1A 10  4  5  6  2  3  0  8  0   5   5   0   5   0   0   4
+4        4       A    1A 18  5  6  8  5  3  4 15  5   5   5   0   5   0   5   4
+5        5       A    1B 20  5  6  7  5  4  4 19  5   5   5   0   5   0   0   5
+6        6       A    1A 16  5  6  8  6  3  1 19  0   0   5   0   5   0   0   4
+  Q17
+1  12
+2  17
+3  11
+4  12
+5  13
+6  11
 'data.frame':	130 obs. of  20 variables:
  $ Student.: int  1 2 3 4 5 6 7 8 9 10 ...
  $ teacher : Factor w/ 2 levels "A","B": 1 1 1 1 1 1 1 1 1 1 ...
@@ -1182,7 +1248,13 @@ str(data$grade)
 </div>
 
 <pre class="example">
-num [1:130] 6 6 4 7 7 6 5 3 7 6 ...
+[1] 1B
+Levels: 1A 1B 1C 1D 1E
+[1] 1C
+Levels: 1A 1B 1C 1D 1E
+ null device 
+          1
+ num [1:130] 6 6 4 7 7 6 5 3 7 6 ...
 </pre>
 </div>
 </div>
@@ -1374,7 +1446,16 @@ str(data)
 </div>
 
 <pre class="example">
-'data.frame':   424 obs. of  3 variables:
+FALSE  TRUE 
+   86    44
+ null device 
+          1
+[1]  0.80 -1.58  1.99  0.80
+[1] 481.8712
+[1] 554.4673
+[1] 0.02501417
+[1] 0.02426194
+'data.frame':	424 obs. of  3 variables:
  $ partecipant: int  1 2 3 4 5 6 7 8 9 10 ...
  $ motivation : Factor w/ 2 levels "High","Low": 2 2 1 2 2 2 2 1 1 1 ...
  $ score      : int  22 28 28 26 18 31 22 25 20 25 ...
@@ -1564,7 +1645,6 @@ gender &lt;- c(1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,1,1)
 gender &lt;- as.factor(gender)
 levels(gender) &lt;- c("F", "M")
 df = data.frame(partecipant,gender,score)
-df
 str(df)
 </pre>
 </div>
@@ -1574,9 +1654,10 @@ Here we load some libraries that we are going to use later on. The first one is 
 </p>
 <div class="org-src-container">
 
-<pre class="src src-R">library(ggplot2)
+<pre class="src src-R">library(psych)
+library(ggplot2)
 library(moments)
-library(car)
+library(lawstat)
 </pre>
 </div>
 </div>
@@ -1717,6 +1798,19 @@ sd(f)
 </div>
 
 <pre class="example">
+[1] 0.046
+ 'data.frame':	19 obs. of  3 variables:
+ $ partecipant: int  1 2 3 4 5 6 7 8 9 10 ...
+ $ gender     : Factor w/ 2 levels "F","M": 1 2 1 2 1 2 1 2 1 2 ...
+ $ score      : num  17 16 16 15 14 13 19 19 18 15 ...
+ 
+ partecipant gender score
+1           1      F    17
+2           2      M    16
+3           3      F    16
+4           4      M    15
+5           5      F    14
+6           6      M    13
    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
   12.00   13.00   14.50   14.62   15.25   19.00
    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
@@ -1786,6 +1880,9 @@ shapiro.test(f)
 </div>
 
 <pre class="example">
+ null device 
+          1
+
 	Shapiro-Wilk normality test
 
 data:  m
@@ -1853,10 +1950,37 @@ mean of x mean of y
 <p>
 Taking Levene’s test into account, what is the value of “t”?  Which degrees of freedom are applied to this test?  What is the level of significance of these samples ?  Compare this to the alpha level you set in e) above.  Can you reject H 0 ?
 </p>
-</div>
-</li>
+<div class="org-src-container">
 
-<li><a id="sec-4-1-11-4" name="sec-4-1-11-4"></a>Reporting<br ><div class="outline-text-5" id="text-4-1-11-4">
+<pre class="src src-R">levene.test(df$score, df$gender, location="median")
+</pre>
+</div>
+
+<pre class="example">
+        modified robust Brown-Forsythe Levene-type test based on the absolute
+        deviations from the median
+
+data:  df$score
+Test Statistic = 0.38995, p-value = 0.5406
+</pre>
+
+<p>
+Since the p-value of the Levene's test is greater than 0.05, I would say that the test is not signicant and so the two groups should have a similar variance. But from the plot it doesn't seem so. Indeed if we compare the two variances we can see that one is more than twice the other. I suspect there is something wrong with the test.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-R">var(m)
+var(f)
+</pre>
+</div>
+
+<pre class="example">
+[1] 4.839286
+[1] 2.672727
+</pre>
+
+
 <blockquote>
 <p>
 On average, the girls showed a higher level of intelligence (M=14.63, SE= &#x2026; )  than the boys(M=14.63. , SE= &#x2026; ). This difference was not significant t(df=12.36,t=-2.09, p &gt; 0.05).
@@ -1974,9 +2098,6 @@ Reading and listening do not interfere.
 <div id="outline-container-sec-4-3-2" class="outline-4">
 <h4 id="sec-4-3-2"><span class="section-number-4">4.3.2</span> Make a plot of the results.</h4>
 <div class="outline-text-4" id="text-4-3-2">
-<p>
-Tip: Make a scatter plot and define the X-and Y-axis.
-</p>
 <div class="org-src-container">
 
 <pre class="src src-R">plot(df$r,df$l,xlab="Reading",ylab="Listening")
@@ -2013,24 +2134,44 @@ To determine this, you will have to calc ulate a Pearson r (or r xy ). Make sure
 </div>
 
 <pre class="example">
-0.996229128491916
+ null device 
+          1
+[1] 0.9962291
+</pre>
+
+<div class="org-src-container">
+
+<pre class="src src-R">t.test(df$r,df$l)
+</pre>
+</div>
+
+<pre class="example">
+	Welch Two Sample t-test
+
+data:  df$r and df$l
+t = 0.62193, df = 7.5972, p-value = 0.5522
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -30.16518  52.16518
+sample estimates:
+mean of x mean of y 
+       90        79
 </pre>
 </div>
 </div>
-
 
 <div id="outline-container-sec-4-3-5" class="outline-4">
 <h4 id="sec-4-3-5"><span class="section-number-4">4.3.5</span> Report</h4>
 <div class="outline-text-4" id="text-4-3-5">
 <blockquote>
 <p>
-A correlation analysis showed that Reading Skills and Listening Skills were &#x2026;. [significantly or not significantly] related (r =0.99, p &#x2026; [ fill in &lt; 0.05 or &gt; 0.05 or whichever α you’ve selected] ) ”
+A correlation analysis showed that Reading Skills and Listening Skills were not significantly related (r =0.99, p &gt; 0.05
 </p>
 </blockquote>
 </div>
 </div>
 <div id="outline-container-sec-4-3-6" class="outline-4">
-<h4 id="sec-4-3-6"><span class="section-number-4">4.3.6</span> <span class="label label-primary __TODO">☛ TODO</span> Cronbach's Alpha</h4>
+<h4 id="sec-4-3-6"><span class="section-number-4">4.3.6</span> Cronbach's Alpha</h4>
 <div class="outline-text-4" id="text-4-3-6">
 <p>
 &#x2026;we shortly discussed reliability, and that Cronbach’s Alpha was a good measure to check for reliability of a test. The teachers from the data in Practical 3A are interested in the reliability of their exam. They have decided to use Cronbach’s Alpha to check this
@@ -2043,14 +2184,56 @@ A correlation analysis showed that Reading Skills and Listening Skills were &#x2
 <li>Now we will check the individual items. Go to Analyze &gt; Scale &gt; Reliability Analysis.  Click on Statistics. Check Inter-Item Correlations and Descriptives for Scale if item deleted. Click OK. The output will give you the correlations between items and will give you all the Cronbach’s Alpha values without a particular item. With the deletion of which item do you get the highest reliabil
 </li>
 </ol>
+
+<div class="org-src-container">
+
+<pre class="src src-R">alpha(data,delete=TRUE,check.keys=TRUE)
+</pre>
+</div>
+
+<pre class="example">
+Reliability analysis   
+Call: alpha(x = data, check.keys = TRUE, delete = TRUE)
+
+  raw_alpha std.alpha G6(smc) average_r  S/N    ase mean sd
+    0.0094      0.11   0.055     0.055 0.12 0.0082  118 61
+
+ lower alpha upper     95% confidence boundaries
+-0.01 0.01 0.03 
+
+ Reliability if an item is dropped:
+             raw_alpha std.alpha G6(smc) average_r   S/N alpha se
+partecipant-    0.0555     0.055  0.0031     0.055    NA       NA
+score           0.0031     0.055      NA        NA 0.055    0.011
+
+ Item statistics 
+               n raw.r std.r r.cor r.drop mean    sd
+partecipant- 424 0.999  0.73  0.17  0.055  212 122.5
+score        424 0.098  0.73  0.17  0.055   23   5.3
+Warning messages:
+1: In var(if (is.vector(x) || is.factor(x)) x else as.double(x), na.rm = na.rm) :
+  si è prodotto un NA per coercizione
+2: In alpha(data, delete = TRUE, check.keys = TRUE) :
+  Item = motivation had no variance and was deleted
+3: In alpha(data, delete = TRUE, check.keys = TRUE) :
+  Some items were negatively correlated with total scale and were automatically reversed.
+ This is indicated by a negative sign for the variable name.
+4: In matrix(unlist(drop.item), ncol = 8, byrow = TRUE) :
+  data length [12] is not a sub-multiple or multiple of the number of columns [8]
+</pre>
+
+<p>
+I confess the alpha is not completley clear to me. Here I am submitting the results as it is.
+</p>
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-4-4" class="outline-3">
-<h3 id="sec-4-4"><span class="section-number-3">4.4</span> testing the normality of the distribution</h3>
+<h3 id="sec-4-4"><span class="section-number-3">4.4</span> Testing for normality</h3>
 <div class="outline-text-3" id="text-4-4">
 <p>
-One of the assumptions of the t-test (apart from the equality of the variances in the groups) is that the data are distributed according to the normal distribution. You could of course simply run Explore and look at the Skewness and the Kurtosis. If Skewness and Kurtosis is very close to 0, or at least between- 1 and 1, you can assume that the distribution is approximately normal. However, some of you may want to know what the chance is that you go wrong in assuming the normal distribution. This can be established by applying the Kolmogorov-Smirnov test. We’ll apply this test in SPSS using the data from Practical 2.
+Apply Ks test.
 </p>
 
 <p>
@@ -2060,20 +2243,41 @@ Please note: if you want to test for normality in an experiment with more than o
 <div class="org-src-container">
 
 <pre class="src src-R">data &lt;- read.csv("./data/p3a.csv",na="",header=TRUE)
-ks.test(data$Q1,data$Q2,"pnorm")
+data$totalscore &lt;- rowSums(data[,4:20])
+ks.test((data$totalscore),"pnorm")
 </pre>
 </div>
 
 <pre class="example">
-	Two-sample Kolmogorov-Smirnov test
+	One-sample Kolmogorov-Smirnov test
 
-data:  data$Q1 and data$Q2
-D = 0.73846, p-value &lt; 2.2e-16
+data:  (data$totalscore)
+D = 1, p-value &lt; 2.2e-16
 alternative hypothesis: two-sided
 
 Warning message:
-In ks.test(data$Q1, data$Q2, "pnorm") :
-  p-value will be approximate in the presence of ties
+In ks.test((data$totalscore), "pnorm") :
+  ties should not be present for the Kolmogorov-Smirnov test
+</pre>
+
+<p>
+It seems that there are repeated values in the <code>TOTALscore</code> variable. In fact, shouldn't the KS test be applied to continous distributions only ? In the next section I run it on unique elements of TOTALscore and it correclty reports no warning. Maybe is SPSS doing this automatically?
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-R">data &lt;- read.csv("./data/p3a.csv",na="",header=TRUE)
+data$totalscore &lt;- rowSums(data[,4:20])
+ks.test(unique(data$totalscore),"pnorm")
+</pre>
+</div>
+
+<pre class="example">
+        One-sample Kolmogorov-Smirnov test
+
+data:  unique(data$totalscore)
+D = 1, p-value = 2.22e-16
+alternative hypothesis: two-sided
 </pre>
 </div>
 </div>
@@ -2112,7 +2316,7 @@ In ks.test(data$Q1, data$Q2, "pnorm") :
 <li><a href="#sec-4-1">4.1. Applying the t-test</a></li>
 <li><a href="#sec-4-2">4.2. What can you say about the meaningfulness of this outcome?</a></li>
 <li><a href="#sec-4-3">4.3. Consider the following data</a></li>
-<li><a href="#sec-4-4">4.4. testing the normality of the distribution</a></li>
+<li><a href="#sec-4-4">4.4. Testing for normality</a></li>
 </ul>
 </li>
 </ul>
@@ -2121,7 +2325,7 @@ In ks.test(data$Q1, data$Q2, "pnorm") :
 </div></div></div>
 <footer id="postamble" class="">
 <div><p class="author">Author: Angelo Basile</p>
-<p class="date">Created: 2016-10-04 mar 10:37</p>
+<p class="date">Created: 2016-10-04 mar 12:19</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org-mode</a> 8.2.10)</p>
 </div>
 </footer>

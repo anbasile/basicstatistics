@@ -514,7 +514,6 @@ gender <- c(1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,1,1)
 gender <- as.factor(gender)
 levels(gender) <- c("F", "M")
 df = data.frame(partecipant,gender,score)
-df
 str(df)
 #+END_SRC
 
@@ -522,15 +521,21 @@ str(df)
 
 Here we load some libraries that we are going to use later on. The first one is a plotting library, while the second contains skewness and kurtosis functions. The car packages contains Levene's test.
 #+BEGIN_SRC R :session
+library(psych)
 library(ggplot2)
 library(moments)
-library(car)
+library(lawstat)
 #+END_SRC
 
 #+RESULTS:
+| psych     |
 | car       |
 | moments   |
 | ggplot2   |
+| ltm       |
+| polycor   |
+| msm       |
+| MASS      |
 | stats     |
 | graphics  |
 | grDevices |
@@ -678,8 +683,31 @@ mean of x mean of y
 **** Carefully study the output
 **** Leven's test
 Taking Levene’s test into account, what is the value of “t”?  Which degrees of freedom are applied to this test?  What is the level of significance of these samples ?  Compare this to the alpha level you set in e) above.  Can you reject H 0 ?
+#+RESULTS:
 
-**** Reporting
+#+BEGIN_SRC R :session :exports both :results output
+levene.test(df$score, df$gender, location="median")
+#+END_SRC
+
+#+RESULTS:
+: 
+: 	modified robust Brown-Forsythe Levene-type test based on the absolute
+: 	deviations from the median
+: 
+: data:  df$score
+: Test Statistic = 0.38995, p-value = 0.5406
+
+Since the p-value of the Levene's test is greater than 0.05, I would say that the test is not signicant and so the two groups should have a similar variance. But from the plot it doesn't seem so. Indeed if we compare the two variances we can see that one is more than twice the other. I suspect there is something wrong with the test.
+
+#+BEGIN_SRC R :session :exports both :results output
+var(m)
+var(f)
+#+END_SRC
+
+#+RESULTS:
+: [1] 4.839286
+: [1] 2.672727
+
 
 #+BEGIN_QUOTE
 On average, the girls showed a higher level of intelligence (M=14.63, SE= ... )  than the boys(M=14.63. , SE= ... ). This difference was not significant t(df=12.36,t=-2.09, p > 0.05).
@@ -722,59 +750,155 @@ df = data.frame(partecipant,r,l)
 *** What would be H_0 if we want to test the relationship between reading and listening comprehension?
 Reading and listening do not interfere.  
 *** Make a plot of the results.
-Tip: Make a scatter plot and define the X-and Y-axis.
+
 #+BEGIN_SRC R :session :file correlation.png :results value graphics :exports both
 plot(df$r,df$l,xlab="Reading",ylab="Listening")
 #+END_SRC
-
-#+RESULTS:
 
 *** At face value, do you think Reading and Listening , as plotted in the graph, are related?
 Yes
 *** We want to know if we can conclude that reading skills and listening comprehension are significantly related.
 To determine this, you will have to calc ulate a Pearson r (or r xy ). Make sure the computer calculates the Pearson correlation for a two-tailed test.  What is the value of r xy ? Is this a strong correlation? What is the chance of incorrectly rejecting your H 0 ? What do you decide?
 
-#+BEGIN_SRC R :session :exports both
+#+BEGIN_SRC R :session :exports both :results output
 cor(df$r,df$l,method="pearson")
 #+END_SRC
 
 #+RESULTS:
 : 0.996229128491916
 
-
-*** Report
-
-#+BEGIN_QUOTE
-A correlation analysis showed that Reading Skills and Listening Skills were .... [significantly or not significantly] related (r =0.99, p ... [ fill in < 0.05 or > 0.05 or whichever α you’ve selected] ) ”
-#+END_QUOTE
-*** ☛ TODO Cronbach's Alpha
-...we shortly discussed reliability, and that Cronbach’s Alpha was a good measure to check for reliability of a test. The teachers from the data in Practical 3A are interested in the reliability of their exam. They have decided to use Cronbach’s Alpha to check this
-1) Open the data for Prac3A t o check the reliability of a 17-item phonetics test
-2) Decide whether the test is reliable by going to Analyze > Scale > Reliability Analysis.  Put all the Qu estions in the Items (and not the Total and the Grade), and choose Alpha next to Model . Click OK. The Output will give you a correlation coefficient.  Do you think this is a reliable test?
-3) Now we will check the individual items. Go to Analyze > Scale > Reliability Analysis.  Click on Statistics. Check Inter-Item Correlations and Descriptives for Scale if item deleted. Click OK. The output will give you the correlations between items and will give you all the Cronbach’s Alpha values without a particular item. With the deletion of which item do you get the highest reliabil
-** testing the normality of the distribution
-One of the assumptions of the t-test (apart from the equality of the variances in the groups) is that the data are distributed according to the normal distribution. You could of course simply run Explore and look at the Skewness and the Kurtosis. If Skewness and Kurtosis is very close to 0, or at least between- 1 and 1, you can assume that the distribution is approximately normal. However, some of you may want to know what the chance is that you go wrong in assuming the normal distribution. This can be established by applying the Kolmogorov-Smirnov test. We’ll apply this test in SPSS using the data from Practical 2.
-
-Please note: if you want to test for normality in an experiment with more than one group, you’ll have to run separate analyses for the each group. It’s important the distribution of each group is normal, rather than the distribution of the scores of the two groups taken together.
-
 #+BEGIN_SRC R :session :exports both :results output
-data <- read.csv("./data/p3a.csv",na="",header=TRUE)
-ks.test(data$Q1,data$Q2,"pnorm")
+t.test(df$r,df$l)
 #+END_SRC
 
 #+RESULTS:
 #+begin_example
 
-	Two-sample Kolmogorov-Smirnov test
+	Welch Two Sample t-test
 
-data:  data$Q1 and data$Q2
-D = 0.73846, p-value < 2.2e-16
+data:  df$r and df$l
+t = 0.62193, df = 7.5972, p-value = 0.5522
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -30.16518  52.16518
+sample estimates:
+mean of x mean of y 
+       90        79
+#+end_example
+
+*** Report
+
+#+BEGIN_QUOTE
+A correlation analysis showed that Reading Skills and Listening Skills were not significantly related (r =0.99, p > 0.05
+#+END_QUOTE
+*** Cronbach's Alpha
+
+...we shortly discussed reliability, and that Cronbach’s Alpha was a good measure to check for reliability of a test. The teachers from the data in Practical 3A are interested in the reliability of their exam. They have decided to use Cronbach’s Alpha to check this
+1) Open the data for Prac3A t o check the reliability of a 17-item phonetics test
+2) Decide whether the test is reliable by going to Analyze > Scale > Reliability Analysis.  Put all the Qu estions in the Items (and not the Total and the Grade), and choose Alpha next to Model . Click OK. The Output will give you a correlation coefficient.  Do you think this is a reliable test?
+3) Now we will check the individual items. Go to Analyze > Scale > Reliability Analysis.  Click on Statistics. Check Inter-Item Correlations and Descriptives for Scale if item deleted. Click OK. The output will give you the correlations between items and will give you all the Cronbach’s Alpha values without a particular item. With the deletion of which item do you get the highest reliabil
+
+#+BEGIN_SRC R :session :exports both :results output
+alpha(data,delete=TRUE,check.keys=TRUE)
+#+END_SRC
+
+#+RESULTS:
+#+begin_example
+
+Reliability analysis   
+Call: alpha(x = data, check.keys = TRUE, delete = TRUE)
+
+  raw_alpha std.alpha G6(smc) average_r S/N   ase mean  sd
+      0.28      0.82    0.85       0.2 4.6 0.064  7.7 2.6
+
+ lower alpha upper     95% confidence boundaries
+0.15 0.28 0.41 
+
+ Reliability if an item is dropped:
+          raw_alpha std.alpha G6(smc) average_r S/N alpha se
+Student.-      0.80      0.83    0.85      0.22 4.9    0.021
+Q1             0.18      0.80    0.83      0.19 3.9    0.064
+Q2             0.27      0.81    0.83      0.20 4.1    0.064
+Q3             0.26      0.80    0.83      0.19 3.9    0.064
+Q4             0.26      0.80    0.83      0.19 4.1    0.064
+Q5             0.26      0.80    0.83      0.19 4.0    0.064
+Q6             0.27      0.80    0.83      0.19 4.0    0.064
+Q7             0.27      0.81    0.84      0.20 4.2    0.064
+Q8             0.27      0.81    0.84      0.20 4.2    0.060
+Q9             0.27      0.82    0.85      0.21 4.6    0.064
+Q10            0.27      0.82    0.84      0.21 4.4    0.064
+Q11            0.28      0.82    0.85      0.22 4.7    0.064
+Q12            0.28      0.83    0.85      0.22 4.7    0.063
+Q13            0.26      0.81    0.84      0.20 4.4    0.065
+Q14            0.29      0.83    0.86      0.23 5.0    0.064
+Q15            0.28      0.82    0.85      0.22 4.7    0.063
+Q16            0.27      0.80    0.83      0.19 4.0    0.063
+Q17            0.20      0.80    0.83      0.19 3.9    0.065
+
+ Item statistics 
+            n  raw.r std.r r.cor r.drop mean   sd
+Student.- 130  0.865  0.16 0.078  0.089 64.5 37.7
+Q1        130  0.570  0.74 0.749  0.464 10.6  6.4
+Q2        130  0.320  0.60 0.579  0.299  4.0  1.1
+Q3        130  0.392  0.73 0.734  0.358  4.3  1.8
+Q4        130  0.355  0.63 0.617  0.315  6.6  2.1
+Q5        130  0.328  0.70 0.703  0.293  3.9  1.8
+Q6        130  0.394  0.66 0.647  0.373  2.1  1.2
+Q7        130  0.256  0.57 0.545  0.223  2.1  1.6
+Q8        130  0.213  0.54 0.509  0.125 13.2  4.1
+Q9        130  0.240  0.34 0.266  0.188  2.8  2.5
+Q10       130  0.234  0.43 0.368  0.182  2.6  2.5
+Q11       130  0.104  0.29 0.209  0.055  3.6  2.3
+Q12       130  0.072  0.27 0.180  0.024  1.3  2.2
+Q13       130  0.347  0.48 0.427  0.298  2.3  2.5
+Q14       130 -0.014  0.12 0.022 -0.059  1.0  2.0
+Q15       130  0.088  0.30 0.219  0.042  1.1  2.1
+Q16       130  0.242  0.66 0.654  0.215  3.5  1.3
+Q17       130  0.573  0.73 0.729  0.498  8.3  4.7
+#+end_example
+
+I confess the alpha is not completley clear to me. Here I am submitting the results as it is.
+
+** Testing for normality
+Apply Ks test.
+
+Please note: if you want to test for normality in an experiment with more than one group, you’ll have to run separate analyses for the each group. It’s important the distribution of each group is normal, rather than the distribution of the scores of the two groups taken together.
+
+#+BEGIN_SRC R :session :exports both :results output
+data <- read.csv("./data/p3a.csv",na="",header=TRUE)
+data$totalscore <- rowSums(data[,4:20])
+ks.test((data$totalscore),"pnorm")
+#+END_SRC
+
+#+RESULTS:
+#+begin_example
+
+	One-sample Kolmogorov-Smirnov test
+
+data:  (data$totalscore)
+D = 1, p-value < 2.2e-16
 alternative hypothesis: two-sided
 
 Warning message:
-In ks.test(data$Q1, data$Q2, "pnorm") :
-  p-value will be approximate in the presence of ties
+In ks.test((data$totalscore), "pnorm") :
+  ties should not be present for the Kolmogorov-Smirnov test
 #+end_example
+
+It seems that there are repeated values in the =TOTALscore= variable. In fact, shouldn't the KS test be applied to continous distributions only ? In the next section I run it on unique elements of TOTALscore and it correclty reports no warning. Maybe is SPSS doing this automatically?
+
+#+BEGIN_SRC R :session :exports both :results output
+data <- read.csv("./data/p3a.csv",na="",header=TRUE)
+data$totalscore <- rowSums(data[,4:20])
+ks.test(unique(data$totalscore),"pnorm")
+#+END_SRC
+
+#+RESULTS:
+: 
+: 	One-sample Kolmogorov-Smirnov test
+: 
+: data:  unique(data$totalscore)
+: D = 1, p-value = 2.22e-16
+: alternative hypothesis: two-sided
 
 * Notes								   :noexport:
 ** Always check for normality before running t-test

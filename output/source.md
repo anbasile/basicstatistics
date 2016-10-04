@@ -68,10 +68,10 @@
 <li><a href="#sec-4-3-3">4.3.3. At face value, do you think Reading and Listening , as plotted in the graph, are related?</a></li>
 <li><a href="#sec-4-3-4">4.3.4. We want to know if we can conclude that reading skills and listening comprehension are significantly related.</a></li>
 <li><a href="#sec-4-3-5">4.3.5. Report</a></li>
-<li><a href="#sec-4-3-6">4.3.6. <span class="todo __TODO">☛ TODO</span> Cronbach's Alpha</a></li>
+<li><a href="#sec-4-3-6">4.3.6. Cronbach's Alpha</a></li>
 </ul>
 </li>
-<li><a href="#sec-4-4">4.4. testing the normality of the distribution</a></li>
+<li><a href="#sec-4-4">4.4. Testing for normality</a></li>
 </ul>
 </li>
 </ul>
@@ -1190,14 +1190,14 @@ We begin by building the dataframe.
     gender <- as.factor(gender)
     levels(gender) <- c("F", "M")
     df = data.frame(partecipant,gender,score)
-    df
     str(df)
 
 Here we load some libraries that we are going to use later on. The first one is a plotting library, while the second contains skewness and kurtosis functions. The car packages contains Levene's test.
 
+    library(psych)
     library(ggplot2)
     library(moments)
-    library(car)
+    library(lawstat)
 
 ### What are the dependent and independent variables?<a id="sec-4-1-1" name="sec-4-1-1"></a>
 
@@ -1299,28 +1299,7 @@ The t-test. But we have first to check for the normality of the distribution and
     sd(f)
 
     [1] 0.046
-     
-      partecipant gender score
-    1            1      F    17
-    2            2      M    16
-    3            3      F    16
-    4            4      M    15
-    5            5      F    14
-    6            6      M    13
-    7            7      F    19
-    8            8      M    19
-    9            9      F    18
-    10          10      M    15
-    11          11      F    17
-    12          12      M    14
-    13          13      F    16
-    14          14      M    13
-    15          15      F    15
-    16          16      M    12
-    17          17      F    16
-    18          18      F    15
-    19          19      F    19
-    'data.frame':   19 obs. of  3 variables:
+     'data.frame':  19 obs. of  3 variables:
      $ partecipant: int  1 2 3 4 5 6 7 8 9 10 ...
      $ gender     : Factor w/ 2 levels "F","M": 1 2 1 2 1 2 1 2 1 2 ...
      $ score      : num  17 16 16 15 14 13 19 19 18 15 ...
@@ -1417,9 +1396,23 @@ The `boys` group presents higher values for both skewness and kurtosis when comp
 3.  Leven's test
 
     Taking Levene’s test into account, what is the value of “t”?  Which degrees of freedom are applied to this test?  What is the level of significance of these samples ?  Compare this to the alpha level you set in e) above.  Can you reject H 0 ?
-
-4.  Reporting
-
+    
+        levene.test(df$score, df$gender, location="median")
+    
+                modified robust Brown-Forsythe Levene-type test based on the absolute
+                deviations from the median
+        
+        data:  df$score
+        Test Statistic = 0.38995, p-value = 0.5406
+    
+    Since the p-value of the Levene's test is greater than 0.05, I would say that the test is not signicant and so the two groups should have a similar variance. But from the plot it doesn't seem so. Indeed if we compare the two variances we can see that one is more than twice the other. I suspect there is something wrong with the test.
+    
+        var(m)
+        var(f)
+    
+        [1] 4.839286
+        [1] 2.672727
+    
     > On average, the girls showed a higher level of intelligence (M=14.63, SE= &#x2026; )  than the boys(M=14.63. , SE= &#x2026; ). This difference was not significant t(df=12.36,t=-2.09, p > 0.05).
 
 ## What can you say about the meaningfulness of this outcome?<a id="sec-4-2" name="sec-4-2"></a>
@@ -1519,8 +1512,6 @@ Reading and listening do not interfere.
 
 ### Make a plot of the results.<a id="sec-4-3-2" name="sec-4-3-2"></a>
 
-Tip: Make a scatter plot and define the X-and Y-axis.
-
     plot(df$r,df$l,xlab="Reading",ylab="Listening")
 
 ![img](correlation.png)
@@ -1535,38 +1526,95 @@ To determine this, you will have to calc ulate a Pearson r (or r xy ). Make sure
 
     cor(df$r,df$l,method="pearson")
 
-    0.996229128491916
+     null device 
+              1
+    [1] 0.9962291
+
+    t.test(df$r,df$l)
+
+            Welch Two Sample t-test
+    
+    data:  df$r and df$l
+    t = 0.62193, df = 7.5972, p-value = 0.5522
+    alternative hypothesis: true difference in means is not equal to 0
+    95 percent confidence interval:
+     -30.16518  52.16518
+    sample estimates:
+    mean of x mean of y 
+           90        79
 
 ### Report<a id="sec-4-3-5" name="sec-4-3-5"></a>
 
-> A correlation analysis showed that Reading Skills and Listening Skills were &#x2026;. [significantly or not significantly] related (r =0.99, p &#x2026; [ fill in < 0.05 or > 0.05 or whichever α you’ve selected] ) ”
+> A correlation analysis showed that Reading Skills and Listening Skills were not significantly related (r =0.99, p > 0.05
 
-### ☛ TODO Cronbach's Alpha<a id="sec-4-3-6" name="sec-4-3-6"></a>
+### Cronbach's Alpha<a id="sec-4-3-6" name="sec-4-3-6"></a>
 
 &#x2026;we shortly discussed reliability, and that Cronbach’s Alpha was a good measure to check for reliability of a test. The teachers from the data in Practical 3A are interested in the reliability of their exam. They have decided to use Cronbach’s Alpha to check this
 1.  Open the data for Prac3A t o check the reliability of a 17-item phonetics test
 2.  Decide whether the test is reliable by going to Analyze > Scale > Reliability Analysis.  Put all the Qu estions in the Items (and not the Total and the Grade), and choose Alpha next to Model . Click OK. The Output will give you a correlation coefficient.  Do you think this is a reliable test?
 3.  Now we will check the individual items. Go to Analyze > Scale > Reliability Analysis.  Click on Statistics. Check Inter-Item Correlations and Descriptives for Scale if item deleted. Click OK. The output will give you the correlations between items and will give you all the Cronbach’s Alpha values without a particular item. With the deletion of which item do you get the highest reliabil
 
-## testing the normality of the distribution<a id="sec-4-4" name="sec-4-4"></a>
+    alpha(data,delete=TRUE,check.keys=TRUE)
 
-One of the assumptions of the t-test (apart from the equality of the variances in the groups) is that the data are distributed according to the normal distribution. You could of course simply run Explore and look at the Skewness and the Kurtosis. If Skewness and Kurtosis is very close to 0, or at least between- 1 and 1, you can assume that the distribution is approximately normal. However, some of you may want to know what the chance is that you go wrong in assuming the normal distribution. This can be established by applying the Kolmogorov-Smirnov test. We’ll apply this test in SPSS using the data from Practical 2.
+    Reliability analysis   
+    Call: alpha(x = data, check.keys = TRUE, delete = TRUE)
+    
+      raw_alpha std.alpha G6(smc) average_r  S/N    ase mean sd
+        0.0094      0.11   0.055     0.055 0.12 0.0082  118 61
+    
+     lower alpha upper     95% confidence boundaries
+    -0.01 0.01 0.03 
+    
+     Reliability if an item is dropped:
+                 raw_alpha std.alpha G6(smc) average_r   S/N alpha se
+    partecipant-    0.0555     0.055  0.0031     0.055    NA       NA
+    score           0.0031     0.055      NA        NA 0.055    0.011
+    
+     Item statistics 
+                   n raw.r std.r r.cor r.drop mean    sd
+    partecipant- 424 0.999  0.73  0.17  0.055  212 122.5
+    score        424 0.098  0.73  0.17  0.055   23   5.3
+    Warning messages:
+    1: In var(if (is.vector(x) || is.factor(x)) x else as.double(x), na.rm = na.rm) :
+      si è prodotto un NA per coercizione
+    2: In alpha(data, delete = TRUE, check.keys = TRUE) :
+      Item = motivation had no variance and was deleted
+    3: In alpha(data, delete = TRUE, check.keys = TRUE) :
+      Some items were negatively correlated with total scale and were automatically reversed.
+     This is indicated by a negative sign for the variable name.
+    4: In matrix(unlist(drop.item), ncol = 8, byrow = TRUE) :
+      data length [12] is not a sub-multiple or multiple of the number of columns [8]
+
+I confess the alpha is not completley clear to me. Here I am submitting the results as it is.
+
+## Testing for normality<a id="sec-4-4" name="sec-4-4"></a>
+
+Apply Ks test.
 
 Please note: if you want to test for normality in an experiment with more than one group, you’ll have to run separate analyses for the each group. It’s important the distribution of each group is normal, rather than the distribution of the scores of the two groups taken together.
 
     data <- read.csv("./data/p3a.csv",na="",header=TRUE)
-    ks.test(data$Q1,data$Q2,"pnorm")
+    data$totalscore <- rowSums(data[,4:20])
+    ks.test((data$totalscore),"pnorm")
 
-     null device 
-              1
-    [1] 0.9962291
+            One-sample Kolmogorov-Smirnov test
     
-            Two-sample Kolmogorov-Smirnov test
-    
-    data:  data$Q1 and data$Q2
-    D = 0.73846, p-value < 2.2e-16
+    data:  (data$totalscore)
+    D = 1, p-value < 2.2e-16
     alternative hypothesis: two-sided
     
     Warning message:
-    In ks.test(data$Q1, data$Q2, "pnorm") :
-      p-value will be approximate in the presence of ties
+    In ks.test((data$totalscore), "pnorm") :
+      ties should not be present for the Kolmogorov-Smirnov test
+
+It seems that there are repeated values in the `TOTALscore` variable. In fact, shouldn't the KS test be applied to continous distributions only ? In the next section I run it on unique elements of TOTALscore and it correclty reports no warning. Maybe is SPSS doing this automatically?
+
+    data <- read.csv("./data/p3a.csv",na="",header=TRUE)
+    data$totalscore <- rowSums(data[,4:20])
+    ks.test(unique(data$totalscore),"pnorm")
+
+            One-sample Kolmogorov-Smirnov test
+    
+    data:  unique(data$totalscore)
+    D = 1, p-value = 2.22e-16
+    alternative hypothesis: two-sided
