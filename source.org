@@ -483,7 +483,8 @@ round(t.test(low,high)$p.value,digits=3)
 : 0.046
 
 Yes, with this /p/ value the difference can be considered significative.
-* Practical 4							   :noexport:
+* Practical 4
+
 Inductive statistics
 
 ** Applying the t-test
@@ -519,16 +520,17 @@ str(df)
 
 #+RESULTS:
 
-Here we load some libraries that we are going to use later on. The first one is a plotting library, while the second contains skewness and kurtosis functioncs
+Here we load some libraries that we are going to use later on. The first one is a plotting library, while the second contains skewness and kurtosis functions. The car packages contains Levene's test.
 #+BEGIN_SRC R :session
 library(ggplot2)
 library(moments)
+library(car)
 #+END_SRC
 
 #+RESULTS:
+| car       |
 | moments   |
 | ggplot2   |
-| readxl    |
 | stats     |
 | graphics  |
 | grDevices |
@@ -550,7 +552,7 @@ Two, =boys= and =girls=. For readability in the output I have renamed these to =
 *** Select an alpha level suitable for this study  
 0.5
 *** Which statistical test could be used ?
-The t-test. Bu we have first to check for the normality of the distribution and the homogenity.
+The t-test. But we have first to check for the normality of the distribution and the homogenity.
   
 *** Enter the data
 /Tip/: carefully consider this step – the two columns (Girls and Boys) in the data are not necessarily the variable columns. Remember that the columns in the dataset represent variables, not levels of variables!
@@ -602,13 +604,16 @@ boxplot(f,m,names=c("Girls","Boys"))
 #+END_SRC
 
 #+RESULTS:
+[[file:boysgirls.png]]
 
 It seems that girls score better than the boys.
 *** Create a box plot to visualise the results. 
-Done before.
+Done in the previous section.
 *** Test the statistical significance of this experiment
-**** Tips
-Find out which group has a distribution that most resembles the normal distribution.  What do the values of skewness and kurtosis represent again ?  How can they help you in determining whether a dataset resembles a normal distribution?  Check the “How To Check Assumptions NEW” on Nestor as well.
+
+Find out which group has a distribution that most resembles the normal distribution.
+
+  What do the values of skewness and kurtosis represent again ?  How can they help you in determining whether a dataset resembles a normal distribution?  Check the “How To Check Assumptions NEW” on Nestor as well.
 
 In our dataset we have 19 observations. So, we are going to run the Shapiro-Wilk test.
 
@@ -631,14 +636,22 @@ data:  f
 W = 0.94182, p-value = 0.5422
 #+end_example
 
+Both groups resembles a normal distribution. We now take a look at skewness and kurtosis.
+
 #+BEGIN_SRC R :session :exports both :results output
 skewness(m)
+kurtosis(m)
 skewness(f)
+kurtosis(f)
 #+END_SRC
 
 #+RESULTS:
 : [1] 0.8540259
+: [1] 3.008633
 : [1] 0.203529
+: [1] 2.014369
+
+The =boys= group presents higher values for both skewness and kurtosis when compaird to =girls=. So =girls= has a more normal distribution.
 
 **** Do  the Independent samples t-test.
 Why do you have to use this test rather than the one sample t-test or the paired samples t-test ?
@@ -665,15 +678,17 @@ mean of x mean of y
 **** Carefully study the output
 **** Leven's test
 Taking Levene’s test into account, what is the value of “t”?  Which degrees of freedom are applied to this test?  What is the level of significance of these samples ?  Compare this to the alpha level you set in e) above.  Can you reject H 0 ?
+
 **** Reporting
-Reporting on results of statistical studies has to be done according to fixed conventions.  The rule is NEVER to copy and paste tables from SPSS but to report in writing. Here’s how you should do it, as suggested by Andy Field (2005: 303), applied to our test. Fill in the details ... , my comments are in []:
 
 #+BEGIN_QUOTE
-On average, the ... [fill in boys or girls] showed a higher level of intelligence (M=... , SE= ... )  than the ... (M=... , SE= ... ). This difference was ... [fill in “significant” or “not significant”] t(...[fill in df])= ... [fill in the value of t], p ... [fill in < 0.05 o r > 0.05 or whichever α you’ve selected].
+On average, the girls showed a higher level of intelligence (M=14.63, SE= ... )  than the boys(M=14.63. , SE= ... ). This difference was not significant t(df=12.36,t=-2.09, p > 0.05).
 #+END_QUOTE
 
 ** What can you say about the meaningfulness of this outcome?
 Is there any additional information you’d like to have about this study ?
+
+Not much. I would like to have more data
 ** Consider the following data
 8 students have participated in a reading test and a listening comprehension test.  Reading ability and listening comprehension are operationalised by the variables R and L respectively. Both variables are measured on an interval scale. The results have been summarised in the table below. Build a dataframe.
 
@@ -687,7 +702,7 @@ Is there any additional information you’d like to have about this study ?
 |       6 | 120 | 84 |
 |       7 | 140 | 89 |
 |       8 | 160 | 95 |
-#+BEGIN_SRC R
+#+BEGIN_SRC R :session
 partecipant <- seq(1,8)
 r <- c(20,40,60,80,100,120,140,160)
 l <- c(65,69,73,77,80,84,89,95)
@@ -704,28 +719,63 @@ df = data.frame(partecipant,r,l)
 | 7 | 140 | 89 |
 | 8 | 160 | 95 |
 
-*** What would be H 0 if we want to test the relationship between reading and listening comprehension?  
+*** What would be H_0 if we want to test the relationship between reading and listening comprehension?
+Reading and listening do not interfere.  
 *** Make a plot of the results.
 Tip: Make a scatter plot and define the X-and Y-axis.
+#+BEGIN_SRC R :session :file correlation.png :results value graphics :exports both
+plot(df$r,df$l,xlab="Reading",ylab="Listening")
+#+END_SRC
+
+#+RESULTS:
+
 *** At face value, do you think Reading and Listening , as plotted in the graph, are related?
-*** We want to know if we can conclude that reading skill s and listening comprehension are significantly related.  To determine this, you will have to calc ulate a Pearson r (or r xy ). To do this, go to Analyse > Correlate > Bivariate and enter the two variables you want to correlate. Make sure the computer calculates the Pearson correlation for a two-tailed test.  What is the value of r xy ? Is this a strong correlation? What is the chance of incorrectly rejecting your H 0 ? What do you decide?
-*** Write a sentence that you could include in the Results section of a study reporting on the outcome of your test. It will be something like this
-**** 
+Yes
+*** We want to know if we can conclude that reading skills and listening comprehension are significantly related.
+To determine this, you will have to calc ulate a Pearson r (or r xy ). Make sure the computer calculates the Pearson correlation for a two-tailed test.  What is the value of r xy ? Is this a strong correlation? What is the chance of incorrectly rejecting your H 0 ? What do you decide?
 
-“ A correlation analysis showed that Reading Skills and Listening Skills were .... [significantly or not significantly] related (r = ..., p ... [ fill in < 0.05 or > 0.05 or whichever α you’ve selected] ) ”
-** 
-In an Advanced section of Chapter 5, we shortly discussed reliability, and that Cronbach’s Alpha was a good measure to check for reliability of a test. The teachers from the data in Practical 3A are interested in the reliability of their exam. They have decided to use Cronbach’s Alpha to check this
+#+BEGIN_SRC R :session :exports both
+cor(df$r,df$l,method="pearson")
+#+END_SRC
 
-*** 
- Open the data for Prac3A t o check the reliability of a 17-item phonetics test
-*** 
- Decide whether the test is reliable by going to Analyze > Scale > Reliability Analysis.  Put all the Qu estions in the Items (and not the Total and the Grade), and choose Alpha next to Model . Click OK. The Output will give you a correlation coefficient.  Do you think this is a reliable test?
-*** 
-Now we will check the individual items. Go to Analyze > Scale > Reliability Analysis.  Click on Statistics. Check Inter-Item Correlations and Descriptives for Scale if item deleted. Click OK. The output will give you the correlations between items and will give you all the Cronbach’s Alpha values without a particular item. With the deletion of which item do you get the highest reliability
+#+RESULTS:
+: 0.996229128491916
+
+
+*** Report
+
+#+BEGIN_QUOTE
+A correlation analysis showed that Reading Skills and Listening Skills were .... [significantly or not significantly] related (r =0.99, p ... [ fill in < 0.05 or > 0.05 or whichever α you’ve selected] ) ”
+#+END_QUOTE
+*** ☛ TODO Cronbach's Alpha
+...we shortly discussed reliability, and that Cronbach’s Alpha was a good measure to check for reliability of a test. The teachers from the data in Practical 3A are interested in the reliability of their exam. They have decided to use Cronbach’s Alpha to check this
+1) Open the data for Prac3A t o check the reliability of a 17-item phonetics test
+2) Decide whether the test is reliable by going to Analyze > Scale > Reliability Analysis.  Put all the Qu estions in the Items (and not the Total and the Grade), and choose Alpha next to Model . Click OK. The Output will give you a correlation coefficient.  Do you think this is a reliable test?
+3) Now we will check the individual items. Go to Analyze > Scale > Reliability Analysis.  Click on Statistics. Check Inter-Item Correlations and Descriptives for Scale if item deleted. Click OK. The output will give you the correlations between items and will give you all the Cronbach’s Alpha values without a particular item. With the deletion of which item do you get the highest reliabil
 ** testing the normality of the distribution
 One of the assumptions of the t-test (apart from the equality of the variances in the groups) is that the data are distributed according to the normal distribution. You could of course simply run Explore and look at the Skewness and the Kurtosis. If Skewness and Kurtosis is very close to 0, or at least between- 1 and 1, you can assume that the distribution is approximately normal. However, some of you may want to know what the chance is that you go wrong in assuming the normal distribution. This can be established by applying the Kolmogorov-Smirnov test. We’ll apply this test in SPSS using the data from Practical 2.
-*** Please note:
-if you want to test for normality in an experiment with more than one group, you’ll have to run separate analyses for the each group. It’s important the distribution of each group is normal, rather than the distribution of the scores of the two groups tak en together.
+
+Please note: if you want to test for normality in an experiment with more than one group, you’ll have to run separate analyses for the each group. It’s important the distribution of each group is normal, rather than the distribution of the scores of the two groups taken together.
+
+#+BEGIN_SRC R :session :exports both :results output
+data <- read.csv("./data/p3a.csv",na="",header=TRUE)
+ks.test(data$Q1,data$Q2,"pnorm")
+#+END_SRC
+
+#+RESULTS:
+#+begin_example
+
+	Two-sample Kolmogorov-Smirnov test
+
+data:  data$Q1 and data$Q2
+D = 0.73846, p-value < 2.2e-16
+alternative hypothesis: two-sided
+
+Warning message:
+In ks.test(data$Q1, data$Q2, "pnorm") :
+  p-value will be approximate in the presence of ties
+#+end_example
+
 * Notes								   :noexport:
 ** Always check for normality before running t-test
 ** Equality of variance 

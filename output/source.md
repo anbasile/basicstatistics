@@ -43,6 +43,37 @@
 <li><a href="#sec-3-2">3.2. Part B</a></li>
 </ul>
 </li>
+<li><a href="#sec-4">4. Practical 4</a>
+<ul>
+<li><a href="#sec-4-1">4.1. Applying the t-test</a>
+<ul>
+<li><a href="#sec-4-1-1">4.1.1. What are the dependent and independent variables?</a></li>
+<li><a href="#sec-4-1-2">4.1.2. What kind of measures (nominal, ordinal or interval / scale) are used for the variables?</a></li>
+<li><a href="#sec-4-1-3">4.1.3. How many levels does the independent variable have?</a></li>
+<li><a href="#sec-4-1-4">4.1.4. Formulate the statistical hypothesis</a></li>
+<li><a href="#sec-4-1-5">4.1.5. Select an alpha level suitable for this study</a></li>
+<li><a href="#sec-4-1-6">4.1.6. Which statistical test could be used ?</a></li>
+<li><a href="#sec-4-1-7">4.1.7. Enter the data</a></li>
+<li><a href="#sec-4-1-8">4.1.8. Provide the following descriptive statistics for both groups: means, range, minimum, maximum, standard deviations.</a></li>
+<li><a href="#sec-4-1-9">4.1.9. What are your first impressions about the difference between the boys and the girls?</a></li>
+<li><a href="#sec-4-1-10">4.1.10. Create a box plot to visualise the results.</a></li>
+<li><a href="#sec-4-1-11">4.1.11. Test the statistical significance of this experiment</a></li>
+</ul>
+</li>
+<li><a href="#sec-4-2">4.2. What can you say about the meaningfulness of this outcome?</a></li>
+<li><a href="#sec-4-3">4.3. Consider the following data</a>
+<ul>
+<li><a href="#sec-4-3-1">4.3.1. What would be H<sub>0</sub> if we want to test the relationship between reading and listening comprehension?</a></li>
+<li><a href="#sec-4-3-2">4.3.2. Make a plot of the results.</a></li>
+<li><a href="#sec-4-3-3">4.3.3. At face value, do you think Reading and Listening , as plotted in the graph, are related?</a></li>
+<li><a href="#sec-4-3-4">4.3.4. We want to know if we can conclude that reading skills and listening comprehension are significantly related.</a></li>
+<li><a href="#sec-4-3-5">4.3.5. Report</a></li>
+<li><a href="#sec-4-3-6">4.3.6. <span class="todo __TODO">☛ TODO</span> Cronbach's Alpha</a></li>
+</ul>
+</li>
+<li><a href="#sec-4-4">4.4. testing the normality of the distribution</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -720,6 +751,51 @@ Now we define the type of variables for `teacher` and `group`. More precisely, w
     data$teacher <- as.factor(data$teacher)
     str(data)
 
+     id age sex profs
+    1  1  16   1    91
+    2  2  20   2    58
+    3  3  24   1    52
+    4  4  22   2    45
+    5  5  18   1    78
+    6  6  14   2    88
+     null device 
+              1
+     
+     Category        x
+    1        1 75.53333
+    2        2 63.66667
+     null device 
+              1
+     
+     Category        x
+    1        1 20.13333
+    2        2 20.53333
+     'data.frame':  30 obs. of  4 variables:
+     $ id   : int  1 2 3 4 5 6 7 8 9 10 ...
+     $ age  : int  16 20 24 22 18 14 15 17 19 21 ...
+     $ sex  : int  1 2 1 2 1 2 1 2 1 2 ...
+     $ profs: int  91 58 52 45 78 88 90 86 83 62 ...
+    [1] 16
+    [1] 69.6
+    [1] 69
+    [1] 59
+    [1] 33 97
+    [1] 16.44342
+    [1] 14
+    [1] 27
+    [1] 20.33333
+    [1] 3.565479
+    [1] 3.565479
+    [1] 59
+    [1] -0.4621908
+     
+     Category        x
+    1        1 75.53333
+    2        2 63.66667
+     
+     Category        x
+    1        1 14.24212
+    2        2 16.78718
      null device 
               1
     [1] 6.000000 3.000000 6.000000 2.160247
@@ -1014,3 +1090,483 @@ Good. There is a difference. Now we have to understand if this difference is sig
     0.046
 
 Yes, with this *p* value the difference can be considered significative.
+
+# Practical 4<a id="sec-4" name="sec-4"></a>
+
+Inductive statistics
+
+## Applying the t-test<a id="sec-4-1" name="sec-4-1"></a>
+
+A researcher wants to find out whether boys or girls are more intelligent. Eleven girls and eight boys (randomly selected) participated in an experiment in which scores were involved ranging 1-20 (interval).
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="right" />
+
+<col  class="right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="right">Girls</th>
+<th scope="col" class="right">Boys</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td class="right">17</td>
+<td class="right">16</td>
+</tr>
+
+
+<tr>
+<td class="right">16</td>
+<td class="right">15</td>
+</tr>
+
+
+<tr>
+<td class="right">14</td>
+<td class="right">13</td>
+</tr>
+
+
+<tr>
+<td class="right">19</td>
+<td class="right">19</td>
+</tr>
+
+
+<tr>
+<td class="right">18</td>
+<td class="right">15</td>
+</tr>
+
+
+<tr>
+<td class="right">17</td>
+<td class="right">14</td>
+</tr>
+
+
+<tr>
+<td class="right">16</td>
+<td class="right">13</td>
+</tr>
+
+
+<tr>
+<td class="right">15</td>
+<td class="right">12</td>
+</tr>
+
+
+<tr>
+<td class="right">16</td>
+<td class="right">&#xa0;</td>
+</tr>
+
+
+<tr>
+<td class="right">15</td>
+<td class="right">&#xa0;</td>
+</tr>
+
+
+<tr>
+<td class="right">19</td>
+<td class="right">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+
+We begin by building the dataframe.
+
+    partecipant <- seq(1,19)
+    score <- c(17,16,16,15,14,13,19,19,18,15,17,14,16,13,15,12,16,15,19)
+    gender <- c(1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,1,1)
+    gender <- as.factor(gender)
+    levels(gender) <- c("F", "M")
+    df = data.frame(partecipant,gender,score)
+    df
+    str(df)
+
+Here we load some libraries that we are going to use later on. The first one is a plotting library, while the second contains skewness and kurtosis functions. The car packages contains Levene's test.
+
+    library(ggplot2)
+    library(moments)
+    library(car)
+
+### What are the dependent and independent variables?<a id="sec-4-1-1" name="sec-4-1-1"></a>
+
+Gender is the independent variable and the score is the dependent one
+
+### What kind of measures (nominal, ordinal or interval / scale) are used for the variables?<a id="sec-4-1-2" name="sec-4-1-2"></a>
+
+Gender is a nominal, while score is a scale variable.  
+
+### How many levels does the independent variable have?<a id="sec-4-1-3" name="sec-4-1-3"></a>
+
+Two, `boys` and `girls`. For readability in the output I have renamed these to `M` and `F` respectively.
+
+### Formulate the statistical hypothesis<a id="sec-4-1-4" name="sec-4-1-4"></a>
+
+-   Null: there is no difference in the two groups
+-   H1: there is a difference: boys do better than girls
+-   H2: there is a difference: girls do better than boys
+
+### Select an alpha level suitable for this study<a id="sec-4-1-5" name="sec-4-1-5"></a>
+
+0.5
+
+### Which statistical test could be used ?<a id="sec-4-1-6" name="sec-4-1-6"></a>
+
+The t-test. But we have first to check for the normality of the distribution and the homogenity.
+
+### Enter the data<a id="sec-4-1-7" name="sec-4-1-7"></a>
+
+*Tip*: carefully consider this step – the two columns (Girls and Boys) in the data are not necessarily the variable columns. Remember that the columns in the dataset represent variables, not levels of variables!
+
+    head(df)
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="right" />
+
+<col  class="left" />
+
+<col  class="right" />
+</colgroup>
+<tbody>
+<tr>
+<td class="right">1</td>
+<td class="left">F</td>
+<td class="right">17</td>
+</tr>
+
+
+<tr>
+<td class="right">2</td>
+<td class="left">M</td>
+<td class="right">16</td>
+</tr>
+
+
+<tr>
+<td class="right">3</td>
+<td class="left">F</td>
+<td class="right">16</td>
+</tr>
+
+
+<tr>
+<td class="right">4</td>
+<td class="left">M</td>
+<td class="right">15</td>
+</tr>
+
+
+<tr>
+<td class="right">5</td>
+<td class="left">F</td>
+<td class="right">14</td>
+</tr>
+
+
+<tr>
+<td class="right">6</td>
+<td class="left">M</td>
+<td class="right">13</td>
+</tr>
+</tbody>
+</table>
+
+### Provide the following descriptive statistics for both groups: means, range, minimum, maximum, standard deviations.<a id="sec-4-1-8" name="sec-4-1-8"></a>
+
+    f <- df$score[df$gender == "F"]
+    m <- df$score[df$gender == "M"]
+    summary(m)
+    summary(f)
+    mean(m)
+    mean(f)
+    range(m)
+    range(f)
+    sd(m)
+    sd(f)
+
+    [1] 0.046
+     
+      partecipant gender score
+    1            1      F    17
+    2            2      M    16
+    3            3      F    16
+    4            4      M    15
+    5            5      F    14
+    6            6      M    13
+    7            7      F    19
+    8            8      M    19
+    9            9      F    18
+    10          10      M    15
+    11          11      F    17
+    12          12      M    14
+    13          13      F    16
+    14          14      M    13
+    15          15      F    15
+    16          16      M    12
+    17          17      F    16
+    18          18      F    15
+    19          19      F    19
+    'data.frame':   19 obs. of  3 variables:
+     $ partecipant: int  1 2 3 4 5 6 7 8 9 10 ...
+     $ gender     : Factor w/ 2 levels "F","M": 1 2 1 2 1 2 1 2 1 2 ...
+     $ score      : num  17 16 16 15 14 13 19 19 18 15 ...
+     
+     partecipant gender score
+    1           1      F    17
+    2           2      M    16
+    3           3      F    16
+    4           4      M    15
+    5           5      F    14
+    6           6      M    13
+       Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+      12.00   13.00   14.50   14.62   15.25   19.00
+       Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+      14.00   15.50   16.00   16.55   17.50   19.00
+    [1] 14.625
+    [1] 16.54545
+    [1] 12 19
+    [1] 14 19
+    [1] 2.199838
+    [1] 1.634848
+
+### What are your first impressions about the difference between the boys and the girls?<a id="sec-4-1-9" name="sec-4-1-9"></a>
+
+Let's take a look.
+
+    boxplot(f,m,names=c("Girls","Boys"))
+
+![img](boysgirls.png)
+
+It seems that girls score better than the boys.
+
+### Create a box plot to visualise the results.<a id="sec-4-1-10" name="sec-4-1-10"></a>
+
+Done in the previous section.
+
+### Test the statistical significance of this experiment<a id="sec-4-1-11" name="sec-4-1-11"></a>
+
+Find out which group has a distribution that most resembles the normal distribution.
+
+What do the values of skewness and kurtosis represent again ?  How can they help you in determining whether a dataset resembles a normal distribution?  Check the “How To Check Assumptions NEW” on Nestor as well.
+
+In our dataset we have 19 observations. So, we are going to run the Shapiro-Wilk test.
+
+    shapiro.test(m)
+    shapiro.test(f)
+
+     null device 
+              1
+    
+            Shapiro-Wilk normality test
+    
+    data:  m
+    W = 0.9228, p-value = 0.453
+    
+            Shapiro-Wilk normality test
+    
+    data:  f
+    W = 0.94182, p-value = 0.5422
+
+Both groups resembles a normal distribution. We now take a look at skewness and kurtosis.
+
+    skewness(m)
+    kurtosis(m)
+    skewness(f)
+    kurtosis(f)
+
+    [1] 0.8540259
+    [1] 3.008633
+    [1] 0.203529
+    [1] 2.014369
+
+The `boys` group presents higher values for both skewness and kurtosis when compaird to `girls`. So `girls` has a more normal distribution.
+
+1.  Do  the Independent samples t-test.
+
+    Why do you have to use this test rather than the one sample t-test or the paired samples t-test ?
+    
+        t.test(m,f)
+    
+                Welch Two Sample t-test
+        
+        data:  m and f
+        t = -2.0856, df = 12.357, p-value = 0.05838
+        alternative hypothesis: true difference in means is not equal to 0
+        95 percent confidence interval:
+         -3.92030824  0.07939915
+        sample estimates:
+        mean of x mean of y 
+         14.62500  16.54545
+
+2.  Carefully study the output
+
+3.  Leven's test
+
+    Taking Levene’s test into account, what is the value of “t”?  Which degrees of freedom are applied to this test?  What is the level of significance of these samples ?  Compare this to the alpha level you set in e) above.  Can you reject H 0 ?
+
+4.  Reporting
+
+    > On average, the girls showed a higher level of intelligence (M=14.63, SE= &#x2026; )  than the boys(M=14.63. , SE= &#x2026; ). This difference was not significant t(df=12.36,t=-2.09, p > 0.05).
+
+## What can you say about the meaningfulness of this outcome?<a id="sec-4-2" name="sec-4-2"></a>
+
+Is there any additional information you’d like to have about this study ?
+
+Not much. I would like to have more data
+
+## Consider the following data<a id="sec-4-3" name="sec-4-3"></a>
+
+8 students have participated in a reading test and a listening comprehension test.  Reading ability and listening comprehension are operationalised by the variables R and L respectively. Both variables are measured on an interval scale. The results have been summarised in the table below. Build a dataframe.
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="right" />
+
+<col  class="right" />
+
+<col  class="right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="right">Student</th>
+<th scope="col" class="right">R</th>
+<th scope="col" class="right">L</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td class="right">1</td>
+<td class="right">20</td>
+<td class="right">65</td>
+</tr>
+
+
+<tr>
+<td class="right">2</td>
+<td class="right">40</td>
+<td class="right">69</td>
+</tr>
+
+
+<tr>
+<td class="right">3</td>
+<td class="right">60</td>
+<td class="right">73</td>
+</tr>
+
+
+<tr>
+<td class="right">4</td>
+<td class="right">80</td>
+<td class="right">77</td>
+</tr>
+
+
+<tr>
+<td class="right">5</td>
+<td class="right">100</td>
+<td class="right">80</td>
+</tr>
+
+
+<tr>
+<td class="right">6</td>
+<td class="right">120</td>
+<td class="right">84</td>
+</tr>
+
+
+<tr>
+<td class="right">7</td>
+<td class="right">140</td>
+<td class="right">89</td>
+</tr>
+
+
+<tr>
+<td class="right">8</td>
+<td class="right">160</td>
+<td class="right">95</td>
+</tr>
+</tbody>
+</table>
+
+    partecipant <- seq(1,8)
+    r <- c(20,40,60,80,100,120,140,160)
+    l <- c(65,69,73,77,80,84,89,95)
+    df = data.frame(partecipant,r,l)
+
+### What would be H<sub>0</sub> if we want to test the relationship between reading and listening comprehension?<a id="sec-4-3-1" name="sec-4-3-1"></a>
+
+Reading and listening do not interfere.  
+
+### Make a plot of the results.<a id="sec-4-3-2" name="sec-4-3-2"></a>
+
+Tip: Make a scatter plot and define the X-and Y-axis.
+
+    plot(df$r,df$l,xlab="Reading",ylab="Listening")
+
+![img](correlation.png)
+
+### At face value, do you think Reading and Listening , as plotted in the graph, are related?<a id="sec-4-3-3" name="sec-4-3-3"></a>
+
+Yes
+
+### We want to know if we can conclude that reading skills and listening comprehension are significantly related.<a id="sec-4-3-4" name="sec-4-3-4"></a>
+
+To determine this, you will have to calc ulate a Pearson r (or r xy ). Make sure the computer calculates the Pearson correlation for a two-tailed test.  What is the value of r xy ? Is this a strong correlation? What is the chance of incorrectly rejecting your H 0 ? What do you decide?
+
+    cor(df$r,df$l,method="pearson")
+
+    0.996229128491916
+
+### Report<a id="sec-4-3-5" name="sec-4-3-5"></a>
+
+> A correlation analysis showed that Reading Skills and Listening Skills were &#x2026;. [significantly or not significantly] related (r =0.99, p &#x2026; [ fill in < 0.05 or > 0.05 or whichever α you’ve selected] ) ”
+
+### ☛ TODO Cronbach's Alpha<a id="sec-4-3-6" name="sec-4-3-6"></a>
+
+&#x2026;we shortly discussed reliability, and that Cronbach’s Alpha was a good measure to check for reliability of a test. The teachers from the data in Practical 3A are interested in the reliability of their exam. They have decided to use Cronbach’s Alpha to check this
+1.  Open the data for Prac3A t o check the reliability of a 17-item phonetics test
+2.  Decide whether the test is reliable by going to Analyze > Scale > Reliability Analysis.  Put all the Qu estions in the Items (and not the Total and the Grade), and choose Alpha next to Model . Click OK. The Output will give you a correlation coefficient.  Do you think this is a reliable test?
+3.  Now we will check the individual items. Go to Analyze > Scale > Reliability Analysis.  Click on Statistics. Check Inter-Item Correlations and Descriptives for Scale if item deleted. Click OK. The output will give you the correlations between items and will give you all the Cronbach’s Alpha values without a particular item. With the deletion of which item do you get the highest reliabil
+
+## testing the normality of the distribution<a id="sec-4-4" name="sec-4-4"></a>
+
+One of the assumptions of the t-test (apart from the equality of the variances in the groups) is that the data are distributed according to the normal distribution. You could of course simply run Explore and look at the Skewness and the Kurtosis. If Skewness and Kurtosis is very close to 0, or at least between- 1 and 1, you can assume that the distribution is approximately normal. However, some of you may want to know what the chance is that you go wrong in assuming the normal distribution. This can be established by applying the Kolmogorov-Smirnov test. We’ll apply this test in SPSS using the data from Practical 2.
+
+Please note: if you want to test for normality in an experiment with more than one group, you’ll have to run separate analyses for the each group. It’s important the distribution of each group is normal, rather than the distribution of the scores of the two groups taken together.
+
+    data <- read.csv("./data/p3a.csv",na="",header=TRUE)
+    ks.test(data$Q1,data$Q2,"pnorm")
+
+     null device 
+              1
+    [1] 0.9962291
+    
+            Two-sample Kolmogorov-Smirnov test
+    
+    data:  data$Q1 and data$Q2
+    D = 0.73846, p-value < 2.2e-16
+    alternative hypothesis: two-sided
+    
+    Warning message:
+    In ks.test(data$Q1, data$Q2, "pnorm") :
+      p-value will be approximate in the presence of ties
