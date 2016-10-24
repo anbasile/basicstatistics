@@ -789,7 +789,7 @@ mean of x mean of y
 *** Report
 
 #+BEGIN_QUOTE
-A correlation analysis showed that Reading Skills and Listening Skills were not significantly related (r =0.99, p > 0.05
+A correlation analysis showed that Reading Skills and Listening Skills were not significantly related (r =0.99, p > 0.05)
 #+END_QUOTE
 *** Cronbach's Alpha
 
@@ -899,6 +899,485 @@ ks.test(unique(data$totalscore),"pnorm")
 : data:  unique(data$totalscore)
 : D = 1, p-value = 2.22e-16
 : alternative hypothesis: two-sided
+
+* Practical 5
+** Weight and height
+
+#+BEGIN_SRC R :session :exports both :results valie
+w <- c(40,50,40,70,80,90)
+h <- c(1.40,1.50,1.60,1.70,1.80,1.90)
+df <-data.frame(w,h)
+#+END_SRC
+
+#+RESULTS:
+| 40 | 1.4 |
+| 50 | 1.5 |
+| 40 | 1.6 |
+| 70 | 1.7 |
+| 80 | 1.8 |
+| 90 | 1.9 |
+
+*** Questions
+**** List the variables in the study – if relevant, say which variables are dependent and which are independent
+Variables are /weight/ and /height/.
+**** What kind of measures (nominal, ordinal, interval) are used for the variables ?
+Interval scale  
+**** Formulate the relevant statistical hypothesis
+H_0: the two variables are not correlated
+H_1: the two variable are correlated
+**** Is the relation linear? (plot the data in a simple graph)
+
+#+BEGIN_SRC R :session :file wh.png :results value graphics :exports both
+plot(df)
+#+END_SRC
+
+#+RESULTS:
+[[file:wh.png]]
+Yes, there seem to be a strong linear relation
+**** Which α-level would you use and why?
+.5
+
+It is the standard alfa and I see no reason to do otherwise. 
+**** Would you test one-tailed or two-tailed (and why)?
+Given that we are going to run a correlation test I don't see how we can test one tail.
+**** Which statistic could be used? (consult the tables onyour handout)
+Correlation
+**** Apply this statistic using SPSS/R. Can you reject H_0?
+#+BEGIN_SRC R :session :exports both :results output
+cor.test(df$w,df$h, method="pearson")
+#+END_SRC
+
+#+RESULTS:
+#+begin_example
+
+	Pearson's product-moment correlation
+
+data:  df$w and df$h
+t = 4.8865, df = 4, p-value = 0.008122
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ 0.4576706 0.9919809
+sample estimates:
+      cor 
+0.9254821
+#+end_example
+
+**** What can you say about the meaningfulness of this outcome?
+Not much at all. We have very few data.
+**** Report
+#+BEGIN_QUOTE
+A correlation analysis showed that weight and height were significantly related (r=0.92, p < 0.5)
+#+END_QUOTE
+** Writing scores
+#+BEGIN_SRC R :session :exports both :results value
+partecipant <- c(1:30)
+type <- c(0,1,2,0,1,2,0,1,2,0,1,2,0,1,2,0,1,2,0,1,2,0,1,2,0,1,2,0,1,2)
+type <- as.factor(type)
+levels(type) <- c("no_instr","lectures","gw")
+scores <- c(34,65,68,58,54,87,56,43,94,47,57,69,35,65,81,31,49,75,55,74,94,65,79,78,61,54,63,27,65,78)
+df <-data.frame(partecipant,type,scores)
+head(df)
+#+END_SRC
+
+#+RESULTS:
+| 1 | no_instr | 34 |
+| 2 | lectures | 65 |
+| 3 | gw       | 68 |
+| 4 | no_instr | 58 |
+| 5 | lectures | 54 |
+| 6 | gw       | 87 |
+
+*** Questions
+**** List the variables in the study –if relevant, say which variables are dependent and which are independent.
+#+BEGIN_SRC R :session :exports both :results output
+str(df)
+#+END_SRC 
+
+#+RESULTS:
+: 'data.frame':	30 obs. of  3 variables:
+:  $ partecipant: int  1 2 3 4 5 6 7 8 9 10 ...
+:  $ type       : Factor w/ 3 levels "no_instr","lectures",..: 1 2 3 1 2 3 1 2 3 1 ...
+:  $ scores     : num  34 65 68 58 54 87 56 43 94 47 ...
+
+
+
+There is one independet (type of instruction) and one dependent (score).
+**** What kind of measures (nominal, ordinal, interval) are used for the variables ?
+Interval scale, as the description of the dataset says.
+**** In case of independent variables, how many levels does each independent variable have?
+Three: /no instructions/, /lectures/, /guided instr/
+**** Formulate a statistical hypothesis.
+- H_0: the type of istruction does not affect the score
+- H_1: the type of instruction does affect the score
+**** Which statistic could be used?
+One way ANOVA (eventually with post-hoc analysis).
+**** Using SPSS/R, provide the following descriptive statistics for each group: means, range, standard deviations.
+
+#+BEGIN_SRC R :session :exports both :results output
+bymean <- aggregate(df$score, by=list(df$type),FUN=mean)
+byrange <- aggregate(df$score, by=list(df$type),FUN=range)
+bysd <- aggregate(df$score, by=list(df$type),FUN=sd)
+bymean
+byrange
+bysd
+#+END_SRC 
+
+#+RESULTS:
+#+begin_example
+   Group.1    x
+1 no_instr 46.9
+2 lectures 60.5
+3       gw 78.7
+   Group.1 x.1 x.2
+1 no_instr  27  65
+2 lectures  43  79
+3       gw  63  94
+   Group.1        x
+1 no_instr 13.96384
+2 lectures 11.15796
+3       gw 10.60451
+#+end_example
+
+**** Using SPSS/R, test the statistical significance of this experiment: can you reject H 0 ?
+Before looking at the F score, it might be a good idea to plot the results (even, if it is not required in this excercise I find it always useful to plot things).
+
+#+BEGIN_SRC R :session :file writingscores.png :results value graphics :exports both
+boxplot(df$score[df$type == "no_instr"],df$score[df$type == "lectures"],df$score[df$type == "gw"])
+#+END_SRC
+
+#+RESULTS:
+[[file:crosstabs1.png]]
+
+And indeed it seems obvious that the guided group performs a lot better than the other two, so there the teaching method affects the results (confirming what one's intuitions) and so H_0 can be rejected. Let's run the ANOVA anyway and take a look at the F.
+
+#+BEGIN_SRC R :session :exports both :results output
+results = aov(scores ~ type, data=df)
+summary(results)
+#+END_SRC 
+
+#+RESULTS:
+:             Df Sum Sq Mean Sq F value   Pr(>F)    
+: type         2   5091    2546   17.68 1.24e-05 ***
+: Residuals   27   3887     144                     
+: ---
+: Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+**** What can you say about the meaningfulness of this outcome?
+The results seems to be meaningful. However, the sample is still small.
+**** Report
+  #+BEGIN_QUOTE
+  On average, the =gw= group (M=78.7) performed better than the other two groups. This difference was significant p < 0.05.
+  #+END_QUOTE
+
+** Crosstabs
+#+BEGIN_SRC R :session :exports both :results output
+data <- read.csv("./data/p5a3.csv")
+colnames(data) <- c("class", "reply")
+data$class <- as.factor(data$class)
+data$reply <- as.factor(data$reply)
+levels(data$class) <- c("high","low")
+levels(data$reply) <- c("havent","dont")
+str(data)
+head(data)
+#+END_SRC 
+
+#+RESULTS:
+#+begin_example
+'data.frame':	224 obs. of  2 variables:
+ $ class: Factor w/ 2 levels "high","low": 1 1 1 1 1 1 1 1 1 1 ...
+ $ reply: Factor w/ 2 levels "havent","dont": 1 1 1 1 1 1 1 1 1 1 ...
+  class  reply
+1  high havent
+2  high havent
+3  high havent
+4  high havent
+5  high havent
+6  high havent
+#+end_example
+
+*** Questions
+**** List the variables included in this study.
+There are two nominal variables: social class and reply
+**** For each variable, say what its function is (dependent, independent, etc.)  and its type (nominal, ordinal, interval).
+=Social class= is the independent whereas =reply= is the dependent
+**** How would you formulate H_0 and H_1 ?
+- H_0: the social status does not influence language use
+- H_1: the social status does influence language use
+**** Which statistic could be used?
+chi-square, since there are two nominal variables.
+**** Choose your α-level
+The usual .5
+**** Using the data file provided (p5a3.csv) , run the SPSS/R analysis.
+#+BEGIN_SRC R :session :exports both :results output
+chisq.test(data$class,data$reply)
+#+END_SRC 
+
+#+RESULTS:
+: 
+: 	Pearson's Chi-squared test with Yates' continuity correction
+: 
+: data:  data$class and data$reply
+: X-squared = 3.3829, df = 1, p-value = 0.06588
+
+**** Can you reject the null hypothesis?
+Looking at the p-value it seems we cannot. But let's plot first.
+
+#+BEGIN_SRC R :session :file crosstabs1.png :results value graphics :exports both
+spineplot(data$class,data$reply)
+#+END_SRC
+
+#+RESULTS:
+[[file:crosstabs1.png]]
+
+And yes, the plot confirms that in fact we can't reject the null. However, the high class prefers one form over another. So, maybe with more data the result could change ?
+ 
+**** Report
+  #+BEGIN_QUOTE
+  On average, the high class group showed a preference for the =haven't= form. This difference was not significant X-square=3.38, p > 0.05
+  #+END_QUOTE
+
+** Exam practice
+Tempate answer
+
+#+BEGIN_EXAMPLE
+- List the variables in the study – if relevant, say which variables are dependent and which are independent 
+- For each of the variables determine its type (nominal, ordinal, scale) 
+- In case of independent variables, how many levels does each independent variable h ave?  
+- Identify the family of statistics: means , frequency or correlation ; then choose the most appropriate statistic al test.  
+- Formulate the relevant statistical hypothesis 
+- Which α-level would you use and why?  
+- Would you test one-tailed or two-tailed (and why)?  
+- Value of statistic: 
+- Significance: 
+- Decision H 0:
+- Report:
+  #+BEGIN_QUOTE
+  “ A correlation analysis showed that Reading Skills and Listening Skills were .... [significantly or not significantly] related (r = ..., p ... [ fill in < 0.05 or > 0.05 or whichever α you’ve selected] ) ”
+  #+END_QUOTE
+
+  #+BEGIN_QUOTE
+  “ On average, the ... [fill in boys or girls] showed a higher level of intelligence (M=... , SE= ... )  than the ... (M=... , SE= ... ). This difference was ... [fill in “significant” or “not significant”] t(...[fill in df])= ... [fill in the value of t], p ... [fill in < 0.05 o r > 0.05 or whichever α you’ve selected].  ”
+  #+END_QUOTE
+
+#+END_EXAMPLE
+
+*** A) Pronunciation
+A researcher wants to investigate if motivation affects the pronunciation of English by Dutch learners. To investigate the possible effect of motivation on pronunciation, she makes tape recordings of 24 Dutch learners of English pronouncing English sentences. She then measures the difference in vowel length before voiced and voiceless obstruents (e.g. tap vs. tab). A questionnaire has determined that 12 of these students are highly motivated and 12 students are not very motivated to pronounce English correctly. Tip: the dependent is the DIFFERENCE in vowel length between the two phonological contexts.
+**** Answer
+- List the variables in the study – if relevant, say which variables are dependent and which are independent
+  + one dependent and one independent
+- For each of the variables determine its type (nominal, ordinal, scale) 
+  + the dependent is interval scale
+  + independent is nominal
+- In case of independent variables, how many levels does each independent variable h ave?  
+  + two levels: highly motivated, not very motivated
+- Identify the family of statistics: means , frequency or correlation ; then choose the most appropriate statistical test.
+  + means analysis
+  + t-test
+- Formulate the relevant statistical hypothesis
+  + H_0: motivation does not affect pronunciation skills
+  + H_1: motivation does affect pronunciation skills
+- Which α-level would you use and why?  
+  + .5
+  + it's the standard
+- Would you test one-tailed or two-tailed (and why)?
+  + two tail
+  + can't see an obvious resons for not doing so
+- Value of statistic: t
+- Significance: p
+- Decision H 0: I don't understand this question
+
+*** B) Polish learning French
+A researcher wants to find out whether the age at which one starts to learn a foreign language is related to language proficiency. To investigate this, she finds 20 Polish learners of French who had all been learning French for 10 years. The starting age of these learners ranges from 1 to 20, in such a way that each starting age is included precisely once. All learners take a 50-item French proficiency test; the proficiency score is based on the number of correct item
+**** Answer
+- List the variables in the study – if relevant, say which variables are dependent and which are independent
+  + one dependent (/proficiency score/) and one independent (/starting age/)
+- For each of the variables determine its type (nominal, ordinal, scale) 
+  + both are scale
+- In case of independent variables, how many levels does each independent variable h ave?  
+  ~
+- Identify the family of statistics: means , frequency or correlation ; then choose the most appropriate statistical test.
+  + correlation
+  + Pearson's R
+- Formulate the relevant statistical hypothesis
+  + H_0: starting does not affect language learning
+  + H_1: starting age does affect language learning
+- Which α-level would you use and why?  
+  + .5
+  + it's the standard
+- Would you test one-tailed or two-tailed (and why)?
+  + two tail
+  + can't see an obvious resons for not doing so
+- Value of statistic: r
+- Significance: p
+- Decision H 0: ???
+
+*** C) Poor Japanese
+To investigate the effect of input on sec ond language learning, 60 randomly selected Japanese learners of Frisian are divided into two groups: one experimental group of 30 is isolated in a dark room and exposed to Omrop Fryslân 24 hours a day (thereby achieving maximum exposure to Frisian); one control group of 30 is not exposed to Frisian. After two months, both groups are submitted to a 100-item Frisian proficiency test; the proficiency score is based on the number of correct items.
+**** Answer
+- List the variables in the study – if relevant, say which variables are dependent and which are independent
+  + one dependent (/proficiency score/) and one independent (/exposure/)
+- For each of the variables determine its type (nominal, ordinal, scale) 
+  + the dependent is a internaval scale variable
+  + the independent is a nominal variable
+- In case of independent variables, how many levels does each independent variable h ave?  
+  + two levels: /exposure/ and /non exposure/
+- Identify the family of statistics: means , frequency or correlation ; then choose the most appropriate statistical test.
+  + means analysis
+  + t-test
+- Formulate the relevant statistical hypothesis
+  + H_0: exposure does not affect language learning
+  + H_1: exposure age does affect language learning
+- Which α-level would you use and why?  
+  + .5
+  + it's the standard
+- Would you test one-tailed or two-tailed (and why)?
+  + two tail
+  + can't see an obvious resons for not doing so
+- Value of statistic: t
+- Significance: p
+- Decision H 0: ???
+
+*** D) Again
+The experiment in c) is done once more, but this time each of the groups is equally subdivided into three age groups: 11 -30, 31-50 and 51-70.  Does age influence the exposure[/sic/: proficiency intended?]?
+**** Answer
+Could be.
+
+In this case we would have to use a one-way ANOVA and all the rest is the same.
+
+*** E) Toddlers
+A researcher was interested in the effects of social reinforcement on toddlers’ motor skills. In an experiment, 56 three-year-old children had to take marbles from a vase and put them into a box through a tiny hole. The number of marbles was counted that had been put into the box after four minutes. The children were randomly attributed to two groups. In a 10 minute learning period preceding the experiment, the children in the first group were encouraged by smiles and words of praise. The children in the second group were not encouraged.
+**** Answer
+- List the variables in the study – if relevant, say which variables are dependent and which are independent
+  + one dependent ( /number of marbles put in the box/ ) and one independent (/encouragement/)
+- For each of the variables determine its type (nominal, ordinal, scale) 
+  + the dependent is a internaval scale variable
+  + the independent is a nominal variable
+- In case of independent variables, how many levels does each independent variable h ave?  
+  + two levels: /praise/ vs. /non praise/
+- Identify the family of statistics: means , frequency or correlation ; then choose the most appropriate statistical test.
+  + means analysis
+  + t-test
+- Formulate the relevant statistical hypothesis
+  + H_0: encouragmenet does not affect toddler's skills
+  + H_1: encouragmenet does affect toddler's skills
+- Which α-level would you use and why?  
+  + .5
+  + it's the standard
+- Would you test one-tailed or two-tailed (and why)?
+  + two tail
+  + can't see an obvious resons for not doing so
+- Value of statistic: t
+- Significance: p
+- Decision H 0: ???
+
+*** F) Toddlers again
+In what way would the experiment in e ) change if, in addition, the researcher wanted to find out if social reinforcement equally affects the boys and girls in the experiment?  Reconsider the number and type of variables accordingly, and decide on the type of analysis that would be required for this new situation.
+
+**** Answer
+In this case we would have two nominal independent variables and one dependent. So, 4 groups in total: this case can be modeled using a two-way ANOVA. 
+*** G) Sport and stress
+To investigate the relation between active sports performance and stress a questionnaire is set up. The questionnaire determines if the participants are active sportswomen and sportsmen (Yes or No) and the degree of stress they experience in their daily lives (on a 3-point scale).
+**** Answer
+- List the variables in the study – if relevant, say which variables are dependent and which are independent
+  + one dependent (/stress levels/) and one independent (/activity/)
+- For each of the variables determine its type (nominal, ordinal, scale) 
+  + the dependent is a nominal variable
+  + the independent is a nominal variable
+- In case of independent variables, how many levels does each independent variable h ave?  
+  + two levels: /praise/ vs. /non praise/
+- Identify the family of statistics: means , frequency or correlation ; then choose the most appropriate statistical test.
+  + frequency distribution
+  + chi-square
+- Formulate the relevant statistical hypothesis
+  + H_0: sport does not affect perceived stress
+  + H_1: sport does affect perceived stress
+- Which α-level would you use and why?  
+  + .5
+  + it's the standard
+- Would you test one-tailed or two-tailed (and why)?
+  + two tail
+  + can't see an obvious resons for not doing so
+- Value of statistic: 
+- Significance: ???
+- Decision H 0: 
+
+* Practical 6							   :noexport:
+** Instructions
+Answer the following questions about the research designs sketched below:
+- Explain how the constructs are operationalised: list the variables.
+- For each of the variables, mention its function in the experiment (dependent, independent) and its scale (nominal, ordinal,interval).
+- Formulate the relevant research hypotheses (H0and H1/H2).
+- Say whether you would test one-tailed or two-tailed.
+- State which statistic you would use to analyse the results and explain why.
+- Comment on the possible methodological pitfalls and the validity.
+
+After this, carry out the relevant analyses using SPSS/R and report on the studies in the conventional way.  If possible, also report on the assumptions, like homogeneity of variance and normality of distribution . Also report on effect size (see page 64/65 ), and illustrate your answer with tables (descriptives) and graphs. Provide figures to illustrate your data when this is relevant.
+
+** L2 syntax development
+
+#+BEGIN_SRC R :session :exports both :results output
+pupil <- c(1:13)
+minutes <- c(32,76,89,41,17,47,62,81,93,56,68,71,26)
+grade <- c(4,5,9,6,4,7,7,8,8,6,8,8,6)
+df <- data.frame(pupil,minutes,grade)
+head(df)
+str(df)
+#+END_SRC
+
+#+RESULTS:
+#+begin_example
+  pupil minutes grade
+1     1      32     4
+2     2      76     5
+3     3      89     9
+4     4      41     6
+5     5      17     4
+6     6      47     7
+'data.frame':	13 obs. of  3 variables:
+ $ pupil  : int  1 2 3 4 5 6 7 8 9 10 ...
+ $ minutes: num  32 76 89 41 17 47 62 81 93 56 ...
+ $ grade  : num  4 5 9 6 4 7 7 8 8 6 ...
+#+end_example
+
+** Spanish pronunciation proficiency
+#+BEGIN_SRC R :session
+studentID <- c(1:50)
+abroad <- c("no","yes","yes","no","yes","no","no","yes","yes","no","yes","yes","yes","yes","yes","yes","yes","no","yes","no","no","no","no","yes","yes","yes","yes","no","no","no","yes","yes","no","no","no","yes","no","yes","yes","no","yes","yes","no","no","yes","yes","no","yes","no","yes")
+pass <- c("no","no","yes","no","no","no","yes","no","yes","no","yes","yes","no","yes","yes","no","yes","no","yes","no","no","yes","yes","yes","yes","no","yes","no","no","yes","yes","no","yes","yes","no","yes","no","no","yes","yes","yes","no","no","yes","yes","no","no","yes","no","yes")
+df = data.frame(studentID,abroad,pass)
+str(df)
+#+END_SRC
+
+#+RESULTS:
+
+** Vocabulary learning experiment
+
+#+BEGIN_SRC R :session :exports both :results output
+data <- read.csv("./data/p6a3.csv",sep=";")
+str(data)
+#+END_SRC
+
+#+RESULTS:
+: 'data.frame':	59 obs. of  6 variables:
+:  $ no   : int  1 2 3 4 5 6 7 8 9 10 ...
+:  $ code : Factor w/ 59 levels "AJEU","ALYA",..: 45 26 18 5 33 15 38 10 16 52 ...
+:  $ ela  : int  1 1 1 1 1 1 1 1 1 1 ...
+:  $ Guess: int  78 50 56 22 39 22 17 44 39 28 ...
+:  $ STret: int  94 56 100 67 100 100 89 78 89 100 ...
+:  $ LTret: int  78 39 83 67 89 NA 61 33 72 56 ...
+
+** Vocabulary scores and instruction
+#+BEGIN_SRC R :session :exports both :results output
+data <- read.csv("./data/p6a4.csv",sep=";")
+str(data)
+#+END_SRC
+
+#+RESULTS:
+: 'data.frame':	42 obs. of  3 variables:
+:  $ Subject : int  1 2 3 4 5 6 7 8 9 10 ...
+:  $ pretest : int  9 10 8 3 8 9 4 12 10 13 ...
+:  $ posttest: int  3 15 12 9 10 8 11 10 11 14 ...
 
 * Notes								   :noexport:
 ** Always check for normality before running t-test

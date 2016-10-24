@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <title>Basic statistics</title>
-<!-- 2016-10-04 mar 12:19 -->
+<!-- 2016-10-24 lun 17:48 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="generator" content="Org-mode">
@@ -1046,72 +1046,6 @@ str(data)
 </div>
 
 <pre class="example">
- id age sex profs
-1  1  16   1    91
-2  2  20   2    58
-3  3  24   1    52
-4  4  22   2    45
-5  5  18   1    78
-6  6  14   2    88
- null device 
-          1
- 
- Category        x
-1        1 75.53333
-2        2 63.66667
- null device 
-          1
- 
- Category        x
-1        1 20.13333
-2        2 20.53333
- 'data.frame':	30 obs. of  4 variables:
- $ id   : int  1 2 3 4 5 6 7 8 9 10 ...
- $ age  : int  16 20 24 22 18 14 15 17 19 21 ...
- $ sex  : int  1 2 1 2 1 2 1 2 1 2 ...
- $ profs: int  91 58 52 45 78 88 90 86 83 62 ...
-[1] 16
-[1] 69.6
-[1] 69
-[1] 59
-[1] 33 97
-[1] 16.44342
-[1] 14
-[1] 27
-[1] 20.33333
-[1] 3.565479
-[1] 3.565479
-[1] 59
-[1] -0.4621908
- 
- Category        x
-1        1 75.53333
-2        2 63.66667
- 
- Category        x
-1        1 14.24212
-2        2 16.78718
- null device 
-          1
-[1] 6.000000 3.000000 6.000000 2.160247
-[1] 6 6 6 0
-[1] 6.000000 4.000000 6.000000 2.236068
-[1] 6.000000 1.000000 4.000000 5.597619
- 
- Student. teacher group Q1 Q2 Q3 Q4 Q5 Q6 Q7 Q8 Q9 Q10 Q11 Q12 Q13 Q14 Q15 Q16
-1        1       A    1A 10  5  5  7  4  2  4 14  5   5   5   0   5   0   0   4
-2        2       A    1A 12  5  4  8  4  4  5 18  5   0   5   0   0   5   0   4
-3        3       A    1A 10  4  5  6  2  3  0  8  0   5   5   0   5   0   0   4
-4        4       A    1A 18  5  6  8  5  3  4 15  5   5   5   0   5   0   5   4
-5        5       A    1B 20  5  6  7  5  4  4 19  5   5   5   0   5   0   0   5
-6        6       A    1A 16  5  6  8  6  3  1 19  0   0   5   0   5   0   0   4
-  Q17
-1  12
-2  17
-3  11
-4  12
-5  13
-6  11
 'data.frame':	130 obs. of  20 variables:
  $ Student.: int  1 2 3 4 5 6 7 8 9 10 ...
  $ teacher : Factor w/ 2 levels "A","B": 1 1 1 1 1 1 1 1 1 1 ...
@@ -1248,13 +1182,7 @@ str(data$grade)
 </div>
 
 <pre class="example">
-[1] 1B
-Levels: 1A 1B 1C 1D 1E
-[1] 1C
-Levels: 1A 1B 1C 1D 1E
- null device 
-          1
- num [1:130] 6 6 4 7 7 6 5 3 7 6 ...
+num [1:130] 6 6 4 7 7 6 5 3 7 6 ...
 </pre>
 </div>
 </div>
@@ -1446,16 +1374,7 @@ str(data)
 </div>
 
 <pre class="example">
-FALSE  TRUE 
-   86    44
- null device 
-          1
-[1]  0.80 -1.58  1.99  0.80
-[1] 481.8712
-[1] 554.4673
-[1] 0.02501417
-[1] 0.02426194
-'data.frame':	424 obs. of  3 variables:
+'data.frame':   424 obs. of  3 variables:
  $ partecipant: int  1 2 3 4 5 6 7 8 9 10 ...
  $ motivation : Factor w/ 2 levels "High","Low": 2 2 1 2 2 2 2 1 1 1 ...
  $ score      : int  22 28 28 26 18 31 22 25 20 25 ...
@@ -1798,19 +1717,6 @@ sd(f)
 </div>
 
 <pre class="example">
-[1] 0.046
- 'data.frame':	19 obs. of  3 variables:
- $ partecipant: int  1 2 3 4 5 6 7 8 9 10 ...
- $ gender     : Factor w/ 2 levels "F","M": 1 2 1 2 1 2 1 2 1 2 ...
- $ score      : num  17 16 16 15 14 13 19 19 18 15 ...
- 
- partecipant gender score
-1           1      F    17
-2           2      M    16
-3           3      F    16
-4           4      M    15
-5           5      F    14
-6           6      M    13
    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
   12.00   13.00   14.50   14.62   15.25   19.00
    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
@@ -1880,9 +1786,6 @@ shapiro.test(f)
 </div>
 
 <pre class="example">
- null device 
-          1
-
 	Shapiro-Wilk normality test
 
 data:  m
@@ -2134,8 +2037,6 @@ To determine this, you will have to calc ulate a Pearson r (or r xy ). Make sure
 </div>
 
 <pre class="example">
- null device 
-          1
 [1] 0.9962291
 </pre>
 
@@ -2165,7 +2066,7 @@ mean of x mean of y
 <div class="outline-text-4" id="text-4-3-5">
 <blockquote>
 <p>
-A correlation analysis showed that Reading Skills and Listening Skills were not significantly related (r =0.99, p &gt; 0.05
+A correlation analysis showed that Reading Skills and Listening Skills were not significantly related (r =0.99, p &gt; 0.05)
 </p>
 </blockquote>
 </div>
@@ -2192,34 +2093,8 @@ A correlation analysis showed that Reading Skills and Listening Skills were not 
 </div>
 
 <pre class="example">
-Reliability analysis   
-Call: alpha(x = data, check.keys = TRUE, delete = TRUE)
-
-  raw_alpha std.alpha G6(smc) average_r  S/N    ase mean sd
-    0.0094      0.11   0.055     0.055 0.12 0.0082  118 61
-
- lower alpha upper     95% confidence boundaries
--0.01 0.01 0.03 
-
- Reliability if an item is dropped:
-             raw_alpha std.alpha G6(smc) average_r   S/N alpha se
-partecipant-    0.0555     0.055  0.0031     0.055    NA       NA
-score           0.0031     0.055      NA        NA 0.055    0.011
-
- Item statistics 
-               n raw.r std.r r.cor r.drop mean    sd
-partecipant- 424 0.999  0.73  0.17  0.055  212 122.5
-score        424 0.098  0.73  0.17  0.055   23   5.3
-Warning messages:
-1: In var(if (is.vector(x) || is.factor(x)) x else as.double(x), na.rm = na.rm) :
-  si è prodotto un NA per coercizione
-2: In alpha(data, delete = TRUE, check.keys = TRUE) :
-  Item = motivation had no variance and was deleted
-3: In alpha(data, delete = TRUE, check.keys = TRUE) :
-  Some items were negatively correlated with total scale and were automatically reversed.
- This is indicated by a negative sign for the variable name.
-4: In matrix(unlist(drop.item), ncol = 8, byrow = TRUE) :
-  data length [12] is not a sub-multiple or multiple of the number of columns [8]
+Error in alpha(data, delete = TRUE, check.keys = TRUE) : 
+  unused arguments (delete = TRUE, check.keys = TRUE)
 </pre>
 
 <p>
@@ -2282,6 +2157,893 @@ alternative hypothesis: two-sided
 </div>
 </div>
 </div>
+
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5"><span class="section-number-2">5</span> Practical 5</h2>
+<div class="outline-text-2" id="text-5">
+</div><div id="outline-container-sec-5-1" class="outline-3">
+<h3 id="sec-5-1"><span class="section-number-3">5.1</span> Weight and height</h3>
+<div class="outline-text-3" id="text-5-1">
+<div class="org-src-container">
+
+<pre class="src src-R">w &lt;- c(40,50,40,70,80,90)
+h &lt;- c(1.40,1.50,1.60,1.70,1.80,1.90)
+df &lt;-data.frame(w,h)
+</pre>
+</div>
+
+<table class="table table-striped table-bordered table-hover table-condensed">
+
+
+<colgroup>
+<col  class="right">
+
+<col  class="right">
+</colgroup>
+<tbody>
+<tr>
+<td class="right">40</td>
+<td class="right">1.4</td>
+</tr>
+
+<tr>
+<td class="right">50</td>
+<td class="right">1.5</td>
+</tr>
+
+<tr>
+<td class="right">40</td>
+<td class="right">1.6</td>
+</tr>
+
+<tr>
+<td class="right">70</td>
+<td class="right">1.7</td>
+</tr>
+
+<tr>
+<td class="right">80</td>
+<td class="right">1.8</td>
+</tr>
+
+<tr>
+<td class="right">90</td>
+<td class="right">1.9</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<div id="outline-container-sec-5-1-1" class="outline-4">
+<h4 id="sec-5-1-1"><span class="section-number-4">5.1.1</span> Questions</h4>
+<div class="outline-text-4" id="text-5-1-1">
+</div><ol class="org-ol"><li><a id="sec-5-1-1-1" name="sec-5-1-1-1"></a>List the variables in the study – if relevant, say which variables are dependent and which are independent<br ><div class="outline-text-5" id="text-5-1-1-1">
+<p>
+Variables are <i>weight</i> and <i>height</i>.
+</p>
+</div>
+</li>
+<li><a id="sec-5-1-1-2" name="sec-5-1-1-2"></a>What kind of measures (nominal, ordinal, interval) are used for the variables ?<br ><div class="outline-text-5" id="text-5-1-1-2">
+<p>
+Interval scale  
+</p>
+</div>
+</li>
+<li><a id="sec-5-1-1-3" name="sec-5-1-1-3"></a>Formulate the relevant statistical hypothesis<br ><div class="outline-text-5" id="text-5-1-1-3">
+<p>
+H<sub>0</sub>: the two variables are not correlated
+H<sub>1</sub>: the two variable are correlated
+</p>
+</div>
+</li>
+<li><a id="sec-5-1-1-4" name="sec-5-1-1-4"></a>Is the relation linear? (plot the data in a simple graph)<br ><div class="outline-text-5" id="text-5-1-1-4">
+<div class="org-src-container">
+
+<pre class="src src-R">plot(df)
+</pre>
+</div>
+
+<p>
+<img src="wh.png" class="img-responsive" alt="wh.png">
+Yes, there seem to be a strong linear relation
+</p>
+</div>
+</li>
+<li><a id="sec-5-1-1-5" name="sec-5-1-1-5"></a>Which α-level would you use and why?<br ><div class="outline-text-5" id="text-5-1-1-5">
+<p>
+.5
+</p>
+
+<p>
+It is the standard alfa and I see no reason to do otherwise. 
+</p>
+</div>
+</li>
+<li><a id="sec-5-1-1-6" name="sec-5-1-1-6"></a>Would you test one-tailed or two-tailed (and why)?<br ><div class="outline-text-5" id="text-5-1-1-6">
+<p>
+Given that we are going to run a correlation test I don't see how we can test one tail.
+</p>
+</div>
+</li>
+<li><a id="sec-5-1-1-7" name="sec-5-1-1-7"></a>Which statistic could be used? (consult the tables onyour handout)<br ><div class="outline-text-5" id="text-5-1-1-7">
+<p>
+Correlation
+</p>
+</div>
+</li>
+<li><a id="sec-5-1-1-8" name="sec-5-1-1-8"></a>Apply this statistic using SPSS/R. Can you reject H<sub>0</sub>?<br ><div class="outline-text-5" id="text-5-1-1-8">
+<div class="org-src-container">
+
+<pre class="src src-R">cor.test(df$w,df$h, method="pearson")
+</pre>
+</div>
+
+<pre class="example">
+	Pearson's product-moment correlation
+
+data:  df$w and df$h
+t = 4.8865, df = 4, p-value = 0.008122
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ 0.4576706 0.9919809
+sample estimates:
+      cor 
+0.9254821
+</pre>
+</div>
+</li>
+
+<li><a id="sec-5-1-1-9" name="sec-5-1-1-9"></a>What can you say about the meaningfulness of this outcome?<br ><div class="outline-text-5" id="text-5-1-1-9">
+<p>
+Not much at all. We have very few data.
+</p>
+</div>
+</li>
+<li><a id="sec-5-1-1-10" name="sec-5-1-1-10"></a>Report<br ><div class="outline-text-5" id="text-5-1-1-10">
+<blockquote>
+<p>
+A correlation analysis showed that weight and height were significantly related (r=0.92, p &lt; 0.5)
+</p>
+</blockquote>
+</div>
+</li></ol>
+</div>
+</div>
+<div id="outline-container-sec-5-2" class="outline-3">
+<h3 id="sec-5-2"><span class="section-number-3">5.2</span> Writing scores</h3>
+<div class="outline-text-3" id="text-5-2">
+<div class="org-src-container">
+
+<pre class="src src-R">partecipant &lt;- c(1:30)
+type &lt;- c(0,1,2,0,1,2,0,1,2,0,1,2,0,1,2,0,1,2,0,1,2,0,1,2,0,1,2,0,1,2)
+type &lt;- as.factor(type)
+levels(type) &lt;- c("no_instr","lectures","gw")
+scores &lt;- c(34,65,68,58,54,87,56,43,94,47,57,69,35,65,81,31,49,75,55,74,94,65,79,78,61,54,63,27,65,78)
+df &lt;-data.frame(partecipant,type,scores)
+head(df)
+</pre>
+</div>
+
+<table class="table table-striped table-bordered table-hover table-condensed">
+
+
+<colgroup>
+<col  class="right">
+
+<col  class="left">
+
+<col  class="right">
+</colgroup>
+<tbody>
+<tr>
+<td class="right">1</td>
+<td class="left">no<sub>instr</sub></td>
+<td class="right">34</td>
+</tr>
+
+<tr>
+<td class="right">2</td>
+<td class="left">lectures</td>
+<td class="right">65</td>
+</tr>
+
+<tr>
+<td class="right">3</td>
+<td class="left">gw</td>
+<td class="right">68</td>
+</tr>
+
+<tr>
+<td class="right">4</td>
+<td class="left">no<sub>instr</sub></td>
+<td class="right">58</td>
+</tr>
+
+<tr>
+<td class="right">5</td>
+<td class="left">lectures</td>
+<td class="right">54</td>
+</tr>
+
+<tr>
+<td class="right">6</td>
+<td class="left">gw</td>
+<td class="right">87</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<div id="outline-container-sec-5-2-1" class="outline-4">
+<h4 id="sec-5-2-1"><span class="section-number-4">5.2.1</span> Questions</h4>
+<div class="outline-text-4" id="text-5-2-1">
+</div><ol class="org-ol"><li><a id="sec-5-2-1-1" name="sec-5-2-1-1"></a>List the variables in the study –if relevant, say which variables are dependent and which are independent.<br ><div class="outline-text-5" id="text-5-2-1-1">
+<div class="org-src-container">
+
+<pre class="src src-R">str(df)
+</pre>
+</div>
+
+<pre class="example">
+'data.frame':   30 obs. of  3 variables:
+ $ partecipant: int  1 2 3 4 5 6 7 8 9 10 ...
+ $ type       : Factor w/ 3 levels "no_instr","lectures",..: 1 2 3 1 2 3 1 2 3 1 ...
+ $ scores     : num  34 65 68 58 54 87 56 43 94 47 ...
+</pre>
+
+
+
+<p>
+There is one independet (type of instruction) and one dependent (score).
+</p>
+</div>
+</li>
+<li><a id="sec-5-2-1-2" name="sec-5-2-1-2"></a>What kind of measures (nominal, ordinal, interval) are used for the variables ?<br ><div class="outline-text-5" id="text-5-2-1-2">
+<p>
+Interval scale, as the description of the dataset says.
+</p>
+</div>
+</li>
+<li><a id="sec-5-2-1-3" name="sec-5-2-1-3"></a>In case of independent variables, how many levels does each independent variable have?<br ><div class="outline-text-5" id="text-5-2-1-3">
+<p>
+Three: <i>no instructions</i>, <i>lectures</i>, <i>guided instr</i>
+</p>
+</div>
+</li>
+<li><a id="sec-5-2-1-4" name="sec-5-2-1-4"></a>Formulate a statistical hypothesis.<br ><div class="outline-text-5" id="text-5-2-1-4">
+<ul class="org-ul">
+<li>H<sub>0</sub>: the type of istruction does not affect the score
+</li>
+<li>H<sub>1</sub>: the type of instruction does affect the score
+</li>
+</ul>
+</div>
+</li>
+<li><a id="sec-5-2-1-5" name="sec-5-2-1-5"></a>Which statistic could be used?<br ><div class="outline-text-5" id="text-5-2-1-5">
+<p>
+One way ANOVA (eventually with post-hoc analysis).
+</p>
+</div>
+</li>
+<li><a id="sec-5-2-1-6" name="sec-5-2-1-6"></a>Using SPSS/R, provide the following descriptive statistics for each group: means, range, standard deviations.<br ><div class="outline-text-5" id="text-5-2-1-6">
+<div class="org-src-container">
+
+<pre class="src src-R">bymean &lt;- aggregate(df$score, by=list(df$type),FUN=mean)
+byrange &lt;- aggregate(df$score, by=list(df$type),FUN=range)
+bysd &lt;- aggregate(df$score, by=list(df$type),FUN=sd)
+bymean
+byrange
+bysd
+</pre>
+</div>
+
+<pre class="example">
+   Group.1    x
+1 no_instr 46.9
+2 lectures 60.5
+3       gw 78.7
+   Group.1 x.1 x.2
+1 no_instr  27  65
+2 lectures  43  79
+3       gw  63  94
+   Group.1        x
+1 no_instr 13.96384
+2 lectures 11.15796
+3       gw 10.60451
+</pre>
+</div>
+</li>
+
+<li><a id="sec-5-2-1-7" name="sec-5-2-1-7"></a>Using SPSS/R, test the statistical significance of this experiment: can you reject H 0 ?<br ><div class="outline-text-5" id="text-5-2-1-7">
+<p>
+Before looking at the F score, it might be a good idea to plot the results (even, if it is not required in this excercise I find it always useful to plot things).
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-R">boxplot(df$score[df$type == "no_instr"],df$score[df$type == "lectures"],df$score[df$type == "gw"])
+</pre>
+</div>
+
+
+<figure>
+<p><img src="writingscores.png" class="img-responsive" alt="writingscores.png">
+</p>
+</figure>
+
+<p>
+And indeed it seems obvious that the guided group performs a lot better than the other two, so there the teaching method affects the results (confirming what one's intuitions) and so H<sub>0</sub> can be rejected. Let's run the ANOVA anyway and take a look at the F.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-R">results = aov(scores ~ type, data=df)
+summary(results)
+</pre>
+</div>
+
+<pre class="example">
+            Df Sum Sq Mean Sq F value   Pr(&gt;F)    
+type         2   5091    2546   17.68 1.24e-05 ***
+Residuals   27   3887     144                     
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+</pre>
+</div>
+</li>
+
+<li><a id="sec-5-2-1-8" name="sec-5-2-1-8"></a>What can you say about the meaningfulness of this outcome?<br ><div class="outline-text-5" id="text-5-2-1-8">
+<p>
+The results seems to be meaningful. However, the sample is still small.
+</p>
+</div>
+</li>
+<li><a id="sec-5-2-1-9" name="sec-5-2-1-9"></a>Report<br ><div class="outline-text-5" id="text-5-2-1-9">
+<blockquote>
+<p>
+On average, the <code>gw</code> group (M=78.7) performed better than the other two groups. This difference was significant p &lt; 0.05.
+</p>
+</blockquote>
+</div>
+</li></ol>
+</div>
+</div>
+
+<div id="outline-container-sec-5-3" class="outline-3">
+<h3 id="sec-5-3"><span class="section-number-3">5.3</span> Crosstabs</h3>
+<div class="outline-text-3" id="text-5-3">
+<div class="org-src-container">
+
+<pre class="src src-R">data &lt;- read.csv("./data/p5a3.csv")
+colnames(data) &lt;- c("class", "reply")
+data$class &lt;- as.factor(data$class)
+data$reply &lt;- as.factor(data$reply)
+levels(data$class) &lt;- c("high","low")
+levels(data$reply) &lt;- c("havent","dont")
+str(data)
+head(data)
+</pre>
+</div>
+
+<pre class="example">
+'data.frame':	224 obs. of  2 variables:
+ $ class: Factor w/ 2 levels "high","low": 1 1 1 1 1 1 1 1 1 1 ...
+ $ reply: Factor w/ 2 levels "havent","dont": 1 1 1 1 1 1 1 1 1 1 ...
+  class  reply
+1  high havent
+2  high havent
+3  high havent
+4  high havent
+5  high havent
+6  high havent
+</pre>
+</div>
+
+<div id="outline-container-sec-5-3-1" class="outline-4">
+<h4 id="sec-5-3-1"><span class="section-number-4">5.3.1</span> Questions</h4>
+<div class="outline-text-4" id="text-5-3-1">
+</div><ol class="org-ol"><li><a id="sec-5-3-1-1" name="sec-5-3-1-1"></a>List the variables included in this study.<br ><div class="outline-text-5" id="text-5-3-1-1">
+<p>
+There are two nominal variables: social class and reply
+</p>
+</div>
+</li>
+<li><a id="sec-5-3-1-2" name="sec-5-3-1-2"></a>For each variable, say what its function is (dependent, independent, etc.)  and its type (nominal, ordinal, interval).<br ><div class="outline-text-5" id="text-5-3-1-2">
+<p>
+<code>Social class</code> is the independent whereas <code>reply</code> is the dependent
+</p>
+</div>
+</li>
+<li><a id="sec-5-3-1-3" name="sec-5-3-1-3"></a>How would you formulate H<sub>0</sub> and H<sub>1</sub> ?<br ><div class="outline-text-5" id="text-5-3-1-3">
+<ul class="org-ul">
+<li>H<sub>0</sub>: the social status does not influence language use
+</li>
+<li>H<sub>1</sub>: the social status does influence language use
+</li>
+</ul>
+</div>
+</li>
+<li><a id="sec-5-3-1-4" name="sec-5-3-1-4"></a>Which statistic could be used?<br ><div class="outline-text-5" id="text-5-3-1-4">
+<p>
+chi-square, since there are two nominal variables.
+</p>
+</div>
+</li>
+<li><a id="sec-5-3-1-5" name="sec-5-3-1-5"></a>Choose your α-level<br ><div class="outline-text-5" id="text-5-3-1-5">
+<p>
+The usual .5
+</p>
+</div>
+</li>
+<li><a id="sec-5-3-1-6" name="sec-5-3-1-6"></a>Using the data file provided (p5a3.csv) , run the SPSS/R analysis.<br ><div class="outline-text-5" id="text-5-3-1-6">
+<div class="org-src-container">
+
+<pre class="src src-R">chisq.test(data$class,data$reply)
+</pre>
+</div>
+
+<pre class="example">
+        Pearson's Chi-squared test with Yates' continuity correction
+
+data:  data$class and data$reply
+X-squared = 3.3829, df = 1, p-value = 0.06588
+</pre>
+</div>
+</li>
+
+<li><a id="sec-5-3-1-7" name="sec-5-3-1-7"></a>Can you reject the null hypothesis?<br ><div class="outline-text-5" id="text-5-3-1-7">
+<p>
+Looking at the p-value it seems we cannot. But let's plot first.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-R">spineplot(data$class,data$reply)
+</pre>
+</div>
+
+
+<figure>
+<p><img src="crosstabs1.png" class="img-responsive" alt="crosstabs1.png">
+</p>
+</figure>
+
+<p>
+And yes, the plot confirms that in fact we can't reject the null. However, the high class prefers one form over another. So, maybe with more data the result could change ?
+</p>
+</div>
+</li>
+
+<li><a id="sec-5-3-1-8" name="sec-5-3-1-8"></a>Report<br ><div class="outline-text-5" id="text-5-3-1-8">
+<blockquote>
+<p>
+On average, the high class group showed a preference for the <code>haven't</code> form. This difference was not significant X-square=3.38, p &gt; 0.05
+</p>
+</blockquote>
+</div>
+</li></ol>
+</div>
+</div>
+
+<div id="outline-container-sec-5-4" class="outline-3">
+<h3 id="sec-5-4"><span class="section-number-3">5.4</span> Exam practice</h3>
+<div class="outline-text-3" id="text-5-4">
+<p>
+Tempate answer
+</p>
+
+<pre class="example">
+- List the variables in the study – if relevant, say which variables are dependent and which are independent 
+- For each of the variables determine its type (nominal, ordinal, scale) 
+- In case of independent variables, how many levels does each independent variable h ave?  
+- Identify the family of statistics: means , frequency or correlation ; then choose the most appropriate statistic al test.  
+- Formulate the relevant statistical hypothesis 
+- Which α-level would you use and why?  
+- Would you test one-tailed or two-tailed (and why)?  
+- Value of statistic: 
+- Significance: 
+- Decision H 0:
+- Report:
+  #+BEGIN_QUOTE
+  “ A correlation analysis showed that Reading Skills and Listening Skills were .... [significantly or not significantly] related (r = ..., p ... [ fill in &lt; 0.05 or &gt; 0.05 or whichever α you’ve selected] ) ”
+  #+END_QUOTE
+
+  #+BEGIN_QUOTE
+  “ On average, the ... [fill in boys or girls] showed a higher level of intelligence (M=... , SE= ... )  than the ... (M=... , SE= ... ). This difference was ... [fill in “significant” or “not significant”] t(...[fill in df])= ... [fill in the value of t], p ... [fill in &lt; 0.05 o r &gt; 0.05 or whichever α you’ve selected].  ”
+  #+END_QUOTE
+</pre>
+</div>
+
+<div id="outline-container-sec-5-4-1" class="outline-4">
+<h4 id="sec-5-4-1"><span class="section-number-4">5.4.1</span> A) Pronunciation</h4>
+<div class="outline-text-4" id="text-5-4-1">
+<p>
+A researcher wants to investigate if motivation affects the pronunciation of English by Dutch learners. To investigate the possible effect of motivation on pronunciation, she makes tape recordings of 24 Dutch learners of English pronouncing English sentences. She then measures the difference in vowel length before voiced and voiceless obstruents (e.g. tap vs. tab). A questionnaire has determined that 12 of these students are highly motivated and 12 students are not very motivated to pronounce English correctly. Tip: the dependent is the DIFFERENCE in vowel length between the two phonological contexts.
+</p>
+</div>
+<ol class="org-ol"><li><a id="sec-5-4-1-1" name="sec-5-4-1-1"></a>Answer<br ><div class="outline-text-5" id="text-5-4-1-1">
+<ul class="org-ul">
+<li>List the variables in the study – if relevant, say which variables are dependent and which are independent
+<ul class="org-ul">
+<li>one dependent and one independent
+</li>
+</ul>
+</li>
+<li>For each of the variables determine its type (nominal, ordinal, scale) 
+<ul class="org-ul">
+<li>the dependent is interval scale
+</li>
+<li>independent is nominal
+</li>
+</ul>
+</li>
+<li>In case of independent variables, how many levels does each independent variable h ave?  
+<ul class="org-ul">
+<li>two levels: highly motivated, not very motivated
+</li>
+</ul>
+</li>
+<li>Identify the family of statistics: means , frequency or correlation ; then choose the most appropriate statistical test.
+<ul class="org-ul">
+<li>means analysis
+</li>
+<li>t-test
+</li>
+</ul>
+</li>
+<li>Formulate the relevant statistical hypothesis
+<ul class="org-ul">
+<li>H<sub>0</sub>: motivation does not affect pronunciation skills
+</li>
+<li>H<sub>1</sub>: motivation does affect pronunciation skills
+</li>
+</ul>
+</li>
+<li>Which α-level would you use and why?  
+<ul class="org-ul">
+<li>.5
+</li>
+<li>it's the standard
+</li>
+</ul>
+</li>
+<li>Would you test one-tailed or two-tailed (and why)?
+<ul class="org-ul">
+<li>two tail
+</li>
+<li>can't see an obvious resons for not doing so
+</li>
+</ul>
+</li>
+<li>Value of statistic: t
+</li>
+<li>Significance: p
+</li>
+<li>Decision H 0: I don't understand this question
+</li>
+</ul>
+</div>
+</li></ol>
+</div>
+
+<div id="outline-container-sec-5-4-2" class="outline-4">
+<h4 id="sec-5-4-2"><span class="section-number-4">5.4.2</span> B) Polish learning French</h4>
+<div class="outline-text-4" id="text-5-4-2">
+<p>
+A researcher wants to find out whether the age at which one starts to learn a foreign language is related to language proficiency. To investigate this, she finds 20 Polish learners of French who had all been learning French for 10 years. The starting age of these learners ranges from 1 to 20, in such a way that each starting age is included precisely once. All learners take a 50-item French proficiency test; the proficiency score is based on the number of correct item
+</p>
+</div>
+<ol class="org-ol"><li><a id="sec-5-4-2-1" name="sec-5-4-2-1"></a>Answer<br ><div class="outline-text-5" id="text-5-4-2-1">
+<ul class="org-ul">
+<li>List the variables in the study – if relevant, say which variables are dependent and which are independent
+<ul class="org-ul">
+<li>one dependent (<i>proficiency score</i>) and one independent (<i>starting age</i>)
+</li>
+</ul>
+</li>
+<li>For each of the variables determine its type (nominal, ordinal, scale) 
+<ul class="org-ul">
+<li>both are scale
+</li>
+</ul>
+</li>
+<li>In case of independent variables, how many levels does each independent variable h ave?  
+~
+</li>
+<li>Identify the family of statistics: means , frequency or correlation ; then choose the most appropriate statistical test.
+<ul class="org-ul">
+<li>correlation
+</li>
+<li>Pearson's R
+</li>
+</ul>
+</li>
+<li>Formulate the relevant statistical hypothesis
+<ul class="org-ul">
+<li>H<sub>0</sub>: starting does not affect language learning
+</li>
+<li>H<sub>1</sub>: starting age does affect language learning
+</li>
+</ul>
+</li>
+<li>Which α-level would you use and why?  
+<ul class="org-ul">
+<li>.5
+</li>
+<li>it's the standard
+</li>
+</ul>
+</li>
+<li>Would you test one-tailed or two-tailed (and why)?
+<ul class="org-ul">
+<li>two tail
+</li>
+<li>can't see an obvious resons for not doing so
+</li>
+</ul>
+</li>
+<li>Value of statistic: r
+</li>
+<li>Significance: p
+</li>
+<li>Decision H 0: ???
+</li>
+</ul>
+</div>
+</li></ol>
+</div>
+
+<div id="outline-container-sec-5-4-3" class="outline-4">
+<h4 id="sec-5-4-3"><span class="section-number-4">5.4.3</span> C) Poor Japanese</h4>
+<div class="outline-text-4" id="text-5-4-3">
+<p>
+To investigate the effect of input on sec ond language learning, 60 randomly selected Japanese learners of Frisian are divided into two groups: one experimental group of 30 is isolated in a dark room and exposed to Omrop Fryslân 24 hours a day (thereby achieving maximum exposure to Frisian); one control group of 30 is not exposed to Frisian. After two months, both groups are submitted to a 100-item Frisian proficiency test; the proficiency score is based on the number of correct items.
+</p>
+</div>
+<ol class="org-ol"><li><a id="sec-5-4-3-1" name="sec-5-4-3-1"></a>Answer<br ><div class="outline-text-5" id="text-5-4-3-1">
+<ul class="org-ul">
+<li>List the variables in the study – if relevant, say which variables are dependent and which are independent
+<ul class="org-ul">
+<li>one dependent (<i>proficiency score</i>) and one independent (<i>exposure</i>)
+</li>
+</ul>
+</li>
+<li>For each of the variables determine its type (nominal, ordinal, scale) 
+<ul class="org-ul">
+<li>the dependent is a internaval scale variable
+</li>
+<li>the independent is a nominal variable
+</li>
+</ul>
+</li>
+<li>In case of independent variables, how many levels does each independent variable h ave?  
+<ul class="org-ul">
+<li>two levels: <i>exposure</i> and <i>non exposure</i>
+</li>
+</ul>
+</li>
+<li>Identify the family of statistics: means , frequency or correlation ; then choose the most appropriate statistical test.
+<ul class="org-ul">
+<li>means analysis
+</li>
+<li>t-test
+</li>
+</ul>
+</li>
+<li>Formulate the relevant statistical hypothesis
+<ul class="org-ul">
+<li>H<sub>0</sub>: exposure does not affect language learning
+</li>
+<li>H<sub>1</sub>: exposure age does affect language learning
+</li>
+</ul>
+</li>
+<li>Which α-level would you use and why?  
+<ul class="org-ul">
+<li>.5
+</li>
+<li>it's the standard
+</li>
+</ul>
+</li>
+<li>Would you test one-tailed or two-tailed (and why)?
+<ul class="org-ul">
+<li>two tail
+</li>
+<li>can't see an obvious resons for not doing so
+</li>
+</ul>
+</li>
+<li>Value of statistic: t
+</li>
+<li>Significance: p
+</li>
+<li>Decision H 0: ???
+</li>
+</ul>
+</div>
+</li></ol>
+</div>
+
+<div id="outline-container-sec-5-4-4" class="outline-4">
+<h4 id="sec-5-4-4"><span class="section-number-4">5.4.4</span> D) Again</h4>
+<div class="outline-text-4" id="text-5-4-4">
+<p>
+The experiment in c) is done once more, but this time each of the groups is equally subdivided into three age groups: 11 -30, 31-50 and 51-70.  Does age influence the exposure[/sic/: proficiency intended?]?
+</p>
+</div>
+<ol class="org-ol"><li><a id="sec-5-4-4-1" name="sec-5-4-4-1"></a>Answer<br ><div class="outline-text-5" id="text-5-4-4-1">
+<p>
+Could be.
+</p>
+
+<p>
+In this case we would have to use a one-way ANOVA and all the rest is the same.
+</p>
+</div>
+</li></ol>
+</div>
+
+<div id="outline-container-sec-5-4-5" class="outline-4">
+<h4 id="sec-5-4-5"><span class="section-number-4">5.4.5</span> E) Toddlers</h4>
+<div class="outline-text-4" id="text-5-4-5">
+<p>
+A researcher was interested in the effects of social reinforcement on toddlers’ motor skills. In an experiment, 56 three-year-old children had to take marbles from a vase and put them into a box through a tiny hole. The number of marbles was counted that had been put into the box after four minutes. The children were randomly attributed to two groups. In a 10 minute learning period preceding the experiment, the children in the first group were encouraged by smiles and words of praise. The children in the second group were not encouraged.
+</p>
+</div>
+<ol class="org-ol"><li><a id="sec-5-4-5-1" name="sec-5-4-5-1"></a>Answer<br ><div class="outline-text-5" id="text-5-4-5-1">
+<ul class="org-ul">
+<li>List the variables in the study – if relevant, say which variables are dependent and which are independent
+<ul class="org-ul">
+<li>one dependent ( <i>number of marbles put in the box</i> ) and one independent (<i>encouragement</i>)
+</li>
+</ul>
+</li>
+<li>For each of the variables determine its type (nominal, ordinal, scale) 
+<ul class="org-ul">
+<li>the dependent is a internaval scale variable
+</li>
+<li>the independent is a nominal variable
+</li>
+</ul>
+</li>
+<li>In case of independent variables, how many levels does each independent variable h ave?  
+<ul class="org-ul">
+<li>two levels: <i>praise</i> vs. <i>non praise</i>
+</li>
+</ul>
+</li>
+<li>Identify the family of statistics: means , frequency or correlation ; then choose the most appropriate statistical test.
+<ul class="org-ul">
+<li>means analysis
+</li>
+<li>t-test
+</li>
+</ul>
+</li>
+<li>Formulate the relevant statistical hypothesis
+<ul class="org-ul">
+<li>H<sub>0</sub>: encouragmenet does not affect toddler's skills
+</li>
+<li>H<sub>1</sub>: encouragmenet does affect toddler's skills
+</li>
+</ul>
+</li>
+<li>Which α-level would you use and why?  
+<ul class="org-ul">
+<li>.5
+</li>
+<li>it's the standard
+</li>
+</ul>
+</li>
+<li>Would you test one-tailed or two-tailed (and why)?
+<ul class="org-ul">
+<li>two tail
+</li>
+<li>can't see an obvious resons for not doing so
+</li>
+</ul>
+</li>
+<li>Value of statistic: t
+</li>
+<li>Significance: p
+</li>
+<li>Decision H 0: ???
+</li>
+</ul>
+</div>
+</li></ol>
+</div>
+
+<div id="outline-container-sec-5-4-6" class="outline-4">
+<h4 id="sec-5-4-6"><span class="section-number-4">5.4.6</span> F) Toddlers again</h4>
+<div class="outline-text-4" id="text-5-4-6">
+<p>
+In what way would the experiment in e ) change if, in addition, the researcher wanted to find out if social reinforcement equally affects the boys and girls in the experiment?  Reconsider the number and type of variables accordingly, and decide on the type of analysis that would be required for this new situation.
+</p>
+</div>
+
+<ol class="org-ol"><li><a id="sec-5-4-6-1" name="sec-5-4-6-1"></a>Answer<br ><div class="outline-text-5" id="text-5-4-6-1">
+<p>
+In this case we would have two nominal independent variables and one dependent. So, 4 groups in total: this case can be modeled using a two-way ANOVA. 
+</p>
+</div>
+</li></ol>
+</div>
+<div id="outline-container-sec-5-4-7" class="outline-4">
+<h4 id="sec-5-4-7"><span class="section-number-4">5.4.7</span> G) Sport and stress</h4>
+<div class="outline-text-4" id="text-5-4-7">
+<p>
+To investigate the relation between active sports performance and stress a questionnaire is set up. The questionnaire determines if the participants are active sportswomen and sportsmen (Yes or No) and the degree of stress they experience in their daily lives (on a 3-point scale).
+</p>
+</div>
+<ol class="org-ol"><li><a id="sec-5-4-7-1" name="sec-5-4-7-1"></a>Answer<br ><div class="outline-text-5" id="text-5-4-7-1">
+<ul class="org-ul">
+<li>List the variables in the study – if relevant, say which variables are dependent and which are independent
+<ul class="org-ul">
+<li>one dependent (<i>stress levels</i>) and one independent (<i>activity</i>)
+</li>
+</ul>
+</li>
+<li>For each of the variables determine its type (nominal, ordinal, scale) 
+<ul class="org-ul">
+<li>the dependent is a nominal variable
+</li>
+<li>the independent is a nominal variable
+</li>
+</ul>
+</li>
+<li>In case of independent variables, how many levels does each independent variable h ave?  
+<ul class="org-ul">
+<li>two levels: <i>praise</i> vs. <i>non praise</i>
+</li>
+</ul>
+</li>
+<li>Identify the family of statistics: means , frequency or correlation ; then choose the most appropriate statistical test.
+<ul class="org-ul">
+<li>frequency distribution
+</li>
+<li>chi-square
+</li>
+</ul>
+</li>
+<li>Formulate the relevant statistical hypothesis
+<ul class="org-ul">
+<li>H<sub>0</sub>: sport does not affect perceived stress
+</li>
+<li>H<sub>1</sub>: sport does affect perceived stress
+</li>
+</ul>
+</li>
+<li>Which α-level would you use and why?  
+<ul class="org-ul">
+<li>.5
+</li>
+<li>it's the standard
+</li>
+</ul>
+</li>
+<li>Would you test one-tailed or two-tailed (and why)?
+<ul class="org-ul">
+<li>two tail
+</li>
+<li>can't see an obvious resons for not doing so
+</li>
+</ul>
+</li>
+<li>Value of statistic: 
+</li>
+<li>Significance: ???
+</li>
+<li>Decision H 0: 
+</li>
+</ul>
+</div>
+</li></ol>
+</div>
+</div>
+</div>
 </div><div class="col-md-3"><nav id="table-of-contents">
 <div id="text-table-of-contents" class="bs-docs-sidebar">
 <ul class="nav">
@@ -2319,13 +3081,21 @@ alternative hypothesis: two-sided
 <li><a href="#sec-4-4">4.4. Testing for normality</a></li>
 </ul>
 </li>
+<li><a href="#sec-5">5. Practical 5</a>
+<ul class="nav">
+<li><a href="#sec-5-1">5.1. Weight and height</a></li>
+<li><a href="#sec-5-2">5.2. Writing scores</a></li>
+<li><a href="#sec-5-3">5.3. Crosstabs</a></li>
+<li><a href="#sec-5-4">5.4. Exam practice</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </nav>
 </div></div></div>
 <footer id="postamble" class="">
 <div><p class="author">Author: Angelo Basile</p>
-<p class="date">Created: 2016-10-04 mar 12:19</p>
+<p class="date">Created: 2016-10-24 lun 17:48</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org-mode</a> 8.2.10)</p>
 </div>
 </footer>
