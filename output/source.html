@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <title>Basic statistics</title>
-<!-- 2016-10-24 lun 17:48 -->
+<!-- 2016-10-26 mer 00:40 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="generator" content="Org-mode">
@@ -1046,6 +1046,72 @@ str(data)
 </div>
 
 <pre class="example">
+ id age sex profs
+1  1  16   1    91
+2  2  20   2    58
+3  3  24   1    52
+4  4  22   2    45
+5  5  18   1    78
+6  6  14   2    88
+ null device 
+          1
+ 
+ Category        x
+1        1 75.53333
+2        2 63.66667
+ null device 
+          1
+ 
+ Category        x
+1        1 20.13333
+2        2 20.53333
+ 'data.frame':	30 obs. of  4 variables:
+ $ id   : int  1 2 3 4 5 6 7 8 9 10 ...
+ $ age  : int  16 20 24 22 18 14 15 17 19 21 ...
+ $ sex  : int  1 2 1 2 1 2 1 2 1 2 ...
+ $ profs: int  91 58 52 45 78 88 90 86 83 62 ...
+[1] 16
+[1] 69.6
+[1] 69
+[1] 59
+[1] 33 97
+[1] 16.44342
+[1] 14
+[1] 27
+[1] 20.33333
+[1] 3.565479
+[1] 3.565479
+[1] 59
+[1] -0.4621908
+ 
+ Category        x
+1        1 75.53333
+2        2 63.66667
+ 
+ Category        x
+1        1 14.24212
+2        2 16.78718
+ null device 
+          1
+[1] 6.000000 3.000000 6.000000 2.160247
+[1] 6 6 6 0
+[1] 6.000000 4.000000 6.000000 2.236068
+[1] 6.000000 1.000000 4.000000 5.597619
+ 
+ Student. teacher group Q1 Q2 Q3 Q4 Q5 Q6 Q7 Q8 Q9 Q10 Q11 Q12 Q13 Q14 Q15 Q16
+1        1       A    1A 10  5  5  7  4  2  4 14  5   5   5   0   5   0   0   4
+2        2       A    1A 12  5  4  8  4  4  5 18  5   0   5   0   0   5   0   4
+3        3       A    1A 10  4  5  6  2  3  0  8  0   5   5   0   5   0   0   4
+4        4       A    1A 18  5  6  8  5  3  4 15  5   5   5   0   5   0   5   4
+5        5       A    1B 20  5  6  7  5  4  4 19  5   5   5   0   5   0   0   5
+6        6       A    1A 16  5  6  8  6  3  1 19  0   0   5   0   5   0   0   4
+  Q17
+1  12
+2  17
+3  11
+4  12
+5  13
+6  11
 'data.frame':	130 obs. of  20 variables:
  $ Student.: int  1 2 3 4 5 6 7 8 9 10 ...
  $ teacher : Factor w/ 2 levels "A","B": 1 1 1 1 1 1 1 1 1 1 ...
@@ -1182,7 +1248,13 @@ str(data$grade)
 </div>
 
 <pre class="example">
-num [1:130] 6 6 4 7 7 6 5 3 7 6 ...
+[1] 1B
+Levels: 1A 1B 1C 1D 1E
+[1] 1C
+Levels: 1A 1B 1C 1D 1E
+ null device 
+          1
+ num [1:130] 6 6 4 7 7 6 5 3 7 6 ...
 </pre>
 </div>
 </div>
@@ -1374,7 +1446,16 @@ str(data)
 </div>
 
 <pre class="example">
-'data.frame':   424 obs. of  3 variables:
+FALSE  TRUE 
+   86    44
+ null device 
+          1
+[1]  0.80 -1.58  1.99  0.80
+[1] 481.8712
+[1] 554.4673
+[1] 0.02501417
+[1] 0.02426194
+'data.frame':	424 obs. of  3 variables:
  $ partecipant: int  1 2 3 4 5 6 7 8 9 10 ...
  $ motivation : Factor w/ 2 levels "High","Low": 2 2 1 2 2 2 2 1 1 1 ...
  $ score      : int  22 28 28 26 18 31 22 25 20 25 ...
@@ -1717,6 +1798,19 @@ sd(f)
 </div>
 
 <pre class="example">
+[1] 0.046
+ 'data.frame':	19 obs. of  3 variables:
+ $ partecipant: int  1 2 3 4 5 6 7 8 9 10 ...
+ $ gender     : Factor w/ 2 levels "F","M": 1 2 1 2 1 2 1 2 1 2 ...
+ $ score      : num  17 16 16 15 14 13 19 19 18 15 ...
+ 
+ partecipant gender score
+1           1      F    17
+2           2      M    16
+3           3      F    16
+4           4      M    15
+5           5      F    14
+6           6      M    13
    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
   12.00   13.00   14.50   14.62   15.25   19.00
    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
@@ -1786,6 +1880,9 @@ shapiro.test(f)
 </div>
 
 <pre class="example">
+ null device 
+          1
+
 	Shapiro-Wilk normality test
 
 data:  m
@@ -2037,6 +2134,8 @@ To determine this, you will have to calc ulate a Pearson r (or r xy ). Make sure
 </div>
 
 <pre class="example">
+ null device 
+          1
 [1] 0.9962291
 </pre>
 
@@ -2279,6 +2378,9 @@ Correlation
 </div>
 
 <pre class="example">
+ null device 
+          1
+
 	Pearson's product-moment correlation
 
 data:  df$w and df$h
@@ -2385,7 +2487,14 @@ head(df)
 </div>
 
 <pre class="example">
-'data.frame':   30 obs. of  3 variables:
+ partecipant     type scores
+1           1 no_instr     34
+2           2 lectures     65
+3           3       gw     68
+4           4 no_instr     58
+5           5 lectures     54
+6           6       gw     87
+'data.frame':	30 obs. of  3 variables:
  $ partecipant: int  1 2 3 4 5 6 7 8 9 10 ...
  $ type       : Factor w/ 3 levels "no_instr","lectures",..: 1 2 3 1 2 3 1 2 3 1 ...
  $ scores     : num  34 65 68 58 54 87 56 43 94 47 ...
@@ -2483,6 +2592,8 @@ summary(results)
 </div>
 
 <pre class="example">
+ null device 
+          1
             Df Sum Sq Mean Sq F value   Pr(&gt;F)    
 type         2   5091    2546   17.68 1.24e-05 ***
 Residuals   27   3887     144                     
@@ -3044,6 +3155,758 @@ To investigate the relation between active sports performance and stress a quest
 </div>
 </div>
 </div>
+
+<div id="outline-container-sec-6" class="outline-2">
+<h2 id="sec-6"><span class="section-number-2">6</span> Practical 6</h2>
+<div class="outline-text-2" id="text-6">
+</div><div id="outline-container-sec-6-1" class="outline-3">
+<h3 id="sec-6-1"><span class="section-number-3">6.1</span> L2 syntax development</h3>
+<div class="outline-text-3" id="text-6-1">
+<div class="org-src-container">
+
+<pre class="src src-R">pupil &lt;- c(1:13)
+minutes &lt;- c(32,76,89,41,17,47,62,81,93,56,68,71,26)
+grade &lt;- c(4,5,9,6,4,7,7,8,8,6,8,8,6)
+df &lt;- data.frame(pupil,minutes,grade)
+head(df)
+str(df)
+</pre>
+</div>
+
+<pre class="example">
+ null device 
+          1
+  pupil minutes grade
+1     1      32     4
+2     2      76     5
+3     3      89     9
+4     4      41     6
+5     5      17     4
+6     6      47     7
+'data.frame':	13 obs. of  3 variables:
+ $ pupil  : int  1 2 3 4 5 6 7 8 9 10 ...
+ $ minutes: num  32 76 89 41 17 47 62 81 93 56 ...
+ $ grade  : num  4 5 9 6 4 7 7 8 8 6 ...
+</pre>
+
+<div class="org-src-container">
+
+<pre class="src src-R">summary(df$minutes)
+summary(df$grade)
+</pre>
+</div>
+
+<pre class="example">
+ Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+17.00   41.00   62.00   58.38   76.00   93.00
+ Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+4.000   6.000   7.000   6.615   8.000   9.000
+</pre>
+
+<p>
+Before doing any statistics a simple plot reveal that there is an evident trend in the (small) dataset we have.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-R">plot(df$minutes,df$grade)
+</pre>
+</div>
+
+
+<figure>
+<p><img src="minutesgrades.png" class="img-responsive" alt="minutesgrades.png">
+</p>
+</figure>
+
+<p>
+I am going to interprete the <code>grade</code> variable as an interval variable.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-R">cor.test(df$minutes,df$grade,method="pearson")
+</pre>
+</div>
+
+<pre class="example">
+ null device 
+          1
+
+	Pearson's product-moment correlation
+
+data:  df$minutes and df$grade
+t = 3.9701, df = 11, p-value = 0.002196
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ 0.3750408 0.9266102
+sample estimates:
+      cor 
+0.7674407
+</pre>
+
+<p>
+Now, as expected we have a strong correlation, which is not significative. I assume this is due to the fact the sample size is really small.
+</p>
+</div>
+
+
+
+<div id="outline-container-sec-6-1-1" class="outline-4">
+<h4 id="sec-6-1-1"><span class="section-number-4">6.1.1</span> Report</h4>
+<div class="outline-text-4" id="text-6-1-1">
+</div><ol class="org-ol"><li><a id="sec-6-1-1-1" name="sec-6-1-1-1"></a>Variables<br ><div class="outline-text-5" id="text-6-1-1-1">
+<table class="table table-striped table-bordered table-hover table-condensed">
+
+
+<colgroup>
+<col  class="left">
+
+<col  class="left">
+
+<col  class="left">
+</colgroup>
+<tbody>
+<tr>
+<td class="left">variables</td>
+<td class="left">minutes</td>
+<td class="left">grade</td>
+</tr>
+
+<tr>
+<td class="left">variables type</td>
+<td class="left">interval scale</td>
+<td class="left">interval</td>
+</tr>
+
+<tr>
+<td class="left">variables function</td>
+<td class="left">independent</td>
+<td class="left">dependent</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+
+<li><a id="sec-6-1-1-2" name="sec-6-1-1-2"></a>Experiment features<br ><div class="outline-text-5" id="text-6-1-1-2">
+<table class="table table-striped table-bordered table-hover table-condensed">
+
+
+<colgroup>
+<col  class="left">
+
+<col  class="left">
+</colgroup>
+<tbody>
+<tr>
+<td class="left">H<sub>0</sub></td>
+<td class="left">time affects skills</td>
+</tr>
+
+<tr>
+<td class="left">H<sub>1</sub></td>
+<td class="left">time does not affect skills (improves)</td>
+</tr>
+
+<tr>
+<td class="left">H<sub>2</sub></td>
+<td class="left">time does not affect skills (decreses)</td>
+</tr>
+
+<tr>
+<td class="left">one- vs. two- tail test</td>
+<td class="left">two tail</td>
+</tr>
+
+<tr>
+<td class="left">statistics</td>
+<td class="left">correlation</td>
+</tr>
+
+<tr>
+<td class="left">comments</td>
+<td class="left">not enough data, evaluation explicitlye based on N correct items desirable</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li></ol>
+</div>
+</div>
+
+
+<div id="outline-container-sec-6-2" class="outline-3">
+<h3 id="sec-6-2"><span class="section-number-3">6.2</span> Spanish pronunciation proficiency</h3>
+<div class="outline-text-3" id="text-6-2">
+<div class="org-src-container">
+
+<pre class="src src-R">studentID &lt;- c(1:50)
+abroad &lt;- c("no","yes","yes","no","yes","no","no","yes","yes","no","yes","yes","yes","yes","yes","yes","yes","no","yes","no","no","no","no","yes","yes","yes","yes","no","no","no","yes","yes","no","no","no","yes","no","yes","yes","no","yes","yes","no","no","yes","yes","no","yes","no","yes")
+pass &lt;- c("no","no","yes","no","no","no","yes","no","yes","no","yes","yes","no","yes","yes","no","yes","no","yes","no","no","yes","yes","yes","yes","no","yes","no","no","yes","yes","no","yes","yes","no","yes","no","no","yes","yes","yes","no","no","yes","yes","no","no","yes","no","yes")
+df = data.frame(studentID,abroad,pass)
+str(df)
+</pre>
+</div>
+
+<pre class="example">
+'data.frame':   50 obs. of  3 variables:
+ $ studentID: int  1 2 3 4 5 6 7 8 9 10 ...
+ $ abroad   : Factor w/ 2 levels "no","yes": 1 2 2 1 2 1 1 2 2 1 ...
+ $ pass     : Factor w/ 2 levels "no","yes": 1 1 2 1 1 1 2 1 2 1 ...
+</pre>
+
+<p>
+As always, we start by plotting the data.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-R">spineplot(df$abroad,df$pass)
+</pre>
+</div>
+
+
+<figure>
+<p><img src="spanishabroad.png" class="img-responsive" alt="spanishabroad.png">
+</p>
+</figure>
+
+<div class="org-src-container">
+
+<pre class="src src-R">chisq.test(df$abroad,df$pass)
+</pre>
+</div>
+
+<pre class="example">
+ null device 
+          1
+
+        Pearson's Chi-squared test with Yates' continuity correction
+
+data:  df$abroad and df$pass
+X-squared = 2.8109, df = 1, p-value = 0.09363
+</pre>
+</div>
+
+<div id="outline-container-sec-6-2-1" class="outline-4">
+<h4 id="sec-6-2-1"><span class="section-number-4">6.2.1</span> Report</h4>
+<div class="outline-text-4" id="text-6-2-1">
+</div><ol class="org-ol"><li><a id="sec-6-2-1-1" name="sec-6-2-1-1"></a>Variables<br ><div class="outline-text-5" id="text-6-2-1-1">
+<table class="table table-striped table-bordered table-hover table-condensed">
+
+
+<colgroup>
+<col  class="left">
+
+<col  class="left">
+
+<col  class="left">
+</colgroup>
+<tbody>
+<tr>
+<td class="left">variables</td>
+<td class="left">abroad</td>
+<td class="left">pass</td>
+</tr>
+
+<tr>
+<td class="left">variables type</td>
+<td class="left">nominal</td>
+<td class="left">nominal</td>
+</tr>
+
+<tr>
+<td class="left">variables function</td>
+<td class="left">independent</td>
+<td class="left">dependent</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+
+<li><a id="sec-6-2-1-2" name="sec-6-2-1-2"></a>Experiment features<br ><div class="outline-text-5" id="text-6-2-1-2">
+<table class="table table-striped table-bordered table-hover table-condensed">
+
+
+<colgroup>
+<col  class="left">
+
+<col  class="left">
+</colgroup>
+<tbody>
+<tr>
+<td class="left">H<sub>0</sub></td>
+<td class="left">time abroad affects skills</td>
+</tr>
+
+<tr>
+<td class="left">H<sub>1</sub></td>
+<td class="left">time abroad does not affect skills (improves)</td>
+</tr>
+
+<tr>
+<td class="left">H<sub>2</sub></td>
+<td class="left">time abroad does not affect skills (decreses)</td>
+</tr>
+
+<tr>
+<td class="left">one- vs. two- tail test</td>
+<td class="left">two tail</td>
+</tr>
+
+<tr>
+<td class="left">statistics</td>
+<td class="left">chi-square</td>
+</tr>
+
+<tr>
+<td class="left">comments</td>
+<td class="left">not enough data,more data instead of just dichotomic pass</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li></ol>
+</div>
+</div>
+
+
+<div id="outline-container-sec-6-3" class="outline-3">
+<h3 id="sec-6-3"><span class="section-number-3">6.3</span> Vocabulary learning experiment</h3>
+<div class="outline-text-3" id="text-6-3">
+<div class="org-src-container">
+
+<pre class="src src-R">data &lt;- read.csv("./data/p6a3.csv",sep=";")
+data$ela &lt;- as.factor(data$ela)
+str(data)
+</pre>
+</div>
+
+<pre class="example">
+'data.frame':   59 obs. of  6 variables:
+ $ no   : int  1 2 3 4 5 6 7 8 9 10 ...
+ $ code : Factor w/ 59 levels "AJEU","ALYA",..: 45 26 18 5 33 15 38 10 16 52 ...
+ $ ela  : Factor w/ 2 levels "1","2": 1 1 1 1 1 1 1 1 1 1 ...
+ $ Guess: int  78 50 56 22 39 22 17 44 39 28 ...
+ $ STret: int  94 56 100 67 100 100 89 78 89 100 ...
+ $ LTret: int  78 39 83 67 89 NA 61 33 72 56 ...
+</pre>
+
+<p>
+Let's see how the data looks like.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-R">head(data)
+</pre>
+</div>
+
+<pre class="example">
+  no code ela Guess STret LTret
+1  1 RIWE   1    78    94    78
+2  2 LBRA   1    50    56    39
+3  3 HWOL   1    56   100    83
+4  4 AWES   1    22    67    67
+5  5 MMUN   1    39   100    89
+6  6 FVEL   1    22   100    NA
+</pre>
+
+
+<div class="org-src-container">
+
+<pre class="src src-R">group1 &lt;- data[which(data$ela == 1),]
+group2 &lt;- data[which(data$ela == 2),]
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre class="src src-R">boxplot(group1$Guess,group2$Guess,group1$STret,group2$STret,group1$LTret,group2$LTret)
+</pre>
+</div>
+
+
+<figure>
+<p><img src="coriperi.png" class="img-responsive" alt="coriperi.png">
+</p>
+</figure>
+
+
+
+<p>
+Now, I have found this part a bit challenging. If I understand this correctly, we have to compare the STret and LTret to the guess an to this for both groups. And we have to look at the t values: we should find of course higher t values for STret in both groups; what will be crucial is the comparison of the t values between groups.
+</p>
+
+
+<div class="org-src-container">
+
+<pre class="src src-R">a &lt;- t.test(group1$Guess, group1$STret)
+b &lt;- t.test(group1$Guess, group1$LTret)
+c &lt;- t.test(group2$Guess, group2$STret)
+d &lt;- t.test(group2$Guess, group2$LTret)
+a
+b
+c
+d
+</pre>
+</div>
+
+<pre class="example">
+ null device 
+          1
+
+	Welch Two Sample t-test
+
+data:  group1$Guess and group1$STret
+t = -9.0978, df = 55.057, p-value = 1.461e-12
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -48.88960 -31.23943
+sample estimates:
+mean of x mean of y 
+ 51.48387  91.54839
+
+	Welch Two Sample t-test
+
+data:  group1$Guess and group1$LTret
+t = -4.6994, df = 58.148, p-value = 1.643e-05
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -31.53605 -12.69621
+sample estimates:
+mean of x mean of y 
+ 51.48387  73.60000
+
+	Welch Two Sample t-test
+
+data:  group2$Guess and group2$STret
+t = -14.97, df = 50.148, p-value &lt; 2.2e-16
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -55.16904 -42.11667
+sample estimates:
+mean of x mean of y 
+ 43.85714  92.50000
+
+	Welch Two Sample t-test
+
+data:  group2$Guess and group2$LTret
+t = -4.099, df = 44.861, p-value = 0.0001718
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -30.30759 -10.33526
+sample estimates:
+mean of x mean of y 
+ 43.85714  64.17857
+</pre>
+
+<p>
+So, all the statistics are significant. This means that in both groups, the difference between the guess and the other two scores is not due to chance. If we look at the the values, we can see that the second group is better in the short term memory test, but slightly worst in the long one.
+</p>
+
+<p>
+Now let's write our own function for calculating the effect size so that we can report on the average effect size.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-R">t.myeffectSize &lt;- function (x) {
+    t = x$statistic
+    df = x$parameter
+    r = sqrt((t^2)/((t^2)+df))
+    return(r)
+}
+
+mean(t.myeffectSize(a),
+t.myeffectSize(b),
+t.myeffectSize(c),
+t.myeffectSize(d))
+</pre>
+</div>
+
+<pre class="example">
+[1] 0.7749438
+</pre>
+</div>
+
+<div id="outline-container-sec-6-3-1" class="outline-4">
+<h4 id="sec-6-3-1"><span class="section-number-4">6.3.1</span> Report</h4>
+<div class="outline-text-4" id="text-6-3-1">
+</div><ol class="org-ol"><li><a id="sec-6-3-1-1" name="sec-6-3-1-1"></a>Variables<br ><div class="outline-text-5" id="text-6-3-1-1">
+<table class="table table-striped table-bordered table-hover table-condensed">
+
+
+<colgroup>
+<col  class="left">
+
+<col  class="left">
+
+<col  class="left">
+
+<col  class="left">
+
+<col  class="left">
+</colgroup>
+<tbody>
+<tr>
+<td class="left">variables</td>
+<td class="left">method</td>
+<td class="left">scoreGuess</td>
+<td class="left">scoreSTret</td>
+<td class="left">scoreLTret</td>
+</tr>
+
+<tr>
+<td class="left">variables type</td>
+<td class="left">nominal</td>
+<td class="left">interval</td>
+<td class="left">interval</td>
+<td class="left">interval</td>
+</tr>
+
+<tr>
+<td class="left">variables function</td>
+<td class="left">independent</td>
+<td class="left">dependent</td>
+<td class="left">dependent</td>
+<td class="left">dependent</td>
+</tr>
+
+<tr>
+<td class="left">levels</td>
+<td class="left">CORE, PERI</td>
+<td class="left">-</td>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+
+<li><a id="sec-6-3-1-2" name="sec-6-3-1-2"></a>Experiment features<br ><div class="outline-text-5" id="text-6-3-1-2">
+<table class="table table-striped table-bordered table-hover table-condensed">
+
+
+<colgroup>
+<col  class="left">
+
+<col  class="left">
+</colgroup>
+<tbody>
+<tr>
+<td class="left">H<sub>0</sub></td>
+<td class="left">time abroad affects skills</td>
+</tr>
+
+<tr>
+<td class="left">H<sub>1</sub></td>
+<td class="left">time abroad does not affect skills (improves)</td>
+</tr>
+
+<tr>
+<td class="left">H<sub>2</sub></td>
+<td class="left">time abroad does not affect skills (decreses)</td>
+</tr>
+
+<tr>
+<td class="left">one- vs. two- tail test</td>
+<td class="left">two tail</td>
+</tr>
+
+<tr>
+<td class="left">statistics</td>
+<td class="left">t-test</td>
+</tr>
+
+<tr>
+<td class="left">comments</td>
+<td class="left">not enough data?</td>
+</tr>
+
+<tr>
+<td class="left">effect size</td>
+<td class="left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li></ol>
+</div>
+</div>
+
+
+<div id="outline-container-sec-6-4" class="outline-3">
+<h3 id="sec-6-4"><span class="section-number-3">6.4</span> Vocabulary scores and instruction</h3>
+<div class="outline-text-3" id="text-6-4">
+<div class="org-src-container">
+
+<pre class="src src-R">data &lt;- read.csv("./data/p6a4.csv",sep=";")
+str(data)
+</pre>
+</div>
+
+<pre class="example">
+'data.frame':   42 obs. of  3 variables:
+ $ Subject : int  1 2 3 4 5 6 7 8 9 10 ...
+ $ pretest : int  9 10 8 3 8 9 4 12 10 13 ...
+ $ posttest: int  3 15 12 9 10 8 11 10 11 14 ...
+</pre>
+
+<div class="org-src-container">
+
+<pre class="src src-R">head(data)
+</pre>
+</div>
+
+<pre class="example">
+  Subject pretest posttest
+1       1       9        3
+2       2      10       15
+3       3       8       12
+4       4       3        9
+5       5       8       10
+6       6       9        8
+</pre>
+
+<div class="org-src-container">
+
+<pre class="src src-R">boxplot(data$pretest,data$posttest)
+</pre>
+</div>
+
+
+<figure>
+<p><img src="kidsenglish.png" class="img-responsive" alt="kidsenglish.png">
+</p>
+</figure>
+
+<div class="org-src-container">
+
+<pre class="src src-R">cor.test(data$pretest,data$posttest)
+</pre>
+</div>
+
+<pre class="example">
+ null device 
+          1
+
+	Pearson's product-moment correlation
+
+data:  data$pretest and data$posttest
+t = 4.5837, df = 40, p-value = 4.415e-05
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ 0.3443122 0.7559377
+sample estimates:
+      cor 
+0.5868331
+</pre>
+
+<div class="org-src-container">
+
+<pre class="src src-R">plot(data$pretest,data$posttest)
+</pre>
+</div>
+
+
+<figure>
+<p><img src="kidsenglish2.png" class="img-responsive" alt="kidsenglish2.png">
+</p>
+</figure>
+</div>
+
+<div id="outline-container-sec-6-4-1" class="outline-4">
+<h4 id="sec-6-4-1"><span class="section-number-4">6.4.1</span> Report</h4>
+<div class="outline-text-4" id="text-6-4-1">
+</div><ol class="org-ol"><li><a id="sec-6-4-1-1" name="sec-6-4-1-1"></a>Variables<br ><div class="outline-text-5" id="text-6-4-1-1">
+<table class="table table-striped table-bordered table-hover table-condensed">
+
+
+<colgroup>
+<col  class="left">
+
+<col  class="left">
+
+<col  class="left">
+</colgroup>
+<tbody>
+<tr>
+<td class="left">variables</td>
+<td class="left">pretest</td>
+<td class="left">posttest</td>
+</tr>
+
+<tr>
+<td class="left">variables type</td>
+<td class="left">interval</td>
+<td class="left">interval</td>
+</tr>
+
+<tr>
+<td class="left">variables function</td>
+<td class="left">independent</td>
+<td class="left">dependent</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+
+<li><a id="sec-6-4-1-2" name="sec-6-4-1-2"></a>Experiment features<br ><div class="outline-text-5" id="text-6-4-1-2">
+<table class="table table-striped table-bordered table-hover table-condensed">
+
+
+<colgroup>
+<col  class="left">
+
+<col  class="left">
+</colgroup>
+<tbody>
+<tr>
+<td class="left">H<sub>0</sub></td>
+<td class="left">there is no difference between pre and post test</td>
+</tr>
+
+<tr>
+<td class="left">H<sub>1</sub></td>
+<td class="left">there is difference (kids get better)</td>
+</tr>
+
+<tr>
+<td class="left">one- vs. two- tail test</td>
+<td class="left">one tail</td>
+</tr>
+
+<tr>
+<td class="left">statistics</td>
+<td class="left">repeated measure, correlation</td>
+</tr>
+
+<tr>
+<td class="left">comments</td>
+<td class="left">-</td>
+</tr>
+
+<tr>
+<td class="left">effect size</td>
+<td class="left">medium, 0.58</td>
+</tr>
+
+<tr>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li></ol>
+</div>
+</div>
+</div>
 </div><div class="col-md-3"><nav id="table-of-contents">
 <div id="text-table-of-contents" class="bs-docs-sidebar">
 <ul class="nav">
@@ -3089,13 +3952,21 @@ To investigate the relation between active sports performance and stress a quest
 <li><a href="#sec-5-4">5.4. Exam practice</a></li>
 </ul>
 </li>
+<li><a href="#sec-6">6. Practical 6</a>
+<ul class="nav">
+<li><a href="#sec-6-1">6.1. L2 syntax development</a></li>
+<li><a href="#sec-6-2">6.2. Spanish pronunciation proficiency</a></li>
+<li><a href="#sec-6-3">6.3. Vocabulary learning experiment</a></li>
+<li><a href="#sec-6-4">6.4. Vocabulary scores and instruction</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </nav>
 </div></div></div>
 <footer id="postamble" class="">
 <div><p class="author">Author: Angelo Basile</p>
-<p class="date">Created: 2016-10-24 lun 17:48</p>
+<p class="date">Created: 2016-10-26 mer 00:40</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org-mode</a> 8.2.10)</p>
 </div>
 </footer>

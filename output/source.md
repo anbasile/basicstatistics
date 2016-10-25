@@ -104,6 +104,30 @@
 </li>
 </ul>
 </li>
+<li><a href="#sec-6">6. Practical 6</a>
+<ul>
+<li><a href="#sec-6-1">6.1. L2 syntax development</a>
+<ul>
+<li><a href="#sec-6-1-1">6.1.1. Report</a></li>
+</ul>
+</li>
+<li><a href="#sec-6-2">6.2. Spanish pronunciation proficiency</a>
+<ul>
+<li><a href="#sec-6-2-1">6.2.1. Report</a></li>
+</ul>
+</li>
+<li><a href="#sec-6-3">6.3. Vocabulary learning experiment</a>
+<ul>
+<li><a href="#sec-6-3-1">6.3.1. Report</a></li>
+</ul>
+</li>
+<li><a href="#sec-6-4">6.4. Vocabulary scores and instruction</a>
+<ul>
+<li><a href="#sec-6-4-1">6.4.1. Report</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -2143,3 +2167,621 @@ To investigate the relation between active sports performance and stress a quest
     -   Value of statistic:
     -   Significance: ???
     -   Decision H 0:
+
+# Practical 6<a id="sec-6" name="sec-6"></a>
+
+## L2 syntax development<a id="sec-6-1" name="sec-6-1"></a>
+
+    pupil <- c(1:13)
+    minutes <- c(32,76,89,41,17,47,62,81,93,56,68,71,26)
+    grade <- c(4,5,9,6,4,7,7,8,8,6,8,8,6)
+    df <- data.frame(pupil,minutes,grade)
+    head(df)
+    str(df)
+
+     null device 
+              1
+      pupil minutes grade
+    1     1      32     4
+    2     2      76     5
+    3     3      89     9
+    4     4      41     6
+    5     5      17     4
+    6     6      47     7
+    'data.frame':   13 obs. of  3 variables:
+     $ pupil  : int  1 2 3 4 5 6 7 8 9 10 ...
+     $ minutes: num  32 76 89 41 17 47 62 81 93 56 ...
+     $ grade  : num  4 5 9 6 4 7 7 8 8 6 ...
+
+    summary(df$minutes)
+    summary(df$grade)
+
+     Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+    17.00   41.00   62.00   58.38   76.00   93.00
+     Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+    4.000   6.000   7.000   6.615   8.000   9.000
+
+Before doing any statistics a simple plot reveal that there is an evident trend in the (small) dataset we have.
+
+    plot(df$minutes,df$grade)
+
+![img](minutesgrades.png)
+
+I am going to interprete the `grade` variable as an interval variable.
+
+    cor.test(df$minutes,df$grade,method="pearson")
+
+     null device 
+              1
+    
+            Pearson's product-moment correlation
+    
+    data:  df$minutes and df$grade
+    t = 3.9701, df = 11, p-value = 0.002196
+    alternative hypothesis: true correlation is not equal to 0
+    95 percent confidence interval:
+     0.3750408 0.9266102
+    sample estimates:
+          cor 
+    0.7674407
+
+Now, as expected we have a strong correlation, which is not significative. I assume this is due to the fact the sample size is really small.
+
+### Report<a id="sec-6-1-1" name="sec-6-1-1"></a>
+
+1.  Variables
+
+    <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+    
+    
+    <colgroup>
+    <col  class="left" />
+    
+    <col  class="left" />
+    
+    <col  class="left" />
+    </colgroup>
+    <tbody>
+    <tr>
+    <td class="left">variables</td>
+    <td class="left">minutes</td>
+    <td class="left">grade</td>
+    </tr>
+    
+    
+    <tr>
+    <td class="left">variables type</td>
+    <td class="left">interval scale</td>
+    <td class="left">interval</td>
+    </tr>
+    
+    
+    <tr>
+    <td class="left">variables function</td>
+    <td class="left">independent</td>
+    <td class="left">dependent</td>
+    </tr>
+    </tbody>
+    </table>
+
+2.  Experiment features
+
+    <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+    
+    
+    <colgroup>
+    <col  class="left" />
+    
+    <col  class="left" />
+    </colgroup>
+    <tbody>
+    <tr>
+    <td class="left">H<sub>0</sub></td>
+    <td class="left">time affects skills</td>
+    </tr>
+    
+    
+    <tr>
+    <td class="left">H<sub>1</sub></td>
+    <td class="left">time does not affect skills (improves)</td>
+    </tr>
+    
+    
+    <tr>
+    <td class="left">H<sub>2</sub></td>
+    <td class="left">time does not affect skills (decreses)</td>
+    </tr>
+    
+    
+    <tr>
+    <td class="left">one- vs. two- tail test</td>
+    <td class="left">two tail</td>
+    </tr>
+    
+    
+    <tr>
+    <td class="left">statistics</td>
+    <td class="left">correlation</td>
+    </tr>
+    
+    
+    <tr>
+    <td class="left">comments</td>
+    <td class="left">not enough data, evaluation explicitlye based on N correct items desirable</td>
+    </tr>
+    
+    
+    <tr>
+    <td class="left">effect size</td>
+    <td class="left">medium to big</td>
+    </tr>
+    </tbody>
+    </table>
+
+## Spanish pronunciation proficiency<a id="sec-6-2" name="sec-6-2"></a>
+
+    studentID <- c(1:50)
+    abroad <- c("no","yes","yes","no","yes","no","no","yes","yes","no","yes","yes","yes","yes","yes","yes","yes","no","yes","no","no","no","no","yes","yes","yes","yes","no","no","no","yes","yes","no","no","no","yes","no","yes","yes","no","yes","yes","no","no","yes","yes","no","yes","no","yes")
+    pass <- c("no","no","yes","no","no","no","yes","no","yes","no","yes","yes","no","yes","yes","no","yes","no","yes","no","no","yes","yes","yes","yes","no","yes","no","no","yes","yes","no","yes","yes","no","yes","no","no","yes","yes","yes","no","no","yes","yes","no","no","yes","no","yes")
+    df = data.frame(studentID,abroad,pass)
+    str(df)
+
+    'data.frame':   50 obs. of  3 variables:
+     $ studentID: int  1 2 3 4 5 6 7 8 9 10 ...
+     $ abroad   : Factor w/ 2 levels "no","yes": 1 2 2 1 2 1 1 2 2 1 ...
+     $ pass     : Factor w/ 2 levels "no","yes": 1 1 2 1 1 1 2 1 2 1 ...
+
+As always, we start by plotting the data.
+
+    spineplot(df$abroad,df$pass)
+
+![img](spanishabroad.png)
+
+    chisq.test(df$abroad,df$pass)
+
+     null device 
+              1
+    
+            Pearson's Chi-squared test with Yates' continuity correction
+    
+    data:  df$abroad and df$pass
+    X-squared = 2.8109, df = 1, p-value = 0.09363
+
+### Report<a id="sec-6-2-1" name="sec-6-2-1"></a>
+
+1.  Variables
+
+    <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+    
+    
+    <colgroup>
+    <col  class="left" />
+    
+    <col  class="left" />
+    
+    <col  class="left" />
+    </colgroup>
+    <tbody>
+    <tr>
+    <td class="left">variables</td>
+    <td class="left">abroad</td>
+    <td class="left">pass</td>
+    </tr>
+    
+    
+    <tr>
+    <td class="left">variables type</td>
+    <td class="left">nominal</td>
+    <td class="left">nominal</td>
+    </tr>
+    
+    
+    <tr>
+    <td class="left">variables function</td>
+    <td class="left">independent</td>
+    <td class="left">dependent</td>
+    </tr>
+    </tbody>
+    </table>
+
+2.  Experiment features
+
+    <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+    
+    
+    <colgroup>
+    <col  class="left" />
+    
+    <col  class="left" />
+    </colgroup>
+    <tbody>
+    <tr>
+    <td class="left">H<sub>0</sub></td>
+    <td class="left">time abroad affects skills</td>
+    </tr>
+    
+    
+    <tr>
+    <td class="left">H<sub>1</sub></td>
+    <td class="left">time abroad does not affect skills (improves)</td>
+    </tr>
+    
+    
+    <tr>
+    <td class="left">H<sub>2</sub></td>
+    <td class="left">time abroad does not affect skills (decreses)</td>
+    </tr>
+    
+    
+    <tr>
+    <td class="left">one- vs. two- tail test</td>
+    <td class="left">two tail</td>
+    </tr>
+    
+    
+    <tr>
+    <td class="left">statistics</td>
+    <td class="left">chi-square</td>
+    </tr>
+    
+    
+    <tr>
+    <td class="left">comments</td>
+    <td class="left">not enough data,more data instead of just dichotomic pass</td>
+    </tr>
+    </tbody>
+    </table>
+
+## Vocabulary learning experiment<a id="sec-6-3" name="sec-6-3"></a>
+
+    data <- read.csv("./data/p6a3.csv",sep=";")
+    data$ela <- as.factor(data$ela)
+    str(data)
+
+    'data.frame':   59 obs. of  6 variables:
+     $ no   : int  1 2 3 4 5 6 7 8 9 10 ...
+     $ code : Factor w/ 59 levels "AJEU","ALYA",..: 45 26 18 5 33 15 38 10 16 52 ...
+     $ ela  : Factor w/ 2 levels "1","2": 1 1 1 1 1 1 1 1 1 1 ...
+     $ Guess: int  78 50 56 22 39 22 17 44 39 28 ...
+     $ STret: int  94 56 100 67 100 100 89 78 89 100 ...
+     $ LTret: int  78 39 83 67 89 NA 61 33 72 56 ...
+
+Let's see how the data looks like.
+
+    head(data)
+
+      no code ela Guess STret LTret
+    1  1 RIWE   1    78    94    78
+    2  2 LBRA   1    50    56    39
+    3  3 HWOL   1    56   100    83
+    4  4 AWES   1    22    67    67
+    5  5 MMUN   1    39   100    89
+    6  6 FVEL   1    22   100    NA
+
+    group1 <- data[which(data$ela == 1),]
+    group2 <- data[which(data$ela == 2),]
+
+    boxplot(group1$Guess,group2$Guess,group1$STret,group2$STret,group1$LTret,group2$LTret)
+
+![img](coriperi.png)
+
+Now, I have found this part a bit challenging. If I understand this correctly, we have to compare the STret and LTret to the guess an to this for both groups. And we have to look at the t values: we should find of course higher t values for STret in both groups; what will be crucial is the comparison of the t values between groups.
+
+    a <- t.test(group1$Guess, group1$STret)
+    b <- t.test(group1$Guess, group1$LTret)
+    c <- t.test(group2$Guess, group2$STret)
+    d <- t.test(group2$Guess, group2$LTret)
+    a
+    b
+    c
+    d
+
+     null device 
+              1
+    
+            Welch Two Sample t-test
+    
+    data:  group1$Guess and group1$STret
+    t = -9.0978, df = 55.057, p-value = 1.461e-12
+    alternative hypothesis: true difference in means is not equal to 0
+    95 percent confidence interval:
+     -48.88960 -31.23943
+    sample estimates:
+    mean of x mean of y 
+     51.48387  91.54839
+    
+            Welch Two Sample t-test
+    
+    data:  group1$Guess and group1$LTret
+    t = -4.6994, df = 58.148, p-value = 1.643e-05
+    alternative hypothesis: true difference in means is not equal to 0
+    95 percent confidence interval:
+     -31.53605 -12.69621
+    sample estimates:
+    mean of x mean of y 
+     51.48387  73.60000
+    
+            Welch Two Sample t-test
+    
+    data:  group2$Guess and group2$STret
+    t = -14.97, df = 50.148, p-value < 2.2e-16
+    alternative hypothesis: true difference in means is not equal to 0
+    95 percent confidence interval:
+     -55.16904 -42.11667
+    sample estimates:
+    mean of x mean of y 
+     43.85714  92.50000
+    
+            Welch Two Sample t-test
+    
+    data:  group2$Guess and group2$LTret
+    t = -4.099, df = 44.861, p-value = 0.0001718
+    alternative hypothesis: true difference in means is not equal to 0
+    95 percent confidence interval:
+     -30.30759 -10.33526
+    sample estimates:
+    mean of x mean of y 
+     43.85714  64.17857
+
+So, all the statistics are significant. This means that in both groups, the difference between the guess and the other two scores is not due to chance. If we look at the the values, we can see that the second group is better in the short term memory test, but slightly worst in the long one.
+
+Now let's write our own function for calculating the effect size so that we can report on the average effect size.
+
+    t.myeffectSize <- function (x) {
+        t = x$statistic
+        df = x$parameter
+        r = sqrt((t^2)/((t^2)+df))
+        return(r)
+    }
+    
+    mean(t.myeffectSize(a),
+    t.myeffectSize(b),
+    t.myeffectSize(c),
+    t.myeffectSize(d))
+
+    [1] 0.7749438
+
+### Report<a id="sec-6-3-1" name="sec-6-3-1"></a>
+
+1.  Variables
+
+    <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+    
+    
+    <colgroup>
+    <col  class="left" />
+    
+    <col  class="left" />
+    
+    <col  class="left" />
+    
+    <col  class="left" />
+    
+    <col  class="left" />
+    </colgroup>
+    <tbody>
+    <tr>
+    <td class="left">variables</td>
+    <td class="left">method</td>
+    <td class="left">scoreGuess</td>
+    <td class="left">scoreSTret</td>
+    <td class="left">scoreLTret</td>
+    </tr>
+    
+    
+    <tr>
+    <td class="left">variables type</td>
+    <td class="left">nominal</td>
+    <td class="left">interval</td>
+    <td class="left">interval</td>
+    <td class="left">interval</td>
+    </tr>
+    
+    
+    <tr>
+    <td class="left">variables function</td>
+    <td class="left">independent</td>
+    <td class="left">dependent</td>
+    <td class="left">dependent</td>
+    <td class="left">dependent</td>
+    </tr>
+    
+    
+    <tr>
+    <td class="left">levels</td>
+    <td class="left">CORE, PERI</td>
+    <td class="left">-</td>
+    <td class="left">&#xa0;</td>
+    <td class="left">&#xa0;</td>
+    </tr>
+    </tbody>
+    </table>
+
+2.  Experiment features
+
+    <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+    
+    
+    <colgroup>
+    <col  class="left" />
+    
+    <col  class="left" />
+    </colgroup>
+    <tbody>
+    <tr>
+    <td class="left">H<sub>0</sub></td>
+    <td class="left">time abroad affects skills</td>
+    </tr>
+    
+    
+    <tr>
+    <td class="left">H<sub>1</sub></td>
+    <td class="left">time abroad does not affect skills (improves)</td>
+    </tr>
+    
+    
+    <tr>
+    <td class="left">H<sub>2</sub></td>
+    <td class="left">time abroad does not affect skills (decreses)</td>
+    </tr>
+    
+    
+    <tr>
+    <td class="left">one- vs. two- tail test</td>
+    <td class="left">two tail</td>
+    </tr>
+    
+    
+    <tr>
+    <td class="left">statistics</td>
+    <td class="left">t-test</td>
+    </tr>
+    
+    
+    <tr>
+    <td class="left">comments</td>
+    <td class="left">not enough data?</td>
+    </tr>
+    
+    
+    <tr>
+    <td class="left">effect size</td>
+    <td class="left">&#xa0;</td>
+    </tr>
+    </tbody>
+    </table>
+
+## Vocabulary scores and instruction<a id="sec-6-4" name="sec-6-4"></a>
+
+    data <- read.csv("./data/p6a4.csv",sep=";")
+    str(data)
+
+    'data.frame':   42 obs. of  3 variables:
+     $ Subject : int  1 2 3 4 5 6 7 8 9 10 ...
+     $ pretest : int  9 10 8 3 8 9 4 12 10 13 ...
+     $ posttest: int  3 15 12 9 10 8 11 10 11 14 ...
+
+    head(data)
+
+      Subject pretest posttest
+    1       1       9        3
+    2       2      10       15
+    3       3       8       12
+    4       4       3        9
+    5       5       8       10
+    6       6       9        8
+
+    boxplot(data$pretest,data$posttest)
+
+![img](kidsenglish.png)
+
+    cor.test(data$pretest,data$posttest)
+
+     null device 
+              1
+    
+            Pearson's product-moment correlation
+    
+    data:  data$pretest and data$posttest
+    t = 4.5837, df = 40, p-value = 4.415e-05
+    alternative hypothesis: true correlation is not equal to 0
+    95 percent confidence interval:
+     0.3443122 0.7559377
+    sample estimates:
+          cor 
+    0.5868331
+
+    plot(data$pretest,data$posttest)
+
+![img](kidsenglish2.png)
+
+### Report<a id="sec-6-4-1" name="sec-6-4-1"></a>
+
+1.  Variables
+
+    <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+    
+    
+    <colgroup>
+    <col  class="left" />
+    
+    <col  class="left" />
+    
+    <col  class="left" />
+    </colgroup>
+    <tbody>
+    <tr>
+    <td class="left">variables</td>
+    <td class="left">pretest</td>
+    <td class="left">posttest</td>
+    </tr>
+    
+    
+    <tr>
+    <td class="left">variables type</td>
+    <td class="left">interval</td>
+    <td class="left">interval</td>
+    </tr>
+    
+    
+    <tr>
+    <td class="left">variables function</td>
+    <td class="left">independent</td>
+    <td class="left">dependent</td>
+    </tr>
+    </tbody>
+    </table>
+
+2.  Experiment features
+
+    <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+    
+    
+    <colgroup>
+    <col  class="left" />
+    
+    <col  class="left" />
+    </colgroup>
+    <tbody>
+    <tr>
+    <td class="left">H<sub>0</sub></td>
+    <td class="left">there is no difference between pre and post test</td>
+    </tr>
+    
+    
+    <tr>
+    <td class="left">H<sub>1</sub></td>
+    <td class="left">there is difference (kids get better)</td>
+    </tr>
+    
+    
+    <tr>
+    <td class="left">one- vs. two- tail test</td>
+    <td class="left">one tail</td>
+    </tr>
+    
+    
+    <tr>
+    <td class="left">statistics</td>
+    <td class="left">repeated measure, correlation</td>
+    </tr>
+    
+    
+    <tr>
+    <td class="left">comments</td>
+    <td class="left">-</td>
+    </tr>
+    
+    
+    <tr>
+    <td class="left">effect size</td>
+    <td class="left">medium, 0.58</td>
+    </tr>
+    
+    
+    <tr>
+    <td class="left">&#xa0;</td>
+    <td class="left">&#xa0;</td>
+    </tr>
+    </tbody>
+    </table>

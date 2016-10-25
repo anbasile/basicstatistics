@@ -1303,17 +1303,6 @@ To investigate the relation between active sports performance and stress a quest
 - Decision H 0: 
   
 * Practical 6
-** Instructions
-
-| variables               |   |
-| variables type          |   |
-| variables function      |   |
-| H_0                     |   |
-| H_1                     |   |
-| one- vs. two- tail test |   |
-| statistics              |   |
-| comments                |   |
-
 
 ** L2 syntax development
 
@@ -1358,7 +1347,7 @@ Before doing any statistics a simple plot reveal that there is an evident trend 
 plot(df$minutes,df$grade)
 #+END_SRC
 
-I am going to interpret the grad variable as an interval variable.
+I am going to interprete the =grade= variable as an interval variable.
 
 #+BEGIN_SRC R :session :exports both :results output
 cor.test(df$minutes,df$grade,method="pearson")
@@ -1381,6 +1370,8 @@ sample estimates:
 
 Now, as expected we have a strong correlation, which is not significative. I assume this is due to the fact the sample size is really small.
 
+
+
 *** Report
 
 **** Variables
@@ -1398,6 +1389,7 @@ Now, as expected we have a strong correlation, which is not significative. I ass
 | one- vs. two- tail test | two tail                                                                   |
 | statistics              | correlation                                                                |
 | comments                | not enough data, evaluation explicitlye based on N correct items desirable |
+| effect size             | medium to big                                                              |
 
 
 ** Spanish pronunciation proficiency
@@ -1436,50 +1428,41 @@ chisq.test(df$abroad,df$pass)
 : data:  df$abroad and df$pass
 : X-squared = 2.8109, df = 1, p-value = 0.09363
 
-*** ☛ TODO Report
+*** Report
 
 **** Variables
 
-| variables               | minutes                                                                    | grade     |
-| variables type          | interval scale                                                             | interval  |
-| variables function      | independent                                                                | dependent |
-|-------------------------+----------------------------------------------------------------------------+-----------|
+| variables          | abroad      | pass      |
+| variables type     | nominal     | nominal   |
+| variables function | independent | dependent |
+|--------------------+-------------+-----------|
 
 **** Experiment features
 
-| H_0                     | time affects skills                                                        |
-| H_1                     | time does not affect skills (improves)                                     |
-| H_2                     | time does not affect skills (decreses)                                     |
-| one- vs. two- tail test | two tail                                                                   |
-| statistics              | correlation                                                                |
-| comments                | not enough data, evaluation explicitlye based on N correct items desirable |
+| H_0                     | time abroad affects skills                                |
+| H_1                     | time abroad does not affect skills (improves)             |
+| H_2                     | time abroad does not affect skills (decreses)             |
+| one- vs. two- tail test | two tail                                                  |
+| statistics              | chi-square                                                |
+| comments                | not enough data,more data instead of just dichotomic pass |
 
 
 ** Vocabulary learning experiment
 
 #+BEGIN_SRC R :session :exports both :results output
 data <- read.csv("./data/p6a3.csv",sep=";")
+data$ela <- as.factor(data$ela)
 str(data)
 #+END_SRC
 
 #+RESULTS:
-#+begin_example
-'data.frame':	59 obs. of  6 variables:
- $ no   : int  1 2 3 4 5 6 7 8 9 10 ...
- $ code : Factor w/ 59 levels "AJEU","ALYA",..: 45 26 18 5 33 15 38 10 16 52 ...
- $ ela  : int  1 1 1 1 1 1 1 1 1 1 ...
- $ Guess: int  78 50 56 22 39 22 17 44 39 28 ...
- $ STret: int  94 56 100 67 100 100 89 78 89 100 ...
- $ LTret: int  78 39 83 67 89 NA 61 33 72 56 ...
-   no code ela Guess STret LTret
-54 54 BDUS   2    67   100   100
-55 55 LKRO   2    33   100    56
-56 56  KLM   1    45   100    85
-57 57  RTL   2    55    93    43
-58 58  TWL   2    53    87    35
-59 59  PLE   1    65   100    81
-#+end_example
-
+: 'data.frame':	59 obs. of  6 variables:
+:  $ no   : int  1 2 3 4 5 6 7 8 9 10 ...
+:  $ code : Factor w/ 59 levels "AJEU","ALYA",..: 45 26 18 5 33 15 38 10 16 52 ...
+:  $ ela  : Factor w/ 2 levels "1","2": 1 1 1 1 1 1 1 1 1 1 ...
+:  $ Guess: int  78 50 56 22 39 22 17 44 39 28 ...
+:  $ STret: int  94 56 100 67 100 100 89 78 89 100 ...
+:  $ LTret: int  78 39 83 67 89 NA 61 33 72 56 ...
 
 Let's see how the data looks like.
 
@@ -1496,16 +1479,125 @@ head(data)
 : 5  5 MMUN   1    39   100    89
 : 6  6 FVEL   1    22   100    NA
 
-The first lines seem to confirm what one might expect: the =G= looks the lowest ones, =STret= is the vector containing the highest scores and =LTret= is in the middle.
 
-Let's if a plot confirms this.
-
-#+BEGIN_SRC R :session :file coreperi.png :results value graphics :exports both
-boxplot(data$Guess,data$STret,data$LTret)
+#+BEGIN_SRC R :session :exports both :results output
+group1 <- data[which(data$ela == 1),]
+group2 <- data[which(data$ela == 2),]
 #+END_SRC
 
 #+RESULTS:
-[[file:coreperi.png]]
+
+#+BEGIN_SRC R :session :file coriperi.png :results value graphics :exports both
+boxplot(group1$Guess,group2$Guess,group1$STret,group2$STret,group1$LTret,group2$LTret)
+#+END_SRC
+
+#+RESULTS:
+[[file:coriperi.png]]
+
+
+
+Now, I have found this part a bit challenging. If I understand this correctly, we have to compare the STret and LTret to the guess an to this for both groups. And we have to look at the t values: we should find of course higher t values for STret in both groups; what will be crucial is the comparison of the t values between groups.
+
+
+#+BEGIN_SRC R :session :exports both :results output
+a <- t.test(group1$Guess, group1$STret)
+b <- t.test(group1$Guess, group1$LTret)
+c <- t.test(group2$Guess, group2$STret)
+d <- t.test(group2$Guess, group2$LTret)
+a
+b
+c
+d
+#+END_SRC
+
+#+RESULTS:
+#+begin_example
+
+	Welch Two Sample t-test
+
+data:  group1$Guess and group1$STret
+t = -9.0978, df = 55.057, p-value = 1.461e-12
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -48.88960 -31.23943
+sample estimates:
+mean of x mean of y 
+ 51.48387  91.54839
+
+	Welch Two Sample t-test
+
+data:  group1$Guess and group1$LTret
+t = -4.6994, df = 58.148, p-value = 1.643e-05
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -31.53605 -12.69621
+sample estimates:
+mean of x mean of y 
+ 51.48387  73.60000
+
+	Welch Two Sample t-test
+
+data:  group2$Guess and group2$STret
+t = -14.97, df = 50.148, p-value < 2.2e-16
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -55.16904 -42.11667
+sample estimates:
+mean of x mean of y 
+ 43.85714  92.50000
+
+	Welch Two Sample t-test
+
+data:  group2$Guess and group2$LTret
+t = -4.099, df = 44.861, p-value = 0.0001718
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -30.30759 -10.33526
+sample estimates:
+mean of x mean of y 
+ 43.85714  64.17857
+#+end_example
+
+So, all the statistics are significant. This means that in both groups, the difference between the guess and the other two scores is not due to chance. If we look at the the values, we can see that the second group is better in the short term memory test, but slightly worst in the long one.
+
+Now let's write our own function for calculating the effect size so that we can report on the average effect size.
+
+#+BEGIN_SRC R :session :exports both :results output
+t.myeffectSize <- function (x) {
+    t = x$statistic
+    df = x$parameter
+    r = sqrt((t^2)/((t^2)+df))
+    return(r)
+}
+
+mean(t.myeffectSize(a),
+t.myeffectSize(b),
+t.myeffectSize(c),
+t.myeffectSize(d))
+#+END_SRC
+
+#+RESULTS:
+: [1] 0.7749438
+
+*** Report
+
+**** Variables
+
+| variables          | method      | scoreGuess | scoreSTret | scoreLTret |
+| variables type     | nominal     | interval   | interval   | interval   |
+| variables function | independent | dependent  | dependent  | dependent  |
+| levels             | CORE, PERI  | -          |            |            |
+|--------------------+-------------+------------+------------+------------|
+
+**** Experiment features
+
+| H_0                     | time abroad affects skills                    |
+| H_1                     | time abroad does not affect skills (improves) |
+| H_2                     | time abroad does not affect skills (decreses) |
+| one- vs. two- tail test | two tail                                      |
+| statistics              | t-test                                        |
+| comments                | not enough data?                              |
+| effect size             |                                               |
 
 
 ** Vocabulary scores and instruction
@@ -1539,6 +1631,51 @@ boxplot(data$pretest,data$posttest)
 
 #+RESULTS:
 [[file:kidsenglish.png]]
+
+#+BEGIN_SRC R :session :exports both :results output
+cor.test(data$pretest,data$posttest)
+#+END_SRC
+
+#+RESULTS:
+#+begin_example
+
+	Pearson's product-moment correlation
+
+data:  data$pretest and data$posttest
+t = 4.5837, df = 40, p-value = 4.415e-05
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ 0.3443122 0.7559377
+sample estimates:
+      cor 
+0.5868331
+#+end_example
+
+#+BEGIN_SRC R :session :file kidsenglish2.png :results value graphics :exports both
+plot(data$pretest,data$posttest)
+#+END_SRC
+
+#+RESULTS:
+[[file:kidsenglish2.png]]
+
+*** Report
+
+**** Variables
+
+| variables          | pretest     | posttest  |
+| variables type     | interval    | interval  |
+| variables function | independent | dependent |
+|--------------------+-------------+-----------|
+
+**** Experiment features
+
+| H_0                     | there is no difference between pre and post test |
+| H_1                     | there is difference (kids get better)            |
+| one- vs. two- tail test | one tail                                         |
+| statistics              | repeated measure, correlation                    |
+| comments                | -                                                |
+| effect size             | medium, 0.58                                     |
+|                         |                                                  |
 
 * Notes								   :noexport:
 ** Always check for normality before running t-test
