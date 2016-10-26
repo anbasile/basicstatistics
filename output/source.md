@@ -128,6 +128,24 @@
 </li>
 </ul>
 </li>
+<li><a href="#sec-7">7. Practical 7</a>
+<ul>
+<li><a href="#sec-7-1">7.1. Assignments</a>
+<ul>
+<li><a href="#sec-7-1-1">7.1.1. Variables</a></li>
+<li><a href="#sec-7-1-2">7.1.2. Statistics</a></li>
+<li><a href="#sec-7-1-3">7.1.3. Hypothesis</a></li>
+<li><a href="#sec-7-1-4">7.1.4. Details</a></li>
+<li><a href="#sec-7-1-5">7.1.5. Assumptions</a></li>
+<li><a href="#sec-7-1-6">7.1.6. Descriptives</a></li>
+<li><a href="#sec-7-1-7">7.1.7. Outcomes</a></li>
+<li><a href="#sec-7-1-8">7.1.8. Results</a></li>
+<li><a href="#sec-7-1-9">7.1.9. Discussion</a></li>
+<li><a href="#sec-7-1-10">7.1.10. Conclusions</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -805,72 +823,6 @@ Now we define the type of variables for `teacher` and `group`. More precisely, w
     data$teacher <- as.factor(data$teacher)
     str(data)
 
-     id age sex profs
-    1  1  16   1    91
-    2  2  20   2    58
-    3  3  24   1    52
-    4  4  22   2    45
-    5  5  18   1    78
-    6  6  14   2    88
-     null device 
-              1
-     
-     Category        x
-    1        1 75.53333
-    2        2 63.66667
-     null device 
-              1
-     
-     Category        x
-    1        1 20.13333
-    2        2 20.53333
-     'data.frame':  30 obs. of  4 variables:
-     $ id   : int  1 2 3 4 5 6 7 8 9 10 ...
-     $ age  : int  16 20 24 22 18 14 15 17 19 21 ...
-     $ sex  : int  1 2 1 2 1 2 1 2 1 2 ...
-     $ profs: int  91 58 52 45 78 88 90 86 83 62 ...
-    [1] 16
-    [1] 69.6
-    [1] 69
-    [1] 59
-    [1] 33 97
-    [1] 16.44342
-    [1] 14
-    [1] 27
-    [1] 20.33333
-    [1] 3.565479
-    [1] 3.565479
-    [1] 59
-    [1] -0.4621908
-     
-     Category        x
-    1        1 75.53333
-    2        2 63.66667
-     
-     Category        x
-    1        1 14.24212
-    2        2 16.78718
-     null device 
-              1
-    [1] 6.000000 3.000000 6.000000 2.160247
-    [1] 6 6 6 0
-    [1] 6.000000 4.000000 6.000000 2.236068
-    [1] 6.000000 1.000000 4.000000 5.597619
-     
-     Student. teacher group Q1 Q2 Q3 Q4 Q5 Q6 Q7 Q8 Q9 Q10 Q11 Q12 Q13 Q14 Q15 Q16
-    1        1       A    1A 10  5  5  7  4  2  4 14  5   5   5   0   5   0   0   4
-    2        2       A    1A 12  5  4  8  4  4  5 18  5   0   5   0   0   5   0   4
-    3        3       A    1A 10  4  5  6  2  3  0  8  0   5   5   0   5   0   0   4
-    4        4       A    1A 18  5  6  8  5  3  4 15  5   5   5   0   5   0   5   4
-    5        5       A    1B 20  5  6  7  5  4  4 19  5   5   5   0   5   0   0   5
-    6        6       A    1A 16  5  6  8  6  3  1 19  0   0   5   0   5   0   0   4
-      Q17
-    1  12
-    2  17
-    3  11
-    4  12
-    5  13
-    6  11
     'data.frame':   130 obs. of  20 variables:
      $ Student.: int  1 2 3 4 5 6 7 8 9 10 ...
      $ teacher : Factor w/ 2 levels "A","B": 1 1 1 1 1 1 1 1 1 1 ...
@@ -955,13 +907,7 @@ Teacher A
     data$grade <- trunc(((data$TOTAL_score/143)*100)/10)
     str(data$grade)
 
-    [1] 1B
-    Levels: 1A 1B 1C 1D 1E
-    [1] 1C
-    Levels: 1A 1B 1C 1D 1E
-     null device 
-              1
-     num [1:130] 6 6 4 7 7 6 5 3 7 6 ...
+    num [1:130] 6 6 4 7 7 6 5 3 7 6 ...
 
 ### How many students passed?<a id="sec-3-1-6" name="sec-3-1-6"></a>
 
@@ -1075,15 +1021,6 @@ It is safe to reject the null hypothesis.
     colnames(data) <- c("partecipant","motivation","score")
     str(data)
 
-    FALSE  TRUE 
-       86    44
-     null device 
-              1
-    [1]  0.80 -1.58  1.99  0.80
-    [1] 481.8712
-    [1] 554.4673
-    [1] 0.02501417
-    [1] 0.02426194
     'data.frame':   424 obs. of  3 variables:
      $ partecipant: int  1 2 3 4 5 6 7 8 9 10 ...
      $ motivation : Factor w/ 2 levels "High","Low": 2 2 1 2 2 2 2 1 1 1 ...
@@ -1352,19 +1289,6 @@ The t-test. But we have first to check for the normality of the distribution and
     sd(m)
     sd(f)
 
-    [1] 0.046
-     'data.frame':  19 obs. of  3 variables:
-     $ partecipant: int  1 2 3 4 5 6 7 8 9 10 ...
-     $ gender     : Factor w/ 2 levels "F","M": 1 2 1 2 1 2 1 2 1 2 ...
-     $ score      : num  17 16 16 15 14 13 19 19 18 15 ...
-     
-     partecipant gender score
-    1           1      F    17
-    2           2      M    16
-    3           3      F    16
-    4           4      M    15
-    5           5      F    14
-    6           6      M    13
        Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
       12.00   13.00   14.50   14.62   15.25   19.00
        Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
@@ -1401,9 +1325,6 @@ In our dataset we have 19 observations. So, we are going to run the Shapiro-Wilk
     shapiro.test(m)
     shapiro.test(f)
 
-     null device 
-              1
-    
             Shapiro-Wilk normality test
     
     data:  m
@@ -1580,8 +1501,6 @@ To determine this, you will have to calc ulate a Pearson r (or r xy ). Make sure
 
     cor(df$r,df$l,method="pearson")
 
-     null device 
-              1
     [1] 0.9962291
 
     t.test(df$r,df$l)
@@ -1741,9 +1660,6 @@ It seems that there are repeated values in the `TOTALscore` variable. In fact, s
 
         cor.test(df$w,df$h, method="pearson")
     
-         null device 
-                  1
-        
                 Pearson's product-moment correlation
         
         data:  df$w and df$h
@@ -1833,13 +1749,6 @@ It seems that there are repeated values in the `TOTALscore` variable. In fact, s
 
         str(df)
     
-         partecipant     type scores
-        1           1 no_instr     34
-        2           2 lectures     65
-        3           3       gw     68
-        4           4 no_instr     58
-        5           5 lectures     54
-        6           6       gw     87
         'data.frame':   30 obs. of  3 variables:
          $ partecipant: int  1 2 3 4 5 6 7 8 9 10 ...
          $ type       : Factor w/ 3 levels "no_instr","lectures",..: 1 2 3 1 2 3 1 2 3 1 ...
@@ -1899,8 +1808,6 @@ It seems that there are repeated values in the `TOTALscore` variable. In fact, s
         results = aov(scores ~ type, data=df)
         summary(results)
     
-         null device 
-                  1
                     Df Sum Sq Mean Sq F value   Pr(>F)    
         type         2   5091    2546   17.68 1.24e-05 ***
         Residuals   27   3887     144                     
@@ -2179,8 +2086,6 @@ To investigate the relation between active sports performance and stress a quest
     head(df)
     str(df)
 
-     null device 
-              1
       pupil minutes grade
     1     1      32     4
     2     2      76     5
@@ -2211,9 +2116,6 @@ I am going to interprete the `grade` variable as an interval variable.
 
     cor.test(df$minutes,df$grade,method="pearson")
 
-     null device 
-              1
-    
             Pearson's product-moment correlation
     
     data:  df$minutes and df$grade
@@ -2339,9 +2241,6 @@ As always, we start by plotting the data.
 
     chisq.test(df$abroad,df$pass)
 
-     null device 
-              1
-    
             Pearson's Chi-squared test with Yates' continuity correction
     
     data:  df$abroad and df$pass
@@ -2476,9 +2375,6 @@ Now, I have found this part a bit challenging. If I understand this correctly, w
     c
     d
 
-     null device 
-              1
-    
             Welch Two Sample t-test
     
     data:  group1$Guess and group1$STret
@@ -2677,9 +2573,6 @@ Now let's write our own function for calculating the effect size so that we can 
 
     cor.test(data$pretest,data$posttest)
 
-     null device 
-              1
-    
             Pearson's product-moment correlation
     
     data:  data$pretest and data$posttest
@@ -2785,3 +2678,253 @@ Now let's write our own function for calculating the effect size so that we can 
     </tr>
     </tbody>
     </table>
+
+# Practical 7<a id="sec-7" name="sec-7"></a>
+
+A researcher suspects that everyday language use is affected by social media. To investigate this an Iranian researcher at UCL (in London) sends out a questionnaire enquiring about the number of hours per day that students spend on social media. She checks on the use of Facebook, Twitter, Instagram, Snapchat, and Pinterest. She then looks at the average sentence length in the essays of the same students that provided answers to the social media questionnaire. Is sentence length affected by the amount of time spent on social media?
+
+    df <- read.csv("./data/p7.csv")
+    str(df)
+    head(df)
+
+    'data.frame':   90 obs. of  3 variables:
+     $ Student.      : int  114543 114544 114545 114546 114547 114548 114549 114550 114551 114552 ...
+     $ totalHour     : int  3 6 1 3 4 7 0 5 2 8 ...
+     $ avgSentenceLen: int  13 12 19 14 16 9 20 6 23 5 ...
+      Student. totalHour avgSentenceLen
+    1   114543         3             13
+    2   114544         6             12
+    3   114545         1             19
+    4   114546         3             14
+    5   114547         4             16
+    6   114548         7              9
+
+As always I begin by plotting the data.
+
+    plot(df$totalHour,df$avgSentenceLen)
+
+![img](socialmedia1.png)
+
+I am not going to check for the normality of the distribution of the vectors since I am going to run a correlation analysis.
+
+Let's calculate the descriptives
+
+    summary(df[,2:3])
+    sd(df$totalHour)
+    sd(df$avgSentenceLen)
+
+       totalHour      avgSentenceLen
+     Min.   : 0.000   Min.   : 3.0  
+     1st Qu.: 1.250   1st Qu.:10.0  
+     Median : 3.000   Median :15.0  
+     Mean   : 3.478   Mean   :14.7  
+     3rd Qu.: 5.000   3rd Qu.:19.0  
+     Max.   :11.000   Max.   :27.0
+    [1] 2.571354
+    [1] 5.900771
+
+And now we can run the correlation analysis
+
+    cor.test(df$totalHour,df$avgSentenceLen)
+
+            Pearson's product-moment correlation
+    
+    data:  df$totalHour and df$avgSentenceLen
+    t = -15.294, df = 88, p-value < 2.2e-16
+    alternative hypothesis: true correlation is not equal to 0
+    95 percent confidence interval:
+     -0.9005384 -0.7836656
+    sample estimates:
+           cor 
+    -0.8524177
+
+Ok, it seems that the data are correlated. Let's perform a linear regression.
+
+    model <- lm(totalHour ~ avgSentenceLen,data=df)
+    summary(model)
+
+    Call:
+    lm(formula = totalHour ~ avgSentenceLen, data = df)
+    
+    Residuals:
+        Min      1Q  Median      3Q     Max 
+    -3.4807 -0.8307 -0.0663  0.9120  3.5477 
+    
+    Coefficients:
+                   Estimate Std. Error t value Pr(>|t|)    
+    (Intercept)     8.93816    0.38443   23.25   <2e-16 ***
+    avgSentenceLen -0.37145    0.02429  -15.29   <2e-16 ***
+    ---
+    Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+    
+    Residual standard error: 1.352 on 88 degrees of freedom
+    Multiple R-squared:  0.7266,    Adjusted R-squared:  0.7235 
+    F-statistic: 233.9 on 1 and 88 DF,  p-value: < 2.2e-16
+
+Now we test for the normality of the distribution of the residuals.
+
+    shapiro.test(residuals(model))
+
+            Shapiro-Wilk normality test
+    
+    data:  residuals(model)
+    W = 0.99539, p-value = 0.99
+
+The test turns out to be significative. Should I conclude that we cannot use a linear model? **I don't know how to procede here.**
+
+## Assignments<a id="sec-7-1" name="sec-7-1"></a>
+
+### Variables<a id="sec-7-1-1" name="sec-7-1-1"></a>
+
+List the variables in the study – if relevant, say which variables are dependent and which are independent, and for each of the variables determine its type (nominal, ordinal, scale).  In case of independent variables, how many levels does each independent variable(s) have?
+
+1.  Answer
+
+    <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+    
+    
+    <colgroup>
+    <col  class="left" />
+    
+    <col  class="left" />
+    
+    <col  class="left" />
+    </colgroup>
+    <tbody>
+    <tr>
+    <td class="left">hours on sm</td>
+    <td class="left">scale</td>
+    <td class="left">independent</td>
+    </tr>
+    
+    
+    <tr>
+    <td class="left">avg sentence len</td>
+    <td class="left">scale</td>
+    <td class="left">dependent</td>
+    </tr>
+    </tbody>
+    </table>
+
+### Statistics<a id="sec-7-1-2" name="sec-7-1-2"></a>
+
+Identify the family of statistics: means, frequency or correlation; then choose the most appropriate statistical test
+
+1.  Answer
+
+    -   Correlation.
+    -   Pearson's r
+
+### Hypothesis<a id="sec-7-1-3" name="sec-7-1-3"></a>
+
+Formulate a Null-hypothesis (or null-hypotheses in case of multiple tests) and the relevant alternative hypotheses
+
+1.  Answer
+
+    -   **H<sub>0</sub>:** time spent on social media does not affect the average sentence lenght
+    -   **H<sub>1</sub>:** time spent on social media decreases the average sentence lenght
+    -   **H<sub>2</sub>:** time spent on social media augments the average sentence lenght
+
+### Details<a id="sec-7-1-4" name="sec-7-1-4"></a>
+
+List the statistical considerations, like α-level and one-tailed or two-tailed (and why)?
+
+1.  Answer
+
+    -   **α-level:** .5
+    -   **two tailed:** both cases are possible
+
+### Assumptions<a id="sec-7-1-5" name="sec-7-1-5"></a>
+
+Check them.
+
+1.  Answer
+
+    -   no need to check for the normality of the distribution, since I am going to run a correlationa analyis
+
+### Descriptives<a id="sec-7-1-6" name="sec-7-1-6"></a>
+
+Provide them.
+
+1.  Answer
+
+    <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+    
+    
+    <colgroup>
+    <col  class="left" />
+    
+    <col  class="left" />
+    </colgroup>
+    <thead>
+    <tr>
+    <th scope="col" class="left">totalHour</th>
+    <th scope="col" class="left">avgSentenceLen</th>
+    </tr>
+    </thead>
+    
+    <tbody>
+    <tr>
+    <td class="left">Min.   : 0.000</td>
+    <td class="left">Min.   : 3.0</td>
+    </tr>
+    
+    
+    <tr>
+    <td class="left">Median : 3.000</td>
+    <td class="left">Median :15.0</td>
+    </tr>
+    
+    
+    <tr>
+    <td class="left">Mean   : 3.478</td>
+    <td class="left">Mean   :14.7</td>
+    </tr>
+    
+    
+    <tr>
+    <td class="left">Max.   :11.000</td>
+    <td class="left">Max.   :27.0</td>
+    </tr>
+    
+    
+    <tr>
+    <td class="left">SD     :2.57</td>
+    <td class="left">SD     :5.90</td>
+    </tr>
+    </tbody>
+    </table>
+
+### Outcomes<a id="sec-7-1-7" name="sec-7-1-7"></a>
+
+Give outcome statistical test(s) – include effect size if relevant and possible
+
+1.  Answer
+
+    -   **r:** -0.85
+    -   **p:** < 0.05
+    -   **NOTE:** the distribution of the residuals is not normal!
+
+### Results<a id="sec-7-1-8" name="sec-7-1-8"></a>
+
+Based on the observations listed above, write a results section like you would do this in a journal article. Illustrate your findings with tables and/or graphs when appropriate.
+
+1.  Answer
+
+    > A correlation analysis showed that the total amount of hour spent on social media and the average sentence lenght produced were significantly related (r =-0.85, p < 0.05). There is a strong negative correlation as the plot shows.
+
+### Discussion<a id="sec-7-1-9" name="sec-7-1-9"></a>
+
+Write a brief discussion about the study, in which you can comment on the possible methodological pitfalls and the validity of the test.
+
+1.  Answer
+
+    Instead of using a questionnaire (which I suspect underrates the number of hours), it could have been possibile to gather other data: i.e number of posts per week, number of likes/retweet/etc., number of youtube video watched per month. This data are accessible via APIs. Then it would also have been nice to have other measures instead of just average sentence lenght; also the interpretation is not clear: one could say that this means an improvement on the use of language (writing a shorter text is more difficult than writing a longer one), or one could say the opposite. Also, the data are being sampled from one specific domain: essays. What about the other documents users produce?
+
+### Conclusions<a id="sec-7-1-10" name="sec-7-1-10"></a>
+
+Draw the most important conclusion about this study (answer the research question).
+
+1.  Answer
+
+    There seems to a correlation between use of social media and language use. Although more data would be necessary to better asses this conclusion.

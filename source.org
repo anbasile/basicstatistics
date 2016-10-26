@@ -1677,6 +1677,183 @@ plot(data$pretest,data$posttest)
 | effect size             | medium, 0.58                                     |
 |                         |                                                  |
 
+* Practical 7
+A researcher suspects that everyday language use is affected by social media. To investigate this an Iranian researcher at UCL (in London) sends out a questionnaire enquiring about the number of hours per day that students spend on social media. She checks on the use of Facebook, Twitter, Instagram, Snapchat, and Pinterest. She then looks at the average sentence length in the essays of the same students that provided answers to the social media questionnaire. Is sentence length affected by the amount of time spent on social media?
+
+#+BEGIN_SRC R :session :exports both :results output
+df <- read.csv("./data/p7.csv")
+str(df)
+head(df)
+#+END_SRC
+
+#+RESULTS:
+#+begin_example
+'data.frame':	90 obs. of  3 variables:
+ $ Student.      : int  114543 114544 114545 114546 114547 114548 114549 114550 114551 114552 ...
+ $ totalHour     : int  3 6 1 3 4 7 0 5 2 8 ...
+ $ avgSentenceLen: int  13 12 19 14 16 9 20 6 23 5 ...
+  Student. totalHour avgSentenceLen
+1   114543         3             13
+2   114544         6             12
+3   114545         1             19
+4   114546         3             14
+5   114547         4             16
+6   114548         7              9
+#+end_example
+
+As always I begin by plotting the data.
+
+#+BEGIN_SRC R :session :file socialmedia1.png :results value graphics :exports both
+plot(df$totalHour,df$avgSentenceLen)
+#+END_SRC
+
+#+RESULTS:
+[[file:socialmedia1.png]]
+
+I am not going to check for the normality of the distribution of the vectors since I am going to run a correlation analysis.
+
+Let's calculate the descriptives
+
+#+BEGIN_SRC R :session :exports both :results output
+summary(df[,2:3])
+sd(df$totalHour)
+sd(df$avgSentenceLen)
+#+END_SRC
+
+#+RESULTS:
+:    totalHour      avgSentenceLen
+:  Min.   : 0.000   Min.   : 3.0  
+:  1st Qu.: 1.250   1st Qu.:10.0  
+:  Median : 3.000   Median :15.0  
+:  Mean   : 3.478   Mean   :14.7  
+:  3rd Qu.: 5.000   3rd Qu.:19.0  
+:  Max.   :11.000   Max.   :27.0
+: [1] 2.571354
+: [1] 5.900771
+
+And now we can run the correlation analysis
+
+#+BEGIN_SRC R :session :exports both :results output
+cor.test(df$totalHour,df$avgSentenceLen)
+#+END_SRC
+
+#+RESULTS:
+#+begin_example
+
+	Pearson's product-moment correlation
+
+data:  df$totalHour and df$avgSentenceLen
+t = -15.294, df = 88, p-value < 2.2e-16
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ -0.9005384 -0.7836656
+sample estimates:
+       cor 
+-0.8524177
+#+end_example
+
+Ok, it seems that the data are correlated. Let's perform a linear regression.
+
+#+BEGIN_SRC R :session :exports both :results output
+model <- lm(totalHour ~ avgSentenceLen,data=df)
+summary(model)
+#+END_SRC
+
+#+RESULTS:
+#+begin_example
+
+Call:
+lm(formula = totalHour ~ avgSentenceLen, data = df)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-3.4807 -0.8307 -0.0663  0.9120  3.5477 
+
+Coefficients:
+               Estimate Std. Error t value Pr(>|t|)    
+(Intercept)     8.93816    0.38443   23.25   <2e-16 ***
+avgSentenceLen -0.37145    0.02429  -15.29   <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 1.352 on 88 degrees of freedom
+Multiple R-squared:  0.7266,	Adjusted R-squared:  0.7235 
+F-statistic: 233.9 on 1 and 88 DF,  p-value: < 2.2e-16
+#+end_example
+
+Now we test for the normality of the distribution of the residuals.
+
+#+BEGIN_SRC R :session :exports both :results output
+shapiro.test(residuals(model))
+#+END_SRC
+
+#+RESULTS:
+: 
+: 	Shapiro-Wilk normality test
+: 
+: data:  residuals(model)
+: W = 0.99539, p-value = 0.99
+
+The test turns out to be significative. Should I conclude that we cannot use a linear model? *I don't know how to procede here.*
+
+** Assignments
+*** Variables
+List the variables in the study – if relevant, say which variables are dependent and which are independent, and for each of the variables determine its type (nominal, ordinal, scale).  In case of independent variables, how many levels does each independent variable(s) have?
+**** Answer
+| hours on sm      | scale | independent |
+| avg sentence len | scale | dependent   |
+*** Statistics
+Identify the family of statistics: means, frequency or correlation; then choose the most appropriate statistical test
+**** Answer
+- Correlation.
+- Pearson's r
+*** Hypothesis
+Formulate a Null-hypothesis (or null-hypotheses in case of multiple tests) and the relevant alternative hypotheses
+**** Answer
+- H_0 :: time spent on social media does not affect the average sentence lenght
+- H_1 :: time spent on social media decreases the average sentence lenght
+- H_2 :: time spent on social media augments the average sentence lenght
+*** Details
+List the statistical considerations, like α-level and one-tailed or two-tailed (and why)?
+**** Answer
+- α-level :: .5
+- two tailed :: both cases are possible
+*** Assumptions
+Check them.
+**** Answer
+- no need to check for the normality of the distribution, since I am going to run a correlationa analyis
+*** Descriptives
+Provide them.
+**** Answer
+| totalHour      | avgSentenceLen |
+|----------------+----------------|
+| Min.   : 0.000 | Min.   : 3.0   |
+| Median : 3.000 | Median :15.0   |
+| Mean   : 3.478 | Mean   :14.7   |
+| Max.   :11.000 | Max.   :27.0   |
+| SD     :2.57   | SD     :5.90   | 
+
+*** Outcomes
+Give outcome statistical test(s) – include effect size if relevant and possible
+**** Answer
+- r :: -0.85
+- p :: < 0.05
+- NOTE :: the distribution of the residuals is not normal!
+*** Results
+Based on the observations listed above, write a results section like you would do this in a journal article. Illustrate your findings with tables and/or graphs when appropriate.
+**** Answer
+#+BEGIN_QUOTE
+A correlation analysis showed that the total amount of hour spent on social media and the average sentence lenght produced were significantly related (r =-0.85, p < 0.05). There is a strong negative correlation as the plot shows.
+#+END_QUOTE
+
+*** Discussion
+Write a brief discussion about the study, in which you can comment on the possible methodological pitfalls and the validity of the test.
+**** Answer
+Instead of using a questionnaire (which I suspect underrates the number of hours), it could have been possibile to gather other data: i.e number of posts per week, number of likes/retweet/etc., number of youtube video watched per month. This data are accessible via APIs. Then it would also have been nice to have other measures instead of just average sentence lenght; also the interpretation is not clear: one could say that this means an improvement on the use of language (writing a shorter text is more difficult than writing a longer one), or one could say the opposite. Also, the data are being sampled from one specific domain: essays. What about the other documents users produce?
+*** Conclusions
+Draw the most important conclusion about this study (answer the research question).
+**** Answer
+There seems to a correlation between use of social media and language use. Although more data would be necessary to better asses this conclusion.
 * Notes								   :noexport:
 ** Always check for normality before running t-test
 ** Equality of variance 
